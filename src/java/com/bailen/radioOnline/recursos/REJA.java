@@ -6,9 +6,12 @@
 package com.bailen.radioOnline.recursos;
 
 import com.bailen.radioOnline.Cancion;
+import com.bailen.radioOnline.Item;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.StringTokenizer;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -44,7 +47,22 @@ public class REJA {
         response = new RestTemplate()
                 .exchange("http://ceatic.ujaen.es:8075/radioapi/v1/random",HttpMethod.GET,entity, String.class,lista);
       
-        return response.getBody();
+        String canc= response.getBody();
+        StringTokenizer st = new StringTokenizer(canc,"[",true);
+        st.nextToken();st.nextToken();
+        canc="["+st.nextToken();
+        
+        try{
+            
+        ObjectMapper a=new ObjectMapper();
+        Item[] listilla= a.readValue(canc, Item[].class);
+        return Integer.toString(listilla[0].getId());
+        
+        }catch(Exception e){return e.getLocalizedMessage();}
+        
+        //return response.getBody();
+        
+        
     }
     
     public String recommendations(String apiKey){

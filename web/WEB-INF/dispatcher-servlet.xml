@@ -23,12 +23,22 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
     <mvc:resources mapping="/images/sin_identificar/**" location="/WEB-INF/jsp/images/sin_identificar/*" />
     <mvc:resources mapping="/images/identificado/**" location="/WEB-INF/jsp/images/identificado/*" />
     <mvc:resources mapping="/resources/css/**" location="/WEB-INF/jsp/resouces/css/*" />
+    <mvc:resources mapping="/resources/css/images**" location="/WEB-INF/jsp/resouces/css/images/*" />
     <mvc:resources mapping="/data/**" location="/WEB-INF/jsp/data/*" />
     <mvc:resources mapping="/files/sin_identificar/**" location="/WEB-INF/jsp/files/sin_identificar/*" />
     <mvc:resources mapping="/files/identificado/**" location="/WEB-INF/jsp/files/identificado/*" />
     <mvc:resources mapping="/resources/scripts/**" location="/WEB-INF/jsp/resources/scripts/*" />
     <mvc:resources mapping="/resources/images/**" location="/WEB-INF/jsp/resources/images/*" />
+    <mvc:resources mapping="/resources/scripts/**" location="/WEB-INF/jsp/resources/scripts/*" />
+    <mvc:resources mapping="/resources/scripts/axure/**" location="/WEB-INF/jsp/resources/scripts/axure/*" />
+    <mvc:resources mapping="/resources/scripts/player/**" location="/WEB-INF/jsp/resources/scripts/player/*" />
+    <mvc:resources mapping="/resources/chrome/**" location="/WEB-INF/jsp/resources/chrome/*" />
     <mvc:resources mapping="/resources/**" location="/WEB-INF/jsp/resources/*" />
+    <mvc:resources mapping="/plugins/page_notes/**" location="/WEB-INF/jsp/plugins/page_notes/*" />
+    <mvc:resources mapping="/plugins/page_notes/styles/**" location="/WEB-INF/jsp/plugins/page_notes/styles/*" />
+    <mvc:resources mapping="/plugins/sitemap/**" location="/WEB-INF/jsp/plugins/sitemap/*" />
+    <mvc:resources mapping="/plugins/sitemap/styles/**" location="/WEB-INF/jsp/plugins/sitemap/styles/*" />
+    <mvc:resources mapping="/plugins/sitemap/styles/images/**" location="/WEB-INF/jsp/plugins/sitemap/styles/images/*" />
    <!-- <context:annotation-config />-->
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but

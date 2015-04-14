@@ -102,7 +102,7 @@ public class Cancion {
 	}
         @Override
 	public String toString(){
-            return   this.artist_name+this.id+this.name;
+            return   this.artist_name+this.id+this.name+"    "+this.audio;
         }
 	
 }

@@ -53,6 +53,12 @@ public class servlet {
        
         return new ModelAndView("index");
     }
+    
+    @RequestMapping(value = "/identificado", method = RequestMethod.GET, produces = "text/html")
+    public @ResponseBody ModelAndView identificado() {
+       
+        return new ModelAndView("identificado");
+    }
 
     @RequestMapping(value = "/random", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
@@ -91,7 +97,7 @@ public class servlet {
         ids.add(1036981);
         ids.add(1029393);
 
-        return jamendo.canciones(ids).toString();
+        return jamendo.canciones(ids)[0].toString();
     }
 
 }
