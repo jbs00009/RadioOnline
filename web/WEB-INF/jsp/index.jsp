@@ -114,6 +114,18 @@
                 }
             }
         }
+        
+        function playNext() {
+            
+            var _playlist = document.getElementById('playlist');
+            var selected = _playlist.querySelector("li.selected");
+            if (selected && selected.nextSibling) {
+                playlistItemClick(selected.nextSibling);
+            }
+            
+        }
+        var _player= document.getElementById('myaudio');
+        _player.addEventListener("ended", playNext());
     </script>
   </head>
   <body onload="playAudio()">
@@ -154,7 +166,11 @@
       </div>
         <audio id="myaudio" >HTML5 audio not supported</audio>
           <input type="hidden" id="audiofile" size="80" value="  ${canciones[0].audio}" />
-      <!-- Unnamed (Image) -->
+         <!--playlist-->
+         <ul type="hidden" id="playlist"><c:forEach items="${canciones}" var="canc">
+             <li data-ogg="${canc.audio}">Space 1</li>
+             </c:forEach></ul>
+              <!-- Unnamed (Image) -->
       <div id="u6" class="ax_image">
         <img id="u6_img" class="img " onclick="playAudio();" src="<c:url value="/images/sin_identificar/u6.png"/>"/>
         <!-- Unnamed () -->
@@ -208,7 +224,7 @@
         <img id="u15_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
         <!-- Unnamed () -->
         <div id="u16" class="text">
-          <p><span>:  ${canciones[0].name} ( ${canciones[0].artist_name})</span></p>
+          <p><span>  ${canciones[0].name} ( ${canciones[0].artist_name})</span></p>
         </div>
       </div>
 
