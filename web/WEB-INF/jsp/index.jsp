@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:useBean id="cancion" class="com.bailen.radioOnline.Cancion" scope="request" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,8 +54,69 @@
       $axure.utils.getOtherPath = function() { return <c:url value='/resources/Other.html'/>; };
       $axure.utils.getReloadPath = function() { return <c:url value='/resources/reload.html'/>; };
     </script>
+    
+     <script type="text/javascript">
+        // Global variable to track current file name.
+        var currentFile = "";
+        function playAudio() {
+            // Check for audio element support.
+            if (window.HTMLAudioElement) {
+                try {
+                    var oAudio = document.getElementById('myaudio');
+                    var btn = document.getElementById('u6_img'); 
+                    var audioURL = document.getElementById('audiofile'); 
+
+                    //Skip loading if current file hasn't changed.
+                    if (audioURL.value !== currentFile) {
+                        oAudio.src = audioURL.value;
+                        currentFile = audioURL.value;                       
+                    }
+
+                    // Tests the paused attribute and set state. 
+                    
+                        oAudio.play();
+                        
+                    
+                   
+                }
+                catch (e) {
+                    // Fail silently but show in F12 developer tools console
+                     if(window.console && console.error("Error:" + e));
+                }
+            }
+        }
+
+
+        function pauseAudio() {
+            // Check for audio element support.
+            if (window.HTMLAudioElement) {
+                try {
+                    var oAudio = document.getElementById('myaudio');
+                    var btn = document.getElementById('u8_img'); 
+                    var audioURL = document.getElementById('audiofile'); 
+
+                    //Skip loading if current file hasn't changed.
+                    if (audioURL.value !== currentFile) {
+                        oAudio.src = audioURL.value;
+                        currentFile = audioURL.value;                       
+                    }
+
+                    // Tests the paused attribute and set state. 
+                        
+                        oAudio.pause();
+                        
+                    
+                   
+                }
+                catch (e) {
+                    // Fail silently but show in F12 developer tools console
+                     if(window.console && console.error("Error:" + e));
+                }
+            }
+        }
+    </script>
   </head>
-  <body>
+  <body onload="playAudio()">
 
 <table>
   <tr>
@@ -90,19 +152,21 @@
           <p><span></span></p>
         </div>
       </div>
-
+        <audio id="myaudio" >HTML5 audio not supported</audio>
+          <input type="hidden" id="audiofile" size="80" value="  ${canciones[0].audio}" />
       <!-- Unnamed (Image) -->
       <div id="u6" class="ax_image">
-        <img id="u6_img" class="img " src="<c:url value="/images/sin_identificar/u6.png"/>"/>
+        <img id="u6_img" class="img " onclick="playAudio();" src="<c:url value="/images/sin_identificar/u6.png"/>"/>
         <!-- Unnamed () -->
         <div id="u7" class="text">
           <p><span></span></p>
         </div>
       </div>
 
+    
       <!-- Unnamed (Image) -->
       <div id="u8" class="ax_image">
-        <img id="u8_img" class="img " src="<c:url value="/images/sin_identificar/u8.png"/>"/>
+        <img id="u8_img" class="img " onclick="pauseAudio();" src="<c:url value="/images/sin_identificar/u8.png"/>"/>
         <!-- Unnamed () -->
         <div id="u9" class="text">
           <p><span></span></p>
@@ -144,13 +208,13 @@
         <img id="u15_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
         <!-- Unnamed () -->
         <div id="u16" class="text">
-          <p><span>Sonando</span><span>: Si pero No (David Bisbal)</span></p>
+          <p><span>:  ${canciones[0].name} ( ${canciones[0].artist_name})</span></p>
         </div>
       </div>
 
       <!-- Unnamed (Image) -->
       <div id="u17" class="ax_image">
-        <img id="u17_img" class="img " src="<c:url value="/images/sin_identificar/u17.jpg"/>"/>
+        <img id="u17_img" class="img " src=" ${canciones[0].image}"/>
         <!-- Unnamed () -->
         <div id="u18" class="text">
           <p><span></span></p>
@@ -342,7 +406,7 @@
       <div id="u54" class="ax_h2">
         <img id="u54_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
         <!-- Unnamed () -->
-        <div id="u55" class="text">
+        <div id="u55" class="text" >
           <p><span>Artistas favoritos </span></p>
         </div>
       </div>

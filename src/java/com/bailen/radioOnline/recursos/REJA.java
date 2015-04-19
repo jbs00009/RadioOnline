@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.Vector;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -26,7 +27,10 @@ import org.springframework.web.client.RestTemplate;
  */
 public class REJA {
 
+    Jamendo jamendo;
+    
     public REJA() {
+        jamendo=new Jamendo();
     }
     
     
@@ -38,7 +42,7 @@ public class REJA {
     return result;
     }
     
-    public String random(String apiKey){
+    public Cancion[] random(String apiKey){
         HttpHeaders header=new HttpHeaders();
         header.set("Authorization", apiKey);
         HttpEntity entity=new HttpEntity(header);
@@ -56,9 +60,13 @@ public class REJA {
             
         ObjectMapper a=new ObjectMapper();
         Item[] listilla= a.readValue(canc, Item[].class);
-        return Integer.toString(listilla[0].getId());
+        Vector<Integer> ids=new Vector<>();
+        for(int i=0;i<listilla.length;++i){
+            ids.add(listilla[i].getId());
+        }
+        return jamendo.canciones(ids);
         
-        }catch(Exception e){return e.getLocalizedMessage();}
+        }catch(Exception e){return null;}
         
         //return response.getBody();
         

@@ -49,57 +49,170 @@ public class Cancion {
         this.shareurl = shareurl;
         this.image = image;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public String getArtist_id() {
+        return artist_id;
+    }
+
+    public void setArtist_id(String artist_id) {
+        this.artist_id = artist_id;
+    }
+
+    public String getArtist_name() {
+        return artist_name;
+    }
+
+    public void setArtist_name(String artist_name) {
+        this.artist_name = artist_name;
+    }
+
+    public String getArtist_idstr() {
+        return artist_idstr;
+    }
+
+    public void setArtist_idstr(String artist_idstr) {
+        this.artist_idstr = artist_idstr;
+    }
+
+    public String getAlbum_name() {
+        return album_name;
+    }
+
+    public void setAlbum_name(String album_name) {
+        this.album_name = album_name;
+    }
+
+    public String getAlbum_id() {
+        return album_id;
+    }
+
+    public void setAlbum_id(String album_id) {
+        this.album_id = album_id;
+    }
+
+    public String getLicense_ccurl() {
+        return license_ccurl;
+    }
+
+    public void setLicense_ccurl(String license_ccurl) {
+        this.license_ccurl = license_ccurl;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getReleasedate() {
+        return releasedate;
+    }
+
+    public void setReleasedate(String releasedate) {
+        this.releasedate = releasedate;
+    }
+
+    public String getAlbum_image() {
+        return album_image;
+    }
+
+    public void setAlbum_image(String album_image) {
+        this.album_image = album_image;
+    }
+
+    public String getAudio() {
+        return audio;
+    }
+
+    public void setAudio(String audio) {
+        this.audio = audio;
+    }
+
+    public String getAudiodownload() {
+        return audiodownload;
+    }
+
+    public void setAudiodownload(String audiodownload) {
+        this.audiodownload = audiodownload;
+    }
+
+    public String getProurl() {
+        return prourl;
+    }
+
+    public void setProurl(String prourl) {
+        this.prourl = prourl;
+    }
+
+    public String getShorturl() {
+        return shorturl;
+    }
+
+    public void setShorturl(String shorturl) {
+        this.shorturl = shorturl;
+    }
+
+    public String getShareurl() {
+        return shareurl;
+    }
+
+    public void setShareurl(String shareurl) {
+        this.shareurl = shareurl;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public boolean isFav() {
+        return fav;
+    }
+
+    public void setFav(boolean fav) {
+        this.fav = fav;
+    }
         
        
         
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getSongName() {
-		return name;
-	}
-	public void setSongName(String songName) {
-		this.name = songName;
-	}
-	public String getArtistName() {
-		return artist_name;
-	}
-	public void setArtistName(String artistName) {
-		this.artist_name = artistName;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String photoUrl) {
-		this.image = photoUrl;
-	}
-	public int getDuration() {
-		return duration;
-	}
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
-	public String getAudioUrl() {
-		return audio;
-	}
-	public void setAudioUrl(String audioUrl) {
-		this.audio = audioUrl;
-	}
-	public int getRating() {
-		return rating;
-	}
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
-	public boolean isFav() {
-		return fav;
-	}
-	public void setFav(boolean fav) {
-		this.fav = fav;
-	}
+	
         @Override
 	public String toString(){
             return   this.artist_name+this.id+this.name+"    "+this.audio;
