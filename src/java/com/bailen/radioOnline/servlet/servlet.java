@@ -85,6 +85,8 @@ public class servlet {
         for(int i=0;i<inter.length;++i){
             canciones.add(inter[i]);
         }
+        int cont=0;
+        model.addObject("cont", cont) ;
         model.addObject("canciones", canciones) ;
         return model;
     }

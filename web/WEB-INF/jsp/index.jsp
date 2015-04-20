@@ -67,10 +67,10 @@
                     var audioURL = document.getElementById('audiofile'); 
 
                     //Skip loading if current file hasn't changed.
-                    if (audioURL.value !== currentFile) {
+                    /*if (audioURL.value !== currentFile) {
                         oAudio.src = audioURL.value;
                         currentFile = audioURL.value;                       
-                    }
+                    }*/
 
                     // Tests the paused attribute and set state. 
                     
@@ -96,10 +96,10 @@
                     var audioURL = document.getElementById('audiofile'); 
 
                     //Skip loading if current file hasn't changed.
-                    if (audioURL.value !== currentFile) {
+                    /*if (audioURL.value !== currentFile) {
                         oAudio.src = audioURL.value;
                         currentFile = audioURL.value;                       
-                    }
+                    }*/
 
                     // Tests the paused attribute and set state. 
                         
@@ -115,21 +115,39 @@
             }
         }
         
-        function playNext() {
+        $(function(){
+            var iCancionActual=-1;
+            var iTotalCanciones=$('#playlist li').length;
+            var objReproductor=document.getElementById('myaudio');
             
-            var _playlist = document.getElementById('playlist');
-            var selected = _playlist.querySelector("li.selected");
-            if (selected && selected.nextSibling) {
-                playlistItemClick(selected.nextSibling);
-            }
             
-        }
-        var _player= document.getElementById('myaudio');
-        _player.addEventListener("ended", playNext());
+            $(objReproductor).on('ended',function(){
+               var objReproductor=document.getElementById('myaudio');
+               var imagenRep=document.getElementById("u17_img");
+               var textoRep=document.getElementById('textoRep');
+               if(iCancionActual===iTotalCanciones-1){
+                    iCancionActual=0; 
+               }else{
+                   iCancionActual++;      
+               }
+               
+               <c:if test="${cont==9}"  >
+                    ${cont=0}
+               </c:if>
+               <c:if test="${cont!=9}">
+                    ${cont=cont+1}
+               </c:if>
+               
+               objReproductor.src=$('#playlist').children().eq(iCancionActual).attr('rel');
+               imagenRep.src= '${canciones[cont].image}';
+               textoRep.firstChild.nodeValue = '${canciones[cont].name} ( ${canciones[cont].artist_name})';
+               objReproductor.play();
+            });
+        });
     </script>
   </head>
   <body onload="playAudio()">
-
+      ${cont}
 <table>
   <tr>
     <td style="width: 10px;">
@@ -164,11 +182,11 @@
           <p><span></span></p>
         </div>
       </div>
-        <audio id="myaudio" >HTML5 audio not supported</audio>
-          <input type="hidden" id="audiofile" size="80" value="  ${canciones[0].audio}" />
+        <audio id="myaudio" src="${canciones[0].audio}" >HTML5 audio not supported</audio>
+         
          <!--playlist-->
          <ul type="hidden" id="playlist"><c:forEach items="${canciones}" var="canc">
-             <li data-ogg="${canc.audio}">Space 1</li>
+             <li rel="${canc.audio}"></li>
              </c:forEach></ul>
               <!-- Unnamed (Image) -->
       <div id="u6" class="ax_image">
@@ -224,13 +242,13 @@
         <img id="u15_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
         <!-- Unnamed () -->
         <div id="u16" class="text">
-          <p><span>  ${canciones[0].name} ( ${canciones[0].artist_name})</span></p>
+          <p><span id="textoRep">  ${canciones[cont].name} ( ${canciones[cont].artist_name})</span></p>
         </div>
       </div>
 
       <!-- Unnamed (Image) -->
       <div id="u17" class="ax_image">
-        <img id="u17_img" class="img " src=" ${canciones[0].image}"/>
+        <img id="u17_img" class="img " src=" ${canciones[cont].image}"/>
         <!-- Unnamed () -->
         <div id="u18" class="text">
           <p><span></span></p>
