@@ -64,6 +64,34 @@
                 try {
                     var oAudio = document.getElementById('myaudio');
                     
+                    
+
+                    //Skip loading if current file hasn't changed.
+                    /*if (audioURL.value !== currentFile) {
+                        oAudio.src = audioURL.value;
+                        currentFile = audioURL.value;                       
+                    }*/
+
+                    // Tests the paused attribute and set state. 
+                    
+                    oAudio.play();
+                        
+                    
+                   
+                }
+                catch (e) {
+                    // Fail silently but show in F12 developer tools console
+                     if(window.console && console.error("Error:" + e));
+                }
+            }
+        }
+        
+        function playAudioInicio() {
+            // Check for audio element support.
+            if (window.HTMLAudioElement) {
+                try {
+                    var oAudio = document.getElementById('myaudio');
+                    
                     var imagenlist1=document.getElementById("u122_img");
                     var imagenlist2=document.getElementById("u124_img");
                     var imagenlist3=document.getElementById("u126_img");
@@ -187,7 +215,7 @@
         });
     </script>
   </head>
-  <body onload="playAudio()">
+  <body onload="playAudioInicio()">
    
 <table>
   <tr>
@@ -330,7 +358,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u26" class="ax_image">
-              <img id="u26_img" class="img " src="<c:url value="/images/sin_identificar/u26.jpg"/>"/>
+              <img id="u26_img" class="img " src="${canciones[0].album_image}"/>
               <!-- Unnamed () -->
               <div id="u27" class="text">
                 <p><span></span></p>
@@ -342,7 +370,7 @@
               <img id="u28_img" class="img " src="<c:url value="/images/sin_identificar/u28.png"/>"/>
               <!-- Unnamed () -->
               <div id="u29" class="text">
-                <p><span>A</span><span>riana Grande</span></p>
+                <p><span>${canciones[0].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -361,7 +389,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u32" class="ax_image">
-              <img id="u32_img" class="img " src="<c:url value="/images/sin_identificar/u32.jpg"/>"/>
+              <img id="u32_img" class="img " src="${canciones[1].album_image}"/>
               <!-- Unnamed () -->
               <div id="u33" class="text">
                 <p><span></span></p>
@@ -373,7 +401,7 @@
               <img id="u34_img" class="img " src="<c:url value="/images/sin_identificar/u28.png"/>"/>
               <!-- Unnamed () -->
               <div id="u35" class="text">
-                <p><span>D</span><span>avid Bisbal</span></p>
+                <p><span>${canciones[1].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -383,7 +411,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u36" class="ax_image">
-              <img id="u36_img" class="img " src="<c:url value="/images/sin_identificar/u36.jpg"/>"/>
+              <img id="u36_img" class="img " src="${canciones[2].album_image}"/>
               <!-- Unnamed () -->
               <div id="u37" class="text">
                 <p><span></span></p>
@@ -395,7 +423,7 @@
               <img id="u38_img" class="img " src="<c:url value="/images/sin_identificar/u28.png"/>"/>
               <!-- Unnamed () -->
               <div id="u39" class="text">
-                <p><span>M</span><span>iguel Bosé</span></p>
+                <p><span>${canciones[2].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -405,7 +433,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u40" class="ax_image">
-              <img id="u40_img" class="img " src="<c:url value="/images/sin_identificar/u40.jpg"/>"/>
+              <img id="u40_img" class="img " src="${canciones[3].album_image}"/>
               <!-- Unnamed () -->
               <div id="u41" class="text">
                 <p><span></span></p>
@@ -417,7 +445,7 @@
               <img id="u42_img" class="img " src="<c:url value="/images/sin_identificar/u28.png"/>"/>
               <!-- Unnamed () -->
               <div id="u43" class="text">
-                <p><span>Riahanna</span></p>
+                <p><span>${canciones[3].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -427,7 +455,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u44" class="ax_image">
-              <img id="u44_img" class="img " src="<c:url value="/images/sin_identificar/u44.jpeg"/>"/>
+              <img id="u44_img" class="img " src="${canciones[4].album_image}"/>
               <!-- Unnamed () -->
               <div id="u45" class="text">
                 <p><span></span></p>
@@ -439,7 +467,7 @@
               <img id="u46_img" class="img " src="<c:url value="/images/sin_identificar/u28.png"/>"/>
               <!-- Unnamed () -->
               <div id="u47" class="text">
-                <p><span>P</span><span>harrell Williams</span></p>
+                <p><span>${canciones[4].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -449,7 +477,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u48" class="ax_image">
-              <img id="u48_img" class="img " src="<c:url value="/images/sin_identificar/u48.jpg"/>"/>
+              <img id="u48_img" class="img " src="${canciones[5].album_image}"/>
               <!-- Unnamed () -->
               <div id="u49" class="text">
                 <p><span></span></p>
@@ -461,7 +489,7 @@
               <img id="u50_img" class="img " src="<c:url value="/images/sin_identificar/u28.png"/>"/>
               <!-- Unnamed () -->
               <div id="u51" class="text">
-                <p><span>B</span><span>irdy</span></p>
+                <p><span>${canciones[5].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -481,7 +509,7 @@
       <div id="u54" class="ax_h2">
         <img id="u54_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
         <!-- Unnamed () -->
-        <div id="u55" class="text" >
+        <div id="u55" class="text">
           <p><span>Artistas favoritos </span></p>
         </div>
       </div>
