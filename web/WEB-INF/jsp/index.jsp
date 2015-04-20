@@ -63,8 +63,17 @@
             if (window.HTMLAudioElement) {
                 try {
                     var oAudio = document.getElementById('myaudio');
-                    var btn = document.getElementById('u6_img'); 
-                    var audioURL = document.getElementById('audiofile'); 
+                    
+                    var imagenlist1=document.getElementById("u122_img");
+                    var imagenlist2=document.getElementById("u124_img");
+                    var imagenlist3=document.getElementById("u126_img");
+                    var imagenlist4=document.getElementById("u128_img");
+                    
+                    //texto lista
+                var spa1=document.getElementById("spa1");
+                var spa2=document.getElementById("spa2");
+                var spa3=document.getElementById("spa3");
+                var spa4=document.getElementById("spa4");
 
                     //Skip loading if current file hasn't changed.
                     /*if (audioURL.value !== currentFile) {
@@ -74,8 +83,20 @@
 
                     // Tests the paused attribute and set state. 
                     
-                        oAudio.play();
+                    oAudio.play();
                         
+                    //imagenes lista reproduccion    
+                    imagenlist1.src= $('#playlist').children().eq(1).attr('imagen');
+                    imagenlist2.src= $('#playlist').children().eq(2).attr('imagen');
+                    imagenlist3.src= $('#playlist').children().eq(3).attr('imagen');
+                    imagenlist4.src= $('#playlist').children().eq(4).attr('imagen');
+                    
+                    //texto lista reproduccion
+               spa1.firstChild.nodeValue= $('#playlist').children().eq(1).attr('texto');
+               spa2.firstChild.nodeValue= $('#playlist').children().eq(2).attr('texto');
+               spa3.firstChild.nodeValue= $('#playlist').children().eq(3).attr('texto');
+               spa4.firstChild.nodeValue= $('#playlist').children().eq(4).attr('texto');
+               
                     
                    
                 }
@@ -116,7 +137,7 @@
         }
         
         $(function(){
-            var iCancionActual=-1;
+            var iCancionActual=0;
             var iTotalCanciones=$('#playlist li').length;
             var objReproductor=document.getElementById('myaudio');
             
@@ -125,29 +146,49 @@
                var objReproductor=document.getElementById('myaudio');
                var imagenRep=document.getElementById("u17_img");
                var textoRep=document.getElementById('textoRep');
+               
+               //lista reproducción
+                var imagenlist1=document.getElementById("u122_img");
+                var imagenlist2=document.getElementById("u124_img");
+                var imagenlist3=document.getElementById("u126_img");
+                var imagenlist4=document.getElementById("u128_img");
+                //texto lista
+                var spa1=document.getElementById("spa1");
+                var spa2=document.getElementById("spa2");
+                var spa3=document.getElementById("spa3");
+                var spa4=document.getElementById("spa4");
+                
+               
+               
                if(iCancionActual===iTotalCanciones-1){
                     iCancionActual=0; 
                }else{
                    iCancionActual++;      
                }
                
-               <c:if test="${cont==9}"  >
-                    ${cont=0}
-               </c:if>
-               <c:if test="${cont!=9}">
-                    ${cont=cont+1}
-               </c:if>
-               
+                              
                objReproductor.src=$('#playlist').children().eq(iCancionActual).attr('rel');
-               imagenRep.src= '${canciones[cont].image}';
-               textoRep.firstChild.nodeValue = '${canciones[cont].name} ( ${canciones[cont].artist_name})';
+               imagenRep.src= $('#playlist').children().eq(iCancionActual).attr('imagen');
+               textoRep.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
                objReproductor.play();
+               
+               //imagenes lista reproduccion
+               imagenlist1.src= $('#playlist').children().eq((iCancionActual+1)%10).attr('imagen');
+               imagenlist2.src= $('#playlist').children().eq((iCancionActual+2)%10).attr('imagen');
+               imagenlist3.src= $('#playlist').children().eq((iCancionActual+3)%10).attr('imagen');
+               imagenlist4.src= $('#playlist').children().eq((iCancionActual+4)%10).attr('imagen');
+               //texto lista reproduccion
+               spa1.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+1)%10).attr('texto');
+               spa2.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+2)%10).attr('texto');
+               spa3.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+3)%10).attr('texto');
+               spa4.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+4)%10).attr('texto');
+               
             });
         });
     </script>
   </head>
   <body onload="playAudio()">
-      ${cont}
+   
 <table>
   <tr>
     <td style="width: 10px;">
@@ -186,7 +227,7 @@
          
          <!--playlist-->
          <ul type="hidden" id="playlist"><c:forEach items="${canciones}" var="canc">
-             <li rel="${canc.audio}"></li>
+             <li rel="${canc.audio}" imagen="${canc.image}" texto="${canc.name} (${canc.artist_name})"></li>
              </c:forEach></ul>
               <!-- Unnamed (Image) -->
       <div id="u6" class="ax_image">
@@ -242,13 +283,13 @@
         <img id="u15_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
         <!-- Unnamed () -->
         <div id="u16" class="text">
-          <p><span id="textoRep">  ${canciones[cont].name} ( ${canciones[cont].artist_name})</span></p>
+          <p><span id="textoRep">  ${canciones[0].name} ( ${canciones[0].artist_name})</span></p>
         </div>
       </div>
 
       <!-- Unnamed (Image) -->
       <div id="u17" class="ax_image">
-        <img id="u17_img" class="img " src=" ${canciones[cont].image}"/>
+        <img id="u17_img" class="img " src=" ${canciones[0].image}"/>
         <!-- Unnamed () -->
         <div id="u18" class="text">
           <p><span></span></p>
@@ -854,7 +895,7 @@
               <img id="u130_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
               <!-- Unnamed () -->
               <div id="u131" class="text">
-                <p><span>Tocado y hundido (Melendi)</span></p>
+                <p><span id="spa1">Tocado y hundido (Melendi)</span></p>
               </div>
             </div>
 
@@ -863,7 +904,7 @@
               <img id="u132_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
               <!-- Unnamed () -->
               <div id="u133" class="text">
-                <p><span>Si pero no (David Bisbal)</span></p>
+                <p><span id="spa2">Si pero no (David Bisbal)</span></p>
               </div>
             </div>
 
@@ -872,7 +913,7 @@
               <img id="u134_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
               <!-- Unnamed () -->
               <div id="u135" class="text">
-                <p><span>Pasos de cero</span></p><p><span>(Pablo Alboran)</span></p>
+                <p><span id="spa3">pasos de cero</span></p>
               </div>
             </div>
 
@@ -881,8 +922,7 @@
               <img id="u136_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
               <!-- Unnamed () -->
               <div id="u137" class="text">
-                <p style="font-size:16px;"><span style="font-size:16px;">People help the people</span></p><p style="font-size:16px;"><span style="font-size:16px;">(Birdy</span><span style="font-size:13px;">)</span></p>
-              </div>
+                <p><span id="spa4">people help the people</span></p></div>
             </div>
           </div>
         </div>
