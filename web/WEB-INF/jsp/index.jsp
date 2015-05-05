@@ -213,6 +213,15 @@
                
             });
         });
+        
+        function identificado() {
+            // Check for audio element support.
+            var em=document.getElementById('u162_input').value;
+            
+            window.location = "radioWebPrueba/login/"+em;
+            
+        }
+        
     </script>
   </head>
   <body onload="playAudioInicio()">
@@ -510,7 +519,7 @@
         <img id="u54_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
         <!-- Unnamed () -->
         <div id="u55" class="text">
-          <p><span>Artistas favoritos </span></p>
+          <p><span>Artistas </span></p>
         </div>
       </div>
 
@@ -519,7 +528,7 @@
         <img id="u56_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
         <!-- Unnamed () -->
         <div id="u57" class="text">
-          <p><span>Temas + valorados</span></p>
+          <p><span>Temas</span></p>
         </div>
       </div>
 
@@ -721,7 +730,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u91" class="ax_image">
-              <img id="u91_img" class="img " src="<c:url value="/images/sin_identificar/u17.jpg"/>"/>
+              <img id="u91_img" class="img " src="${canciones[4].image}"/>
               <!-- Unnamed () -->
               <div id="u92" class="text">
                 <p><span></span></p>
@@ -733,7 +742,7 @@
               <img id="u93_img" class="img " src="<c:url value="/images/sin_identificar/u28.png"/>"/>
               <!-- Unnamed () -->
               <div id="u94" class="text">
-                <p><span>S</span><span>i pero No - David Bisbal</span></p>
+                <p><span>${canciones[4].name}</span></p>
               </div>
             </div>
           </div>
@@ -743,7 +752,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u95" class="ax_image">
-              <img id="u95_img" class="img " src="<c:url value="/images/sin_identificar/u95.jpg"/>"/>
+              <img id="u95_img" class="img " src="${canciones[5].image}"/>
               <!-- Unnamed () -->
               <div id="u96" class="text">
                 <p><span></span></p>
@@ -755,7 +764,7 @@
               <img id="u97_img" class="img " src="<c:url value="/images/sin_identificar/u97.png"/>"/>
               <!-- Unnamed () -->
               <div id="u98" class="text">
-                <p><span>P</span><span>asos de cero - Pablo Alborán</span></p>
+                <p><span>${canciones[5].name}</span></p>
               </div>
             </div>
           </div>
@@ -765,7 +774,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u99" class="ax_image">
-              <img id="u99_img" class="img " src="<c:url value="/images/sin_identificar/u99.jpg"/>"/>
+              <img id="u99_img" class="img " src="${canciones[6].image}"/>
               <!-- Unnamed () -->
               <div id="u100" class="text">
                 <p><span></span></p>
@@ -777,7 +786,7 @@
               <img id="u101_img" class="img " src="<c:url value="/images/sin_identificar/u97.png"/>"/>
               <!-- Unnamed () -->
               <div id="u102" class="text">
-                <p><span>T</span><span>ocado y hundido - Melendi</span></p>
+                <p><span>${canciones[6].name}</span></p>
               </div>
             </div>
           </div>
@@ -787,7 +796,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u103" class="ax_image">
-              <img id="u103_img" class="img " src="<c:url value="/images/sin_identificar/u103.jpg"/>"/>
+              <img id="u103_img" class="img " src="${canciones[7].image}"/>
               <!-- Unnamed () -->
               <div id="u104" class="text">
                 <p><span></span></p>
@@ -799,7 +808,7 @@
               <img id="u105_img" class="img " src="<c:url value="/images/sin_identificar/u97.png"/>"/>
               <!-- Unnamed () -->
               <div id="u106" class="text">
-                <p><span>Dangerous - David Guetta</span></p>
+                <p><span>${canciones[7].name}</span></p>
               </div>
             </div>
           </div>
@@ -809,7 +818,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u107" class="ax_image">
-              <img id="u107_img" class="img " src="<c:url value="/images/sin_identificar/u107.jpg"/>"/>
+              <img id="u107_img" class="img " src="${canciones[8].image}"/>
               <!-- Unnamed () -->
               <div id="u108" class="text">
                 <p><span></span></p>
@@ -821,7 +830,7 @@
               <img id="u109_img" class="img " src="<c:url value="/images/sin_identificar/u97.png"/>"/>
               <!-- Unnamed () -->
               <div id="u110" class="text">
-                <p><span>C</span><span>handelier - Sia</span></p>
+                <p><span>${canciones[8].name}</span></p>
               </div>
             </div>
           </div>
@@ -831,7 +840,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u111" class="ax_image">
-              <img id="u111_img" class="img " src="<c:url value="/images/sin_identificar/u111.jpg"/>"/>
+              <img id="u111_img" class="img " src="${canciones[9].image}"/>
               <!-- Unnamed () -->
               <div id="u112" class="text">
                 <p><span></span></p>
@@ -843,7 +852,7 @@
               <img id="u113_img" class="img " src="<c:url value="/images/sin_identificar/u97.png"/>"/>
               <!-- Unnamed () -->
               <div id="u114" class="text">
-                <p><span>T</span><span>ake me to church - Hozier</span></p>
+                <p><span>${canciones[9].name}</span></p>
               </div>
             </div>
           </div>
@@ -1092,8 +1101,8 @@
             </div>
 
             <!-- Unnamed (HTML Button) -->
-            <div id="u166" class="ax_html_button">
-              <input id="u166_input" type="submit" value="Enviar"/>
+            <div  class="ax_html_button">
+                <input style="width:100px; height:25px; margin-top: 238px; margin-left: 264px; position: absolute;z-index: 0" onclick="identificado()" type="button" value="Enviar"/>
             </div>
 
             <!-- Unnamed (HTML Button) -->

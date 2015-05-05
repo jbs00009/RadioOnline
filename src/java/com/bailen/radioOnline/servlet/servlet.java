@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -74,7 +75,12 @@ public class servlet {
     @RequestMapping(value = "/identificado", method = RequestMethod.GET, produces = "text/html")
     public @ResponseBody ModelAndView identificado() {
        
-        return new ModelAndView("identificado");
+        ModelAndView model=new ModelAndView("identificado");
+        model=random(model);
+        
+        
+        
+        return model;
     }
 
     @RequestMapping(value = "/random", method = RequestMethod.GET, produces = "application/json")
@@ -90,30 +96,63 @@ public class servlet {
         model.addObject("canciones", canciones) ;
         return model;
     }
+    
+    @RequestMapping(value = "/randomId", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody ModelAndView randomId() {
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody
-    String login() {
+        ArrayList<Cancion> canciones=new ArrayList<>();
+        Cancion[] inter=reja.random(usuario.getApiKey());
+        for(int i=0;i<inter.length;++i){
+            canciones.add(inter[i]);
+        }
+        ModelAndView model=new ModelAndView("identificado");
+        model.addObject("canciones", canciones) ;
+        return model;
+    }
 
-        usuario.setEmail("gasparbailen@gmail.com");
-        return reja.login(usuario.getEmail());
+    @RequestMapping(value = "/login/{email}", method = RequestMethod.GET, produces = "application/json")
+    public 
+    String login(@PathVariable String email) {
+
+        usuario.setEmail(email);
+        reja.login(usuario.getEmail());
+        
+        
+        return "redirect:/identificado";
     }
 
     @RequestMapping(value = "/recommendations", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    String recommendations() {
+    ModelAndView recommendations() {
 
-        return reja.recommendations(usuario.getApiKey());
+        ArrayList<Cancion> canciones=new ArrayList<>();
+        Cancion[] inter=reja.recommendations(usuario.getApiKey());
+        for(int i=0;i<inter.length;++i){
+            canciones.add(inter[i]);
+        }
+        ModelAndView model=new ModelAndView();
+        model.addObject("canciones", canciones) ;
+        return model;
+        
     }
 
     @RequestMapping(value = "/favourites", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    String favourites() {
+    ModelAndView favourites() {
 
-        return reja.favourites(usuario.getApiKey());
+         ArrayList<Cancion> canciones=new ArrayList<>();
+        Cancion[] inter=reja.favourites(usuario.getApiKey());
+        for(int i=0;i<inter.length;++i){
+            canciones.add(inter[i]);
+        }
+        ModelAndView model=new ModelAndView();
+        model.addObject("canciones", canciones) ;
+        return model;
+        
+       
     }
 
-    @RequestMapping(value = "/canciones", method = RequestMethod.GET, produces = "application/json")
+    /*@RequestMapping(value = "/canciones", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     String canc() {
 
@@ -129,6 +168,6 @@ public class servlet {
         }
         return ret;
         
-    }
+    }*/
 
 }

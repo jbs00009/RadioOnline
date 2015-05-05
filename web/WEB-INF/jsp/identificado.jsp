@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:useBean id="cancion" class="com.bailen.radioOnline.Cancion" scope="request" />
 <!DOCTYPE html>
 <html>
   <head>
@@ -47,8 +48,167 @@
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+    <script type="text/javascript">
+        // Global variable to track current file name.
+        var currentFile = "";
+        function playAudio() {
+            // Check for audio element support.
+            if (window.HTMLAudioElement) {
+                try {
+                    var oAudio = document.getElementById('myaudio');
+                    
+                    
+
+                    //Skip loading if current file hasn't changed.
+                    /*if (audioURL.value !== currentFile) {
+                        oAudio.src = audioURL.value;
+                        currentFile = audioURL.value;                       
+                    }*/
+
+                    // Tests the paused attribute and set state. 
+                    
+                    oAudio.play();
+                        
+                    
+                   
+                }
+                catch (e) {
+                    // Fail silently but show in F12 developer tools console
+                     if(window.console && console.error("Error:" + e));
+                }
+            }
+        }
+        
+        function playAudioInicio() {
+            // Check for audio element support.
+            if (window.HTMLAudioElement) {
+                try {
+                    var oAudio = document.getElementById('myaudio');
+                    
+                    var imagenlist1=document.getElementById("u122_img");
+                    var imagenlist2=document.getElementById("u124_img");
+                    var imagenlist3=document.getElementById("u126_img");
+                    var imagenlist4=document.getElementById("u128_img");
+                    
+                    //texto lista
+                var spa1=document.getElementById("spa1");
+                var spa2=document.getElementById("spa2");
+                var spa3=document.getElementById("spa3");
+                var spa4=document.getElementById("spa4");
+
+                    //Skip loading if current file hasn't changed.
+                    /*if (audioURL.value !== currentFile) {
+                        oAudio.src = audioURL.value;
+                        currentFile = audioURL.value;                       
+                    }*/
+
+                    // Tests the paused attribute and set state. 
+                    
+                    oAudio.play();
+                        
+                    //imagenes lista reproduccion    
+                    imagenlist1.src= $('#playlist').children().eq(1).attr('imagen');
+                    imagenlist2.src= $('#playlist').children().eq(2).attr('imagen');
+                    imagenlist3.src= $('#playlist').children().eq(3).attr('imagen');
+                    imagenlist4.src= $('#playlist').children().eq(4).attr('imagen');
+                    
+                    //texto lista reproduccion
+               spa1.firstChild.nodeValue= $('#playlist').children().eq(1).attr('texto');
+               spa2.firstChild.nodeValue= $('#playlist').children().eq(2).attr('texto');
+               spa3.firstChild.nodeValue= $('#playlist').children().eq(3).attr('texto');
+               spa4.firstChild.nodeValue= $('#playlist').children().eq(4).attr('texto');
+               
+                    
+                   
+                }
+                catch (e) {
+                    // Fail silently but show in F12 developer tools console
+                     if(window.console && console.error("Error:" + e));
+                }
+            }
+        }
+
+
+        function pauseAudio() {
+            // Check for audio element support.
+            if (window.HTMLAudioElement) {
+                try {
+                    var oAudio = document.getElementById('myaudio');
+                    var btn = document.getElementById('u8_img'); 
+                    var audioURL = document.getElementById('audiofile'); 
+
+                    //Skip loading if current file hasn't changed.
+                    /*if (audioURL.value !== currentFile) {
+                        oAudio.src = audioURL.value;
+                        currentFile = audioURL.value;                       
+                    }*/
+
+                    // Tests the paused attribute and set state. 
+                        
+                        oAudio.pause();
+                        
+                    
+                   
+                }
+                catch (e) {
+                    // Fail silently but show in F12 developer tools console
+                     if(window.console && console.error("Error:" + e));
+                }
+            }
+        }
+        
+        $(function(){
+            var iCancionActual=0;
+            var iTotalCanciones=$('#playlist li').length;
+            var objReproductor=document.getElementById('myaudio');
+            
+            
+            $(objReproductor).on('ended',function(){
+               var objReproductor=document.getElementById('myaudio');
+               var imagenRep=document.getElementById("u17_img");
+               var textoRep=document.getElementById('textoRep');
+               
+               //lista reproducción
+                var imagenlist1=document.getElementById("u122_img");
+                var imagenlist2=document.getElementById("u124_img");
+                var imagenlist3=document.getElementById("u126_img");
+                var imagenlist4=document.getElementById("u128_img");
+                //texto lista
+                var spa1=document.getElementById("spa1");
+                var spa2=document.getElementById("spa2");
+                var spa3=document.getElementById("spa3");
+                var spa4=document.getElementById("spa4");
+                
+               
+               
+               if(iCancionActual===iTotalCanciones-1){
+                    iCancionActual=0; 
+               }else{
+                   iCancionActual++;      
+               }
+               
+                              
+               objReproductor.src=$('#playlist').children().eq(iCancionActual).attr('rel');
+               imagenRep.src= $('#playlist').children().eq(iCancionActual).attr('imagen');
+               textoRep.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
+               objReproductor.play();
+               
+               //imagenes lista reproduccion
+               imagenlist1.src= $('#playlist').children().eq((iCancionActual+1)%10).attr('imagen');
+               imagenlist2.src= $('#playlist').children().eq((iCancionActual+2)%10).attr('imagen');
+               imagenlist3.src= $('#playlist').children().eq((iCancionActual+3)%10).attr('imagen');
+               imagenlist4.src= $('#playlist').children().eq((iCancionActual+4)%10).attr('imagen');
+               //texto lista reproduccion
+               spa1.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+1)%10).attr('texto');
+               spa2.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+2)%10).attr('texto');
+               spa3.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+3)%10).attr('texto');
+               spa4.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+4)%10).attr('texto');
+               
+            });
+        });
+    </script>
   </head>
-  <body>
+  <body onload="playAudioInicio()">
 
 <table>
   <tr>
@@ -86,9 +246,15 @@
         </div>
       </div>
 
+      <audio id="myaudio" src="${canciones[0].audio}" >HTML5 audio not supported</audio>
+         
+         <!--playlist-->
+         <ul type="hidden" id="playlist"><c:forEach items="${canciones}" var="canc">
+             <li rel="${canc.audio}" imagen="${canc.image}" texto="${canc.name} (${canc.artist_name})"></li>
+             </c:forEach></ul>
       <!-- Unnamed (Image) -->
       <div id="u6" class="ax_image">
-        <img id="u6_img" class="img " src="images/sin_identificar/u6.png"/>
+        <img id="u6_img" class="img " onclick="playAudio();" src="images/sin_identificar/u6.png"/>
         <!-- Unnamed () -->
         <div id="u7" class="text">
           <p><span></span></p>
@@ -97,7 +263,7 @@
 
       <!-- Unnamed (Image) -->
       <div id="u8" class="ax_image">
-        <img id="u8_img" class="img " src="images/sin_identificar/u8.png"/>
+        <img id="u8_img" class="img " onclick="pauseAudio();" src="images/sin_identificar/u8.png"/>
         <!-- Unnamed () -->
         <div id="u9" class="text">
           <p><span></span></p>
@@ -1286,7 +1452,7 @@
               <img id="u237_img" class="img " src="resources/images/transparent.gif"/>
               <!-- Unnamed () -->
               <div id="u238" class="text">
-                <p><span>Radio normal</span></p>
+                  <a href="randomId"><p><span>Radio normal</span></p></a>
               </div>
             </div>
 
@@ -1295,7 +1461,7 @@
               <img id="u239_img" class="img " src="resources/images/transparent.gif"/>
               <!-- Unnamed () -->
               <div id="u240" class="text">
-                <p><span>Radio Personalizada</span></p>
+                  <a href="recommendations"><p><span>Radio Personalizada</span></p></a>
               </div>
             </div>
 
@@ -1313,7 +1479,7 @@
               <img id="u243_img" class="img " src="resources/images/transparent.gif"/>
               <!-- Unnamed () -->
               <div id="u244" class="text">
-                <p><span>Radio canciones favoritas</span></p>
+                  <a href="recommendations"><p><span>Radio canciones favoritas</span></p></a>
               </div>
             </div>
 

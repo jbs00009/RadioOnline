@@ -20,7 +20,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-
 /**
  *
  * @author tfg
@@ -28,72 +27,106 @@ import org.springframework.web.client.RestTemplate;
 public class REJA {
 
     Jamendo jamendo;
-    
+
     public REJA() {
-        jamendo=new Jamendo();
+        jamendo = new Jamendo();
     }
-    
-    
-    
-    public String login(String email){
+
+    public String login(String email) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-    params.add("email", email);
-    String result = new RestTemplate().postForObject( "http://ceatic.ujaen.es:8075/radioapi/v1/login", params, String.class) ;
-    return result;
+        params.add("email", email);
+        String result = new RestTemplate().postForObject("http://ceatic.ujaen.es:8075/radioapi/v1/login", params, String.class);
+        return result;
     }
-    
-    public Cancion[] random(String apiKey){
-        HttpHeaders header=new HttpHeaders();
+
+    public Cancion[] random(String apiKey) {
+        HttpHeaders header = new HttpHeaders();
         header.set("Authorization", apiKey);
-        HttpEntity entity=new HttpEntity(header);
-        String lista=new String();
+        HttpEntity entity = new HttpEntity(header);
+        String lista = new String();
         HttpEntity<String> response;
         response = new RestTemplate()
-                .exchange("http://ceatic.ujaen.es:8075/radioapi/v1/random",HttpMethod.GET,entity, String.class,lista);
-      
-        String canc= response.getBody();
-        StringTokenizer st = new StringTokenizer(canc,"[",true);
-        st.nextToken();st.nextToken();
-        canc="["+st.nextToken();
-        
-        try{
-            
-        ObjectMapper a=new ObjectMapper();
-        Item[] listilla= a.readValue(canc, Item[].class);
-        Vector<Integer> ids=new Vector<>();
-        for(int i=0;i<listilla.length;++i){
-            ids.add(listilla[i].getId());
+                .exchange("http://ceatic.ujaen.es:8075/radioapi/v1/random", HttpMethod.GET, entity, String.class, lista);
+
+        String canc = response.getBody();
+        StringTokenizer st = new StringTokenizer(canc, "[", true);
+        st.nextToken();
+        st.nextToken();
+        canc = "[" + st.nextToken();
+
+        try {
+
+            ObjectMapper a = new ObjectMapper();
+            Item[] listilla = a.readValue(canc, Item[].class);
+            Vector<Integer> ids = new Vector<>();
+            for (int i = 0; i < listilla.length; ++i) {
+                ids.add(listilla[i].getId());
+            }
+            return jamendo.canciones(ids);
+
+        } catch (Exception e) {
+            return null;
         }
-        return jamendo.canciones(ids);
-        
-        }catch(Exception e){return null;}
-        
+
         //return response.getBody();
-        
-        
     }
-    
-    public String recommendations(String apiKey){
-        HttpHeaders header=new HttpHeaders();
+
+    public Cancion[] recommendations(String apiKey) {
+        HttpHeaders header = new HttpHeaders();
         header.set("Authorization", apiKey);
-        HttpEntity entity=new HttpEntity(header);
-        String lista=new String();
+        HttpEntity entity = new HttpEntity(header);
+        String lista = new String();
         HttpEntity<String> response;
         response = new RestTemplate()
-                .exchange("http://ceatic.ujaen.es:8075/radioapi/v1/recommendations",HttpMethod.GET,entity, String.class,lista);
-      
-        return response.getBody();
+                .exchange("http://ceatic.ujaen.es:8075/radioapi/v1/recommendations", HttpMethod.GET, entity, String.class, lista);
+
+        String canc = response.getBody();
+        StringTokenizer st = new StringTokenizer(canc, "[", true);
+        st.nextToken();
+        st.nextToken();
+        canc = "[" + st.nextToken();
+
+        try {
+
+            ObjectMapper a = new ObjectMapper();
+            Item[] listilla = a.readValue(canc, Item[].class);
+            Vector<Integer> ids = new Vector<>();
+            for (int i = 0; i < listilla.length; ++i) {
+                ids.add(listilla[i].getId());
+            }
+            return jamendo.canciones(ids);
+
+        } catch (Exception e) {
+            return null;
+        }
     }
-    
-    public String favourites(String apiKey){
-        HttpHeaders header=new HttpHeaders();
+
+    public Cancion[] favourites(String apiKey) {
+        HttpHeaders header = new HttpHeaders();
         header.set("Authorization", apiKey);
-        HttpEntity entity=new HttpEntity(header);
-        String lista=new String();
+        HttpEntity entity = new HttpEntity(header);
+        String lista = new String();
         HttpEntity<String> response;
         response = new RestTemplate()
-                .exchange("http://ceatic.ujaen.es:8075/radioapi/v1/favourites",HttpMethod.GET,entity, String.class,lista);
-      
-        return response.getBody();
+                .exchange("http://ceatic.ujaen.es:8075/radioapi/v1/favourites", HttpMethod.GET, entity, String.class, lista);
+
+        String canc = response.getBody();
+        StringTokenizer st = new StringTokenizer(canc, "[", true);
+        st.nextToken();
+        st.nextToken();
+        canc = "[" + st.nextToken();
+        
+        try {
+            ObjectMapper a = new ObjectMapper();
+            Item[] listilla = a.readValue(canc, Item[].class);
+            Vector<Integer> ids = new Vector<>();
+            for (int i = 0; i < listilla.length; ++i) {
+                ids.add(listilla[i].getId());
+            }
+            return jamendo.canciones(ids);
+
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
