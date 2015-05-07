@@ -221,11 +221,46 @@
             window.location = "radioWebPrueba/login/"+em;
             
         }
+         if(window.history.forward(1) != null)
+        window.history.forward(1);
+    
+        //funciones google+
+    
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/client:plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
         
+        function signinCallback(authResult) {
+            if (authResult['access_token']) {
+                // Autorizado correctamente
+                // Oculta el botón de inicio de sesión ahora que el usuario está autorizado, por ejemplo:
+                document.getElementById('signinButton').setAttribute('style', 'display: none');
+            } else if (authResult['error']) {
+                // Se ha producido un error.
+                // Posibles códigos de error:
+                //   "access_denied": el usuario ha denegado el acceso a la aplicación.
+                //   "immediate_failed": no se ha podido dar acceso al usuario de forma automática.
+                console.log('There was an error: ' + authResult['error']);
+  }
+}
+    
     </script>
   </head>
   <body onload="playAudioInicio()">
    
+      <span id="signinButton">
+  <span
+    class="g-signin"
+    data-callback="signinCallback"
+    data-clientid="579659090224-bdget8j5n88t9v5uuokvqabior0opv8p.apps.googleusercontent.com"
+    data-cookiepolicy="single_host_origin"
+    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+    data-scope="https://www.googleapis.com/auth/plus.login">
+  </span>
+</span>
+      
 <table>
   <tr>
     <td style="width: 10px;">

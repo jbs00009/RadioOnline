@@ -206,6 +206,15 @@
                
             });
         });
+        
+        function sinIdentificar() {
+            // Check for audio element support.
+            
+             
+            document.location.replace("/radioWebPrueba");             
+        }
+       if(window.history.forward(1) != null)
+        window.history.forward(1);
     </script>
   </head>
   <body onload="playAudioInicio()">
@@ -305,13 +314,13 @@
         <img id="u15_img" class="img " src="resources/images/transparent.gif"/>
         <!-- Unnamed () -->
         <div id="u16" class="text">
-          <p><span>Sonando</span><span>: Si pero No (David Bisbal)</span></p>
+          <p><span id="textoRep">  ${canciones[0].name} ( ${canciones[0].artist_name})</span></p>
         </div>
       </div>
 
       <!-- Unnamed (Image) -->
       <div id="u17" class="ax_image">
-        <img id="u17_img" class="img " src="images/sin_identificar/u17.jpg"/>
+        <img id="u17_img" class="img " src=" ${canciones[0].image}"/>
         <!-- Unnamed () -->
         <div id="u18" class="text">
           <p><span></span></p>
@@ -352,7 +361,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u26" class="ax_image">
-              <img id="u26_img" class="img " src="images/sin_identificar/u26.jpg"/>
+              <img id="u26_img" class="img " src="${canciones[0].album_image}"/>
               <!-- Unnamed () -->
               <div id="u27" class="text">
                 <p><span></span></p>
@@ -364,7 +373,7 @@
               <img id="u28_img" class="img " src="images/sin_identificar/u28.png"/>
               <!-- Unnamed () -->
               <div id="u29" class="text">
-                <p><span>A</span><span>riana Grande</span></p>
+                <p><span>${canciones[0].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -383,7 +392,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u32" class="ax_image">
-              <img id="u32_img" class="img " src="images/sin_identificar/u32.jpg"/>
+              <img id="u32_img" class="img " src="${canciones[1].album_image}"/>
               <!-- Unnamed () -->
               <div id="u33" class="text">
                 <p><span></span></p>
@@ -395,7 +404,7 @@
               <img id="u34_img" class="img " src="images/sin_identificar/u28.png"/>
               <!-- Unnamed () -->
               <div id="u35" class="text">
-                <p><span>D</span><span>avid Bisbal</span></p>
+                <p><span>${canciones[1].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -405,7 +414,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u36" class="ax_image">
-              <img id="u36_img" class="img " src="images/sin_identificar/u36.jpg"/>
+              <img id="u36_img" class="img " src="${canciones[2].album_image}"/>
               <!-- Unnamed () -->
               <div id="u37" class="text">
                 <p><span></span></p>
@@ -417,7 +426,7 @@
               <img id="u38_img" class="img " src="images/sin_identificar/u28.png"/>
               <!-- Unnamed () -->
               <div id="u39" class="text">
-                <p><span>M</span><span>iguel Bosé</span></p>
+                <p><span>${canciones[2].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -427,7 +436,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u40" class="ax_image">
-              <img id="u40_img" class="img " src="images/sin_identificar/u40.jpg"/>
+              <img id="u40_img" class="img " src="${canciones[3].album_image}"/>
               <!-- Unnamed () -->
               <div id="u41" class="text">
                 <p><span></span></p>
@@ -439,7 +448,7 @@
               <img id="u42_img" class="img " src="images/sin_identificar/u28.png"/>
               <!-- Unnamed () -->
               <div id="u43" class="text">
-                <p><span>Riahanna</span></p>
+                <p><span>${canciones[3].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -449,7 +458,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u44" class="ax_image">
-              <img id="u44_img" class="img " src="images/sin_identificar/u44.jpeg"/>
+              <img id="u44_img" class="img " src="${canciones[4].album_image}"/>
               <!-- Unnamed () -->
               <div id="u45" class="text">
                 <p><span></span></p>
@@ -461,7 +470,7 @@
               <img id="u46_img" class="img " src="images/sin_identificar/u28.png"/>
               <!-- Unnamed () -->
               <div id="u47" class="text">
-                <p><span>P</span><span>harrell Williams</span></p>
+                <p><span>${canciones[4].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -471,7 +480,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u48" class="ax_image">
-              <img id="u48_img" class="img " src="images/sin_identificar/u48.jpg"/>
+              <img id="u48_img" class="img " src="${canciones[5].album_image}"/>
               <!-- Unnamed () -->
               <div id="u49" class="text">
                 <p><span></span></p>
@@ -483,7 +492,7 @@
               <img id="u50_img" class="img " src="images/sin_identificar/u28.png"/>
               <!-- Unnamed () -->
               <div id="u51" class="text">
-                <p><span>B</span><span>irdy</span></p>
+                <p><span>${canciones[5].artist_name}</span></p>
               </div>
             </div>
           </div>
@@ -504,7 +513,7 @@
         <img id="u54_img" class="img " src="resources/images/transparent.gif"/>
         <!-- Unnamed () -->
         <div id="u55" class="text">
-          <p><span>Artistas favoritos </span></p>
+          <p><span>Artistas  </span></p>
         </div>
       </div>
 
@@ -513,7 +522,7 @@
         <img id="u56_img" class="img " src="resources/images/transparent.gif"/>
         <!-- Unnamed () -->
         <div id="u57" class="text">
-          <p><span>Temas + valorados</span></p>
+          <p><span>Temas </span></p>
         </div>
       </div>
 
@@ -715,7 +724,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u91" class="ax_image">
-              <img id="u91_img" class="img " src="images/sin_identificar/u17.jpg"/>
+              <img id="u91_img" class="img " src="${canciones[4].image}"/>
               <!-- Unnamed () -->
               <div id="u92" class="text">
                 <p><span></span></p>
@@ -727,7 +736,7 @@
               <img id="u93_img" class="img " src="images/sin_identificar/u28.png"/>
               <!-- Unnamed () -->
               <div id="u94" class="text">
-                <p><span>S</span><span>i pero No - David Bisbal</span></p>
+                <p><span>${canciones[4].name}</span></p>
               </div>
             </div>
           </div>
@@ -737,7 +746,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u95" class="ax_image">
-              <img id="u95_img" class="img " src="images/sin_identificar/u95.jpg"/>
+              <img id="u95_img" class="img " src="${canciones[5].image}"/>
               <!-- Unnamed () -->
               <div id="u96" class="text">
                 <p><span></span></p>
@@ -749,7 +758,7 @@
               <img id="u97_img" class="img " src="images/sin_identificar/u97.png"/>
               <!-- Unnamed () -->
               <div id="u98" class="text">
-                <p><span>P</span><span>asos de cero - Pablo Alborán</span></p>
+                <p><span>${canciones[5].name}</span></p>
               </div>
             </div>
           </div>
@@ -759,7 +768,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u99" class="ax_image">
-              <img id="u99_img" class="img " src="images/sin_identificar/u99.jpg"/>
+              <img id="u99_img" class="img " src="${canciones[6].image}"/>
               <!-- Unnamed () -->
               <div id="u100" class="text">
                 <p><span></span></p>
@@ -771,7 +780,7 @@
               <img id="u101_img" class="img " src="images/sin_identificar/u97.png"/>
               <!-- Unnamed () -->
               <div id="u102" class="text">
-                <p><span>T</span><span>ocado y hundido - Melendi</span></p>
+                <p><span>${canciones[6].name}</span></p>
               </div>
             </div>
           </div>
@@ -781,7 +790,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u103" class="ax_image">
-              <img id="u103_img" class="img " src="images/sin_identificar/u103.jpg"/>
+              <img id="u103_img" class="img " src="${canciones[7].image}"/>
               <!-- Unnamed () -->
               <div id="u104" class="text">
                 <p><span></span></p>
@@ -793,7 +802,7 @@
               <img id="u105_img" class="img " src="images/sin_identificar/u97.png"/>
               <!-- Unnamed () -->
               <div id="u106" class="text">
-                <p><span>Dangerous - David Guetta</span></p>
+                <p><span>${canciones[7].name}</span></p>
               </div>
             </div>
           </div>
@@ -803,7 +812,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u107" class="ax_image">
-              <img id="u107_img" class="img " src="images/sin_identificar/u107.jpg"/>
+              <img id="u107_img" class="img " src="${canciones[8].image}"/>
               <!-- Unnamed () -->
               <div id="u108" class="text">
                 <p><span></span></p>
@@ -815,7 +824,7 @@
               <img id="u109_img" class="img " src="images/sin_identificar/u97.png"/>
               <!-- Unnamed () -->
               <div id="u110" class="text">
-                <p><span>C</span><span>handelier - Sia</span></p>
+               <p><span>${canciones[8].name}</span></p>
               </div>
             </div>
           </div>
@@ -825,7 +834,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u111" class="ax_image">
-              <img id="u111_img" class="img " src="images/sin_identificar/u111.jpg"/>
+              <img id="u111_img" class="img " src="${canciones[9].image}"/>
               <!-- Unnamed () -->
               <div id="u112" class="text">
                 <p><span></span></p>
@@ -837,7 +846,7 @@
               <img id="u113_img" class="img " src="images/sin_identificar/u97.png"/>
               <!-- Unnamed () -->
               <div id="u114" class="text">
-                <p><span>T</span><span>ake me to church - Hozier</span></p>
+                <p><span>${canciones[9].name}</span></p>
               </div>
             </div>
           </div>
@@ -917,7 +926,7 @@
               <img id="u130_img" class="img " src="resources/images/transparent.gif"/>
               <!-- Unnamed () -->
               <div id="u131" class="text">
-                <p><span>Tocado y hundido (Melendi)</span></p>
+                <p><span id="spa1">Tocado y hundido (Melendi)</span></p>
               </div>
             </div>
 
@@ -926,7 +935,7 @@
               <img id="u132_img" class="img " src="resources/images/transparent.gif"/>
               <!-- Unnamed () -->
               <div id="u133" class="text">
-                <p><span>Si pero no (David Bisbal)</span></p>
+                <p><span id="spa2">Si pero no (David Bisbal)</span></p>
               </div>
             </div>
 
@@ -935,7 +944,7 @@
               <img id="u134_img" class="img " src="resources/images/transparent.gif"/>
               <!-- Unnamed () -->
               <div id="u135" class="text">
-                <p><span>Pasos de cero</span></p><p><span>(Pablo Alboran)</span></p>
+                <p><span id="spa3">Pasos de cero</span></p></p>
               </div>
             </div>
 
@@ -944,7 +953,7 @@
               <img id="u136_img" class="img " src="resources/images/transparent.gif"/>
               <!-- Unnamed () -->
               <div id="u137" class="text">
-                <p style="font-size:16px;"><span style="font-size:16px;">People help the people</span></p><p style="font-size:16px;"><span style="font-size:16px;">(Birdy</span><span style="font-size:13px;">)</span></p>
+                <p style="font-size:16px;"><span id="spa4" style="font-size:16px;">People help the people</span></p><p style="font-size:16px;"></p>
               </div>
             </div>
           </div>
@@ -1059,8 +1068,8 @@
             </div>
 
             <!-- Unnamed (Image) -->
-            <div id="u160" class="ax_image">
-              <img id="u160_img" class="img " src="images/identificado/u160.png"/>
+            <div class="ax_image">
+              <img id="u160_img" style="top:83px; left: 170px" onclick="sinIdentificar()" class="img " src="images/identificado/u160.png"/>
               <!-- Unnamed () -->
               <div id="u161" class="text">
                 <p><span></span></p>
