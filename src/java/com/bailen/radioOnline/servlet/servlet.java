@@ -111,14 +111,15 @@ public class servlet {
     }
 
     @RequestMapping(value = "/login/{email}", method = RequestMethod.GET, produces = "application/json")
-    public 
+    public @ResponseBody
     String login(@PathVariable String email) {
 
+        String respuesta=new String();
         usuario.setEmail(email);
-        reja.login(usuario.getEmail());
+        respuesta=reja.login(usuario.getEmail());
         
-        
-        return "redirect:/identificado";
+        return email;
+        //return "redirect:/identificado";
     }
 
     @RequestMapping(value = "/recommendations", method = RequestMethod.GET, produces = "application/json")

@@ -31,14 +31,25 @@ public class REJA {
     public REJA() {
         jamendo = new Jamendo();
     }
-
+//Metodos post
     public String login(String email) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("email", email);
         String result = new RestTemplate().postForObject("http://ceatic.ujaen.es:8075/radioapi/v1/login", params, String.class);
         return result;
     }
-
+    
+    public String ratings(String apiKey,String rating,String idCancion,String fav) {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+        MultiValueMap<String, String> params1 = new LinkedMultiValueMap<String, String>();
+        params.add("Authorization", apiKey);
+        params1.add("rating", rating);
+        params1.add("idCancion", idCancion);
+        params1.add("fav", fav);
+        String result = new RestTemplate().postForObject("http://ceatic.ujaen.es:8075/radioapi/v1/ratings", params, String.class, params1);
+        return result;
+    }
+//Metodos get
     public Cancion[] random(String apiKey) {
         HttpHeaders header = new HttpHeaders();
         header.set("Authorization", apiKey);
