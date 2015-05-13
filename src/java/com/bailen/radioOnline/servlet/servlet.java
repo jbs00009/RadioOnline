@@ -6,6 +6,7 @@
 package com.bailen.radioOnline.servlet;
 
 import com.bailen.radioOnline.Cancion;
+import com.bailen.radioOnline.Incidencia;
 import com.bailen.radioOnline.Usuario;
 import com.bailen.radioOnline.recursos.Jamendo;
 import com.bailen.radioOnline.recursos.REJA;
@@ -97,6 +98,17 @@ public class servlet {
         return model;
     }
     
+    @RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
+    public String ratings(@PathVariable String rating, @PathVariable String idCancion, @PathVariable String fav) {
+
+        Incidencia error=reja.ratings(usuario.getApiKey(), rating, idCancion, fav);
+        if (error.getError()){
+            return "Ocurrio un error al puntuar";
+        }else{
+            return null;
+        }
+    }
+    
     @RequestMapping(value = "/randomId", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody ModelAndView randomId() {
 
@@ -118,7 +130,7 @@ public class servlet {
         usuario.setEmail(email);
         respuesta=reja.login(usuario.getEmail());
         
-        return email;
+        return respuesta;
         //return "redirect:/identificado";
     }
 

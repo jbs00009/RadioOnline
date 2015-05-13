@@ -51,6 +51,9 @@
     <script type="text/javascript">
         // Global variable to track current file name.
         var currentFile = "";
+        var fav = 0;
+        var rating = 1;
+        var iCancionActual=0;
         function playAudio() {
             // Check for audio element support.
             if (window.HTMLAudioElement) {
@@ -128,6 +131,26 @@
             }
         }
 
+        function puntu1(){
+            rating=1;
+            
+        }
+        function puntu3(){
+            rating=3;
+            
+        }
+        function puntu5(){
+            rating=5;
+            
+        }
+        function favToggle(){
+            if(fav === 0){
+                fav=1;
+            }else{
+                fav=0;
+            }
+            
+        }
 
         function pauseAudio() {
             // Check for audio element support.
@@ -158,7 +181,7 @@
         }
         
         $(function(){
-            var iCancionActual=0;
+            
             var iTotalCanciones=$('#playlist li').length;
             var objReproductor=document.getElementById('myaudio');
             
@@ -213,6 +236,14 @@
              
             document.location.replace("/radioWebPrueba");             
         }
+        
+        function puntuar() {
+            // Check for audio element support.
+            
+             
+            document.location.replace("/radioWebPrueba/ratings/"+rating+"/"+$('#playlist').children().eq(iCancionActual).attr('cancid')+"/"+fav);             
+        }
+        
        if(window.history.forward(1) != null)
         window.history.forward(1);
     </script>
@@ -259,7 +290,7 @@
          
          <!--playlist-->
          <ul type="hidden" id="playlist"><c:forEach items="${canciones}" var="canc">
-             <li rel="${canc.audio}" imagen="${canc.image}" texto="${canc.name} (${canc.artist_name})"></li>
+             <li rel="${canc.audio}" cancid="${canc.id}" imagen="${canc.image}" texto="${canc.name} (${canc.artist_name})"></li>
              </c:forEach></ul>
       <!-- Unnamed (Image) -->
       <div id="u6" class="ax_image">
@@ -1069,7 +1100,7 @@
 
             <!-- Unnamed (Image) -->
             <div class="ax_image">
-              <img id="u160_img" style="top:83px; left: 170px" onclick="sinIdentificar()" class="img " src="images/identificado/u160.png"/>
+              <img id="u160_img" style="top:83px; left: 170px" onclick="sinIdentificar();" class="img " src="images/identificado/u160.png"/>
               <!-- Unnamed () -->
               <div id="u161" class="text">
                 <p><span></span></p>
@@ -1308,7 +1339,7 @@
 
             <!-- Unnamed (HTML Button) -->
             <div id="u209" class="ax_html_button">
-              <input id="u209_input" type="submit" value="Enviar"/>
+                <input id="u209_inputn" onclick="puntuar();" type="submit" value="Enviar"/>
             </div>
 
             <!-- Unnamed (HTML Button) -->
@@ -1393,7 +1424,7 @@
 
                   <!-- Unnamed (Image) -->
                   <div id="u225" class="ax_image">
-                    <img id="u225_img" class="img " src="images/sin_identificar/u235.png"/>
+                    <img id="u225_img" onclick="favToggle();" class="img " src="images/sin_identificar/u235.png"/>
                     <!-- Unnamed () -->
                     <div id="u226" class="text">
                       <p><span></span></p>
@@ -1418,7 +1449,7 @@
 
             <!-- Unnamed (Shape) -->
             <div id="u229" class="ax_shape">
-              <img id="u229_img" class="img " src="resources/images/transparent.gif"/>
+              <img id="u229_img" onclick="puntu1();" class="img " src="resources/images/transparent.gif"/>
               <!-- Unnamed () -->
               <div id="u230" class="text">
                 <p><span></span></p>
@@ -1427,7 +1458,7 @@
 
             <!-- Unnamed (Shape) -->
             <div id="u231" class="ax_shape">
-              <img id="u231_img" class="img " src="resources/images/transparent.gif"/>
+              <img id="u231_img" onclick="puntu3();" class="img " src="resources/images/transparent.gif"/>
               <!-- Unnamed () -->
               <div id="u232" class="text">
                 <p><span></span></p>
@@ -1436,7 +1467,7 @@
 
             <!-- Unnamed (Shape) -->
             <div id="u233" class="ax_shape">
-              <img id="u233_img" class="img " src="resources/images/transparent.gif"/>
+              <img id="u233_img" onclick="puntu5();" class="img " src="resources/images/transparent.gif"/>
               <!-- Unnamed () -->
               <div id="u234" class="text">
                 <p><span></span></p>

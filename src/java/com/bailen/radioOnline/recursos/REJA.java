@@ -6,10 +6,13 @@
 package com.bailen.radioOnline.recursos;
 
 import com.bailen.radioOnline.Cancion;
+import com.bailen.radioOnline.Incidencia;
 import com.bailen.radioOnline.Item;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.Vector;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -37,17 +40,49 @@ public class REJA {
         params.add("email", email);
         String result = new RestTemplate().postForObject("http://ceatic.ujaen.es:8075/radioapi/v1/login", params, String.class);
         return result;
+        
+        /*try {
+
+            ObjectMapper a = new ObjectMapper();
+            Usuario listilla = a.readValue(result, Usuario[].class);
+            Vector<Integer> ids = new Vector<>();
+            for (int i = 0; i < listilla.length; ++i) {
+                ids.add(listilla[i].getId());
+            }
+            return jamendo.canciones(ids);
+
+        } catch (Exception e) {
+            return null;
+        }*/
+        
     }
     
-    public String ratings(String apiKey,String rating,String idCancion,String fav) {
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-        MultiValueMap<String, String> params1 = new LinkedMultiValueMap<String, String>();
+    public Incidencia ratings(String apiKey,String rating,String idCancion,String fav) {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        Map<String, String> params1 = new HashMap<>();
         params.add("Authorization", apiKey);
-        params1.add("rating", rating);
-        params1.add("idCancion", idCancion);
-        params1.add("fav", fav);
-        String result = new RestTemplate().postForObject("http://ceatic.ujaen.es:8075/radioapi/v1/ratings", params, String.class, params1);
-        return result;
+        params1.put("rating", rating);
+        params1.put("idCancion", (idCancion));
+        params1.put("fav", (fav));
+        //String result = new RestTemplate().postForObject("http://ceatic.ujaen.es:8075/radioapi/v1/ratings", params, String.class, params1);
+        //return result;
+        HttpHeaders header = new HttpHeaders();
+        header.set("Authorization", apiKey);
+        HttpEntity entity = new HttpEntity(header);
+        HttpEntity<String> response;
+        response = new RestTemplate().exchange("http://ceatic.ujaen.es:8075/radioapi/v1/ratings", HttpMethod.POST, entity, String.class, params1);
+        String result=response.getBody();
+                
+        try {
+
+            ObjectMapper a = new ObjectMapper();
+            Incidencia listilla = a.readValue(result, Incidencia.class);
+            return listilla;
+
+        } catch (Exception e) {
+            return null;
+        }
+        
     }
 //Metodos get
     public Cancion[] random(String apiKey) {
