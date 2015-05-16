@@ -13,6 +13,8 @@ import com.bailen.radioOnline.recursos.REJA;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +35,7 @@ public class servlet {
     private REJA reja;
     private Jamendo jamendo;
     Usuario usuario;
-
+  
     public servlet() {
         reja = new REJA();
         jamendo = new Jamendo();
@@ -87,6 +89,7 @@ public class servlet {
     @RequestMapping(value = "/random", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody ModelAndView random(ModelAndView model) {
 
+        usuario.setApiKey("717c03766e5fafba6ecf4781338a7547");
         ArrayList<Cancion> canciones=new ArrayList<>();
         Cancion[] inter=reja.random(usuario.getApiKey());
         for(int i=0;i<inter.length;++i){
@@ -98,14 +101,29 @@ public class servlet {
         return model;
     }
     
-    @RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
-    public String ratings(@PathVariable String rating, @PathVariable String idCancion, @PathVariable String fav) {
-
+    /*@RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
+    public ModelAndView ratings(@PathVariable String rating, @PathVariable String idCancion, @PathVariable String fav,ModelAndView model) {
+        
         Incidencia error=reja.ratings(usuario.getApiKey(), rating, idCancion, fav);
         if (error.getError()){
-            return "Ocurrio un error al puntuar";
+            model.addObject("error",error.getMessage());
+            return model;
         }else{
-            return null;
+            model.addObject("error","la puntuacion se realizo correctamente");
+            return model;
+        }
+    }*/
+    
+    @RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
+    public void ratings(HttpServletRequest req, HttpServletResponse resp, ModelAndView model) {
+        
+        Incidencia error=reja.ratings(usuario.getApiKey(), (String)req.getAttribute("rating"), (String)req.getAttribute("idCancion"), (String)req.getAttribute("fav"));
+        if (error.getError()){
+            model.addObject("error",error.getMessage());
+            
+        }else{
+            model.addObject("error","la puntuacion se realizo correctamente");
+            
         }
     }
     
@@ -119,19 +137,22 @@ public class servlet {
         }
         ModelAndView model=new ModelAndView("identificado");
         model.addObject("canciones", canciones) ;
+        
+        
+        
         return model;
     }
 
     @RequestMapping(value = "/login/{email}", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody
+    public 
     String login(@PathVariable String email) {
 
         String respuesta=new String();
         usuario.setEmail(email);
-        respuesta=reja.login(usuario.getEmail());
+        usuario.setApiKey(reja.login(usuario.getEmail()).getApiKey());
         
-        return respuesta;
-        //return "redirect:/identificado";
+        
+        return "redirect:/identificado";
     }
 
     @RequestMapping(value = "/recommendations", method = RequestMethod.GET, produces = "application/json")
@@ -143,7 +164,7 @@ public class servlet {
         for(int i=0;i<inter.length;++i){
             canciones.add(inter[i]);
         }
-        ModelAndView model=new ModelAndView();
+        ModelAndView model=new ModelAndView("identificado");
         model.addObject("canciones", canciones) ;
         return model;
         

@@ -11,29 +11,25 @@ import org.codehaus.jackson.annotate.JsonProperty;
  *
  * @author tfg
  */
-public class Item {
+public class itemRadios {
     
-    private int _id;
+    private int idItem;
 
-    
-    public Item() {
+    public itemRadios(@JsonProperty("idItem")int idItem) {
+        this.idItem = idItem;
     }
 
-    public Item(@JsonProperty("_id")int _id) {
-        this._id = _id;
+    public itemRadios() {
     }
 
+    public int getIdItem() {
+        return idItem;
+    }
+
+    public void setIdItem(int idItem) {
+        this.idItem = idItem;
+    }
     
-    
-   
-
-    public int getId() {
-        return _id;
-    }
-
-    public void setId(int _id) {
-        this._id = _id;
-    }
     
     
 }

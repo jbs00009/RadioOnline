@@ -1,5 +1,8 @@
 package com.bailen.radioOnline;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonProperty;
+@JsonIgnoreProperties(ignoreUnknown= true)
 public class Usuario {
 	
 	String name;
@@ -7,6 +10,10 @@ public class Usuario {
 	String photoUrl;
 	String googlePlusProfile;
 	String apiKey;
+
+        public Usuario(@JsonProperty("apiKey") String apiKey) {
+            this.apiKey = apiKey;
+        }
 	
 	public Usuario(){
 		
