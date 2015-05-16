@@ -110,16 +110,16 @@
                     oAudio.play();
                         
                     //imagenes lista reproduccion    
-                    imagenlist1.src= $('#playlist').children().eq(1).attr('imagen');
-                    imagenlist2.src= $('#playlist').children().eq(2).attr('imagen');
-                    imagenlist3.src= $('#playlist').children().eq(3).attr('imagen');
-                    imagenlist4.src= $('#playlist').children().eq(4).attr('imagen');
+                    imagenlist1.src= $('#playlist').children().eq((iCancionActual+1)%10).attr('imagen');
+                    imagenlist2.src= $('#playlist').children().eq((iCancionActual+2)%10).attr('imagen');
+                    imagenlist3.src= $('#playlist').children().eq((iCancionActual+3)%10).attr('imagen');
+                    imagenlist4.src= $('#playlist').children().eq((iCancionActual+4)%10).attr('imagen');
                     
                     //texto lista reproduccion
-               spa1.firstChild.nodeValue= $('#playlist').children().eq(1).attr('texto');
-               spa2.firstChild.nodeValue= $('#playlist').children().eq(2).attr('texto');
-               spa3.firstChild.nodeValue= $('#playlist').children().eq(3).attr('texto');
-               spa4.firstChild.nodeValue= $('#playlist').children().eq(4).attr('texto');
+               spa1.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+1)%10).attr('texto');
+               spa2.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+2)%10).attr('texto');
+               spa3.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+3)%10).attr('texto');
+               spa4.firstChild.nodeValue= $('#playlist').children().eq((iCancionActual+4)%10).attr('texto');
                
                     
                    
@@ -288,7 +288,7 @@
         </div>
       </div>
 
-      <audio id="myaudio" src="${canciones[0].audio}" >HTML5 audio not supported</audio>
+      <audio id="myaudio" src="${canciones[actual].audio}" >HTML5 audio not supported</audio>
          
          <!--playlist-->
          <ul type="hidden" id="playlist"><c:forEach items="${canciones}" var="canc">
@@ -347,13 +347,13 @@
         <img id="u15_img" class="img " src="resources/images/transparent.gif"/>
         <!-- Unnamed () -->
         <div id="u16" class="text">
-          <p><span id="textoRep">  ${canciones[0].name} ( ${canciones[0].artist_name})</span></p>
+          <p><span id="textoRep">  ${canciones[actual].name} ( ${canciones[actual].artist_name})</span></p>
         </div>
       </div>
 
       <!-- Unnamed (Image) -->
       <div id="u17" class="ax_image">
-        <img id="u17_img" class="img " src=" ${canciones[0].image}"/>
+        <img id="u17_img" class="img " src=" ${canciones[actual].image}"/>
         <!-- Unnamed () -->
         <div id="u18" class="text">
           <p><span></span></p>
