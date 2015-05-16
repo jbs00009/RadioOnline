@@ -37,14 +37,16 @@ public class servlet {
     Usuario usuario;
     ArrayList<Cancion> canc;
     int cancActual;
-  
+    Boolean bandera;
+
     public servlet() {
         reja = new REJA();
         jamendo = new Jamendo();
-        usuario= new Usuario();
+        usuario = new Usuario();
         usuario.setApiKey("717c03766e5fafba6ecf4781338a7547");
-        canc=new ArrayList<>();
-        cancActual=0;
+        canc = new ArrayList<>();
+        cancActual = 0;
+        bandera = false;
     }
 
     public REJA getReja() {
@@ -72,108 +74,118 @@ public class servlet {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/html")
-    public @ResponseBody ModelAndView portada() {
-       
-        ModelAndView model=new ModelAndView("index");
-        model=random(model);
+    public @ResponseBody
+    ModelAndView portada() {
+
+        ModelAndView model = new ModelAndView("index");
+        model = random(model);
         return model;
     }
-    
+
     @RequestMapping(value = "/identificado", method = RequestMethod.GET, produces = "text/html")
-    public @ResponseBody ModelAndView identificado() {
-       
-        ModelAndView model=new ModelAndView("identificado");
-        cancActual=0;
-        model.addObject("actual",cancActual);
-        model=random(model);
-        
-        
-        
+    public @ResponseBody
+    ModelAndView identificado() {
+
+        ModelAndView model = new ModelAndView("identificado");
+        if (bandera == false) {
+            cancActual = 0;
+            model.addObject("actual", cancActual);
+            model = random(model);
+        } else {
+            bandera = false;
+            model.addObject("canciones", canc);
+            model.addObject("actual", cancActual);
+            model.addObject("error", "la puntuacion se realizo correctamente");
+
+        }
+
         return model;
     }
 
     @RequestMapping(value = "/random", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody ModelAndView random(ModelAndView model) {
+    public @ResponseBody
+    ModelAndView random(ModelAndView model) {
 
         usuario.setApiKey("717c03766e5fafba6ecf4781338a7547");
-        ArrayList<Cancion> canciones=new ArrayList<>();
-        Cancion[] inter=reja.random(usuario.getApiKey());
-        for(int i=0;i<inter.length;++i){
+        ArrayList<Cancion> canciones = new ArrayList<>();
+        Cancion[] inter = reja.random(usuario.getApiKey());
+        for (int i = 0; i < inter.length; ++i) {
             canciones.add(inter[i]);
         }
-        int cont=0;
-        model.addObject("cont", cont) ;
-        model.addObject("canciones", canciones) ;
-        canc=(ArrayList<Cancion>)canciones.clone();
-        cancActual=0;
-        model.addObject("actual",cancActual);
+        int cont = 0;
+        model.addObject("cont", cont);
+        model.addObject("canciones", canciones);
+        canc = (ArrayList<Cancion>) canciones.clone();
+        cancActual = 0;
+        model.addObject("actual", cancActual);
         return model;
     }
-    
+
     @RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody ModelAndView ratings(@PathVariable String rating, @PathVariable String idCancion, @PathVariable String fav) {
-        
-        int cancActual=-1;
-        Incidencia error=reja.ratings(usuario.getApiKey(), rating, idCancion, fav);
-        for(int i=0; i<canc.size();++i){
-            if(canc.get(i).getId()==Integer.parseInt(idCancion)){
-                cancActual=i;
+    public String ratings(@PathVariable String rating, @PathVariable String idCancion, @PathVariable String fav) {
+
+        cancActual = -1;
+        Incidencia error = reja.ratings(usuario.getApiKey(), rating, idCancion, fav);
+        for (int i = 0; i < canc.size(); ++i) {
+            if (canc.get(i).getId() == Integer.parseInt(idCancion)) {
+                cancActual = i;
             }
         }
-        if (error.getError()){
-            ModelAndView model=new ModelAndView("identificado");
-            model.addObject("canciones", canc);
-            model.addObject("actual",cancActual);
-            model.addObject("error",error.getMessage());
-            return model;
-        }else{
-            ModelAndView model=new ModelAndView("identificado");
-            model.addObject("canciones", canc);
-            model.addObject("actual",cancActual);
-            model.addObject("error","la puntuacion se realizo correctamente");
-            return model;
-        }
+        bandera = true;
+        return "redirect:/identificado";
+        /*if (error.getError()){
+         ModelAndView model=new ModelAndView("identificado");
+         model.addObject("canciones", canc);
+         model.addObject("actual",cancActual);
+         model.addObject("error",error.getMessage());
+         return model;
+         }else{
+         ModelAndView model=new ModelAndView("identificado");
+         model.addObject("canciones", canc);
+         model.addObject("actual",cancActual);
+         model.addObject("error","la puntuacion se realizo correctamente");
+         return model;
+         }*/
     }
-    
-    /*@RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
-    public void ratings(HttpServletRequest req, HttpServletResponse resp, ModelAndView model) {
-        
-        Incidencia error=reja.ratings(usuario.getApiKey(), (String)req.getAttribute("rating"), (String)req.getAttribute("idCancion"), (String)req.getAttribute("fav"));
-        if (error.getError()){
-            model.addObject("error",error.getMessage());
-            
-        }else{
-            
-            model.addObject("error","la puntuacion se realizo correctamente");
-            
-        }
-    }*/
-    
-    @RequestMapping(value = "/randomId", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody ModelAndView randomId() {
 
-        ArrayList<Cancion> canciones=new ArrayList<>();
-        Cancion[] inter=reja.random(usuario.getApiKey());
-        for(int i=0;i<inter.length;++i){
+    /*@RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
+     public void ratings(HttpServletRequest req, HttpServletResponse resp, ModelAndView model) {
+        
+     Incidencia error=reja.ratings(usuario.getApiKey(), (String)req.getAttribute("rating"), (String)req.getAttribute("idCancion"), (String)req.getAttribute("fav"));
+     if (error.getError()){
+     model.addObject("error",error.getMessage());
+            
+     }else{
+            
+     model.addObject("error","la puntuacion se realizo correctamente");
+            
+     }
+     }*/
+    @RequestMapping(value = "/randomId", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    ModelAndView randomId() {
+
+        ArrayList<Cancion> canciones = new ArrayList<>();
+        Cancion[] inter = reja.random(usuario.getApiKey());
+        for (int i = 0; i < inter.length; ++i) {
             canciones.add(inter[i]);
         }
-        ModelAndView model=new ModelAndView("identificado");
-        model.addObject("canciones", canciones) ;
-        canc=(ArrayList<Cancion>)canciones.clone();
-        cancActual=0;
-        model.addObject("actual",cancActual);
-        
+        ModelAndView model = new ModelAndView("identificado");
+        model.addObject("canciones", canciones);
+        canc = (ArrayList<Cancion>) canciones.clone();
+        cancActual = 0;
+        model.addObject("actual", cancActual);
+
         return model;
     }
 
     @RequestMapping(value = "/login/{email}", method = RequestMethod.GET, produces = "application/json")
-    public 
-    String login(@PathVariable String email) {
+    public
+            String login(@PathVariable String email) {
 
         usuario.setEmail(email);
         usuario.setApiKey(reja.login(usuario.getEmail()).getApiKey());
-        
-        
+
         return "redirect:/identificado";
     }
 
@@ -181,57 +193,55 @@ public class servlet {
     public @ResponseBody
     ModelAndView recommendations() {
 
-        ArrayList<Cancion> canciones=new ArrayList<>();
-        Cancion[] inter=reja.recommendations(usuario.getApiKey());
-        for(int i=0;i<inter.length;++i){
+        ArrayList<Cancion> canciones = new ArrayList<>();
+        Cancion[] inter = reja.recommendations(usuario.getApiKey());
+        for (int i = 0; i < inter.length; ++i) {
             canciones.add(inter[i]);
         }
-        ModelAndView model=new ModelAndView("identificado");
-        model.addObject("canciones", canciones) ;
-        canc=(ArrayList<Cancion>)canciones.clone();
-        cancActual=0;
-        model.addObject("actual",cancActual);
-        
+        ModelAndView model = new ModelAndView("identificado");
+        model.addObject("canciones", canciones);
+        canc = (ArrayList<Cancion>) canciones.clone();
+        cancActual = 0;
+        model.addObject("actual", cancActual);
+
         return model;
-        
+
     }
 
     @RequestMapping(value = "/favourites", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     ModelAndView favourites() {
 
-         ArrayList<Cancion> canciones=new ArrayList<>();
-        Cancion[] inter=reja.favourites(usuario.getApiKey());
-        for(int i=0;i<inter.length;++i){
+        ArrayList<Cancion> canciones = new ArrayList<>();
+        Cancion[] inter = reja.favourites(usuario.getApiKey());
+        for (int i = 0; i < inter.length; ++i) {
             canciones.add(inter[i]);
         }
-        ModelAndView model=new ModelAndView();
-        model.addObject("canciones", canciones) ;
-        canc=(ArrayList<Cancion>)canciones.clone();
-        cancActual=0;
-        model.addObject("actual",cancActual);
-        
+        ModelAndView model = new ModelAndView();
+        model.addObject("canciones", canciones);
+        canc = (ArrayList<Cancion>) canciones.clone();
+        cancActual = 0;
+        model.addObject("actual", cancActual);
+
         return model;
-        
-       
+
     }
 
     /*@RequestMapping(value = "/canciones", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody
-    String canc() {
+     public @ResponseBody
+     String canc() {
 
-        Vector<Integer> ids = new Vector<Integer>();
-        ids.add(1084838);
-        ids.add(1036981);
-        ids.add(1029393);
+     Vector<Integer> ids = new Vector<Integer>();
+     ids.add(1084838);
+     ids.add(1036981);
+     ids.add(1029393);
         
-        String ret=new String();
-        Cancion[] vec=jamendo.canciones(ids);
-        for( int i=0;i<vec.length;i++){
-            ret+=vec[i].toString()+"/n";
-        }
-        return ret;
+     String ret=new String();
+     Cancion[] vec=jamendo.canciones(ids);
+     for( int i=0;i<vec.length;i++){
+     ret+=vec[i].toString()+"/n";
+     }
+     return ret;
         
-    }*/
-
+     }*/
 }

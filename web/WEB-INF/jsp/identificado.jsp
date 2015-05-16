@@ -53,8 +53,7 @@
         var currentFile = "";
         var fav = 0;
         var rating = 1;
-        //var iCancionActual=0;
-        var iCancionActual= 0;
+        var iCancionActual=${actual};
         function playAudio() {
             // Check for audio element support.
             if (window.HTMLAudioElement) {
@@ -85,7 +84,6 @@
         
         function playAudioInicio() {
             // Check for audio element support.
-            
             if (window.HTMLAudioElement) {
                 try {
                     var oAudio = document.getElementById('myaudio');
@@ -208,8 +206,10 @@
                
                if(iCancionActual===iTotalCanciones-1){
                     iCancionActual=0; 
+                    
                }else{
-                   iCancionActual++;      
+                    iCancionActual++;
+                   
                }
                
                               
@@ -288,7 +288,7 @@
         </div>
       </div>
 
-      <audio id="myaudio" src="${canciones[actual].audio}" >HTML5 audio not supported</audio>
+      <audio id="myaudio" src="${canciones[0].audio}" >HTML5 audio not supported</audio>
          
          <!--playlist-->
          <ul type="hidden" id="playlist"><c:forEach items="${canciones}" var="canc">
@@ -347,13 +347,13 @@
         <img id="u15_img" class="img " src="resources/images/transparent.gif"/>
         <!-- Unnamed () -->
         <div id="u16" class="text">
-          <p><span id="textoRep">  ${canciones[actual].name} ( ${canciones[actual].artist_name})</span></p>
+          <p><span id="textoRep">  ${canciones[0].name} ( ${canciones[0].artist_name})</span></p>
         </div>
       </div>
 
       <!-- Unnamed (Image) -->
       <div id="u17" class="ax_image">
-        <img id="u17_img" class="img " src=" ${canciones[actual].image}"/>
+        <img id="u17_img" class="img " src=" ${canciones[0].image}"/>
         <!-- Unnamed () -->
         <div id="u18" class="text">
           <p><span></span></p>
@@ -1258,7 +1258,7 @@
 
                   <!-- Unnamed (Image) -->
                   <div id="u192" class="ax_image">
-                    <img id="u192_img" class="img " src="${canciones[(actual+1)%10].image}"/>
+                    <img id="u192_img" class="img " src="images/sin_identificar/u95.jpg"/>
                     <!-- Unnamed () -->
                     <div id="u193" class="text">
                       <p><span></span></p>
@@ -1267,7 +1267,7 @@
 
                   <!-- Unnamed (Image) -->
                   <div id="u194" class="ax_image">
-                    <img id="u194_img" class="img " src="${canciones[(actual+2)%10].image}"/>
+                    <img id="u194_img" class="img " src="images/sin_identificar/u99.jpg"/>
                     <!-- Unnamed () -->
                     <div id="u195" class="text">
                       <p><span></span></p>
@@ -1276,7 +1276,7 @@
 
                   <!-- Unnamed (Image) -->
                   <div id="u196" class="ax_image">
-                    <img id="u196_img" class="img " src="${canciones[(actual+3)%10].image}"/>
+                    <img id="u196_img" class="img " src="images/sin_identificar/u128.png"/>
                     <!-- Unnamed () -->
                     <div id="u197" class="text">
                       <p><span></span></p>
@@ -1285,7 +1285,7 @@
 
                   <!-- Unnamed (Image) -->
                   <div id="u198" class="ax_image">
-                    <img id="u198_img" class="img " src="${canciones[(actual+4)%10].image}"/>
+                    <img id="u198_img" class="img " src="images/sin_identificar/u103.jpg"/>
                     <!-- Unnamed () -->
                     <div id="u199" class="text">
                       <p><span></span></p>
@@ -1302,7 +1302,7 @@
 
                   <!-- Unnamed (Image) -->
                   <div id="u201" class="ax_image">
-                    <img id="u201_img" class="img " src="${canciones[(actual+1)%10].album_image}"/>
+                    <img id="u201_img" class="img " src="images/sin_identificar/u209.jpg"/>
                     <!-- Unnamed () -->
                     <div id="u202" class="text">
                       <p><span></span></p>
@@ -1311,7 +1311,7 @@
 
                   <!-- Unnamed (Image) -->
                   <div id="u203" class="ax_image">
-                    <img id="u203_img" class="img " src="${canciones[(actual+2)%10].album_image}"/>
+                    <img id="u203_img" class="img " src="images/sin_identificar/u211.jpg"/>
                     <!-- Unnamed () -->
                     <div id="u204" class="text">
                       <p><span></span></p>
@@ -1320,7 +1320,7 @@
 
                   <!-- Unnamed (Image) -->
                   <div id="u205" class="ax_image">
-                    <img id="u205_img" class="img " src="${canciones[(actual+3)%10].album_image}"/>
+                    <img id="u205_img" class="img " src="images/sin_identificar/u26.jpg"/>
                     <!-- Unnamed () -->
                     <div id="u206" class="text">
                       <p><span></span></p>
@@ -1329,7 +1329,7 @@
 
                   <!-- Unnamed (Image) -->
                   <div id="u207" class="ax_image">
-                    <img id="u207_img" class="img " src="${canciones[(actual+4)%10].album_image}"/>
+                    <img id="u207_img" class="img " src="images/sin_identificar/u215.jpg"/>
                     <!-- Unnamed () -->
                     <div id="u208" class="text">
                       <p><span></span></p>
@@ -1351,7 +1351,7 @@
 
             <!-- Unnamed (Image) -->
             <div id="u211" class="ax_image">
-              <img id="u211_img" class="img " src="${canciones[actual].image}"/>
+              <img id="u211_img" class="img " src="images/sin_identificar/u95.jpg"/>
               <!-- Unnamed () -->
               <div id="u212" class="text">
                 <p><span></span></p>
@@ -1363,7 +1363,7 @@
               <img id="u213_img" class="img " src="resources/images/transparent.gif"/>
               <!-- Unnamed () -->
               <div id="u214" class="text">
-                <p><span>${canciones[actual].name+" - ("+canciones[actual].artist_name+")"}</span></p>
+                <p><span>Pasos de 0 - (Pablo Alboran)</span></p>
               </div>
             </div>
 
