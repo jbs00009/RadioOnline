@@ -35,12 +35,16 @@ public class servlet {
     private REJA reja;
     private Jamendo jamendo;
     Usuario usuario;
+    ArrayList<Cancion> canc;
+    int cancActual;
   
     public servlet() {
         reja = new REJA();
         jamendo = new Jamendo();
         usuario= new Usuario();
         usuario.setApiKey("717c03766e5fafba6ecf4781338a7547");
+        canc=new ArrayList<>();
+        cancActual=0;
     }
 
     public REJA getReja() {
@@ -79,6 +83,8 @@ public class servlet {
     public @ResponseBody ModelAndView identificado() {
        
         ModelAndView model=new ModelAndView("identificado");
+        cancActual=0;
+        model.addObject("actual",cancActual);
         model=random(model);
         
         
@@ -98,23 +104,38 @@ public class servlet {
         int cont=0;
         model.addObject("cont", cont) ;
         model.addObject("canciones", canciones) ;
+        canc=(ArrayList<Cancion>)canciones.clone();
+        cancActual=0;
+        model.addObject("actual",cancActual);
         return model;
     }
     
-    /*@RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
-    public ModelAndView ratings(@PathVariable String rating, @PathVariable String idCancion, @PathVariable String fav,ModelAndView model) {
+    @RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody ModelAndView ratings(@PathVariable String rating, @PathVariable String idCancion, @PathVariable String fav) {
         
+        int cancActual=-1;
         Incidencia error=reja.ratings(usuario.getApiKey(), rating, idCancion, fav);
+        for(int i=0; i<canc.size();++i){
+            if(canc.get(i).getId()==Integer.parseInt(idCancion)){
+                cancActual=i;
+            }
+        }
         if (error.getError()){
+            ModelAndView model=new ModelAndView("identificado");
+            model.addObject("canciones", canc);
+            model.addObject("actual",cancActual);
             model.addObject("error",error.getMessage());
             return model;
         }else{
+            ModelAndView model=new ModelAndView("identificado");
+            model.addObject("canciones", canc);
+            model.addObject("actual",cancActual);
             model.addObject("error","la puntuacion se realizo correctamente");
             return model;
         }
-    }*/
+    }
     
-    @RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
+    /*@RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
     public void ratings(HttpServletRequest req, HttpServletResponse resp, ModelAndView model) {
         
         Incidencia error=reja.ratings(usuario.getApiKey(), (String)req.getAttribute("rating"), (String)req.getAttribute("idCancion"), (String)req.getAttribute("fav"));
@@ -122,10 +143,11 @@ public class servlet {
             model.addObject("error",error.getMessage());
             
         }else{
+            
             model.addObject("error","la puntuacion se realizo correctamente");
             
         }
-    }
+    }*/
     
     @RequestMapping(value = "/randomId", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody ModelAndView randomId() {
@@ -137,8 +159,9 @@ public class servlet {
         }
         ModelAndView model=new ModelAndView("identificado");
         model.addObject("canciones", canciones) ;
-        
-        
+        canc=(ArrayList<Cancion>)canciones.clone();
+        cancActual=0;
+        model.addObject("actual",cancActual);
         
         return model;
     }
@@ -147,7 +170,6 @@ public class servlet {
     public 
     String login(@PathVariable String email) {
 
-        String respuesta=new String();
         usuario.setEmail(email);
         usuario.setApiKey(reja.login(usuario.getEmail()).getApiKey());
         
@@ -166,6 +188,10 @@ public class servlet {
         }
         ModelAndView model=new ModelAndView("identificado");
         model.addObject("canciones", canciones) ;
+        canc=(ArrayList<Cancion>)canciones.clone();
+        cancActual=0;
+        model.addObject("actual",cancActual);
+        
         return model;
         
     }
@@ -181,6 +207,10 @@ public class servlet {
         }
         ModelAndView model=new ModelAndView();
         model.addObject("canciones", canciones) ;
+        canc=(ArrayList<Cancion>)canciones.clone();
+        cancActual=0;
+        model.addObject("actual",cancActual);
+        
         return model;
         
        
