@@ -272,15 +272,7 @@
     </head>
     <body onload="playAudioInicio()">
 
-        <span id="signinButton">
-              <span class="g-signin"
-                    data-callback="signinCallback"
-                    data-clientid="579659090224-bdget8j5n88t9v5uuokvqabior0opv8p.apps.googleusercontent.com"
-                    data-cookiepolicy="single_host_origin"
-                    data-requestvisibleactions="http://schemas.google.com/AddActivity"
-                    data-scope="https://www.googleapis.com/auth/plus.login">
-              </span>   
-        </span>
+        
 
 
 
@@ -1130,61 +1122,29 @@
                                         </div>
                                     </div>
 
-                                    <!-- Unnamed (Shape) -->
-                                    <div id="u160" class="ax_h2">
-                                        <img id="u160_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
-                                        <!-- Unnamed () -->
-                                        <div id="u161" class="text">
-                                            <p><span>C</span><span>ontraseña</span></p>
-                                        </div>
-                                    </div>
+                                    
 
                                     <!-- Unnamed (Text Field) -->
                                     <div id="u162" class="ax_text_field">
-                                        <input id="u162_input" type="text" value=""/>
+                                        <span id="signinButton">
+                                            <span class="g-signin"
+                                                data-callback="signinCallback"
+                                                data-clientid="579659090224-bdget8j5n88t9v5uuokvqabior0opv8p.apps.googleusercontent.com"
+                                                data-cookiepolicy="single_host_origin"
+                                                data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                                                data-scope="https://www.googleapis.com/auth/plus.login">
+                                            </span>   
+                                        </span>
                                     </div>
 
-                                    <!-- Unnamed (Text Field) -->
-                                    <div id="u163" class="ax_text_field">
-                                        <input id="u163_input" type="password" value=""/>
-                                    </div>
-
-                                    <!-- Unnamed (Shape) -->
-                                    <div id="u164" class="ax_h2">
-                                        <img id="u164_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
-                                        <!-- Unnamed () -->
-                                        <div id="u165" class="text">
-                                            <p><span>Usuario</span></p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Unnamed (HTML Button) -->
-                                    <div  class="ax_html_button">
-                                        <input style="width:100px; height:25px; margin-top: 238px; margin-left: 264px; position: absolute;z-index: 0" onclick="identificado()" type="button" value="Enviar"/>
-                                    </div>
+                                    
 
                                     <!-- Unnamed (HTML Button) -->
                                     <div id="u167" class="ax_html_button">
                                         <input id="u167_input" type="submit" value="Cancelar"/>
                                     </div>
 
-                                    <!-- Unnamed (Image) -->
-                                    <div id="u168" class="ax_image">
-                                        <img id="u168_img" class="img " src="<c:url value="/images/sin_identificar/u168.png"/>"/>
-                                        <!-- Unnamed () -->
-                                        <div id="u169" class="text">
-                                            <p><span></span></p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Unnamed (Image) -->
-                                    <div id="u170" class="ax_image">
-                                        <a href="#Ancla"><img id="u170_img" class="img " src="<c:url value="/images/sin_identificar/u170.png"/>"/></a>
-                                        <!-- Unnamed () -->
-                                        <div id="u171" class="text">
-                                            <p><span></span></p>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div id="u157_state1" class="panel_state" data-label="State1">

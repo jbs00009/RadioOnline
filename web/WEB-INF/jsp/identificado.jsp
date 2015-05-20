@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="cancion" class="com.bailen.radioOnline.Cancion" scope="request" />
+<jsp:useBean id="usuario" class="com.bailen.radioOnline.Usuario" scope="request" />
+<jsp:useBean id="persona" class="com.google.api.services.plus.model.Person" scope="request" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -265,7 +267,7 @@
 
             function disconnectUser() {
                 var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' +
-                        '${token}'+'.'+'${token2}';
+                        '${usuario.token}'+'.'+'${usuario.token2}';
 
                 // Realiza una solicitud GET asíncrona.
                 $.ajax({
@@ -1150,8 +1152,8 @@
                                     </div>
 
                                     <!-- Unnamed (Image) -->
-                                    <div id="u162" class="ax_image">
-                                        <img id="u162_img" class="img " src="images/identificado/u162.png"/>
+                                    <div class="ax_image">
+                                        <img id="u162_img" class="img " style="top:470px; left: 170px" onclick="disconnectUser();" src="images/identificado/u162.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u163" class="text">
                                             <p><span></span></p>
@@ -1200,22 +1202,17 @@
 
                                     <!-- Unnamed (Text Field) -->
                                     <div id="u172" class="ax_text_field">
-                                        <input id="u172_input" type="email" value=""/>
+                                        <span style="color:blue" >${persona.displayName}</span>
                                     </div>
 
                                     <!-- Unnamed (Text Field) -->
                                     <div id="u173" class="ax_text_field">
-                                        <input id="u173_input" type="text" value=""/>
+                                        <span style="color:blue">${persona.values}</span>
                                     </div>
 
                                     <!-- Unnamed (Text Field) -->
                                     <div id="u174" class="ax_text_field">
-                                        <input id="u174_input" type="text" value=""/>
-                                    </div>
-
-                                    <!-- Unnamed (HTML Button) -->
-                                    <div id="u175" class="ax_html_button">
-                                        <input id="u175_input" type="submit" value="Enviar"/>
+                                        <img src="${usuario.photoUrl}">
                                     </div>
 
                                     <!-- Unnamed (HTML Button) -->

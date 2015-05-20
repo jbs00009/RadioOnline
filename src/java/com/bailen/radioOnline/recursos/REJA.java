@@ -10,11 +10,7 @@ import com.bailen.radioOnline.Incidencia;
 import com.bailen.radioOnline.Item;
 import com.bailen.radioOnline.Usuario;
 import com.bailen.radioOnline.itemRadios;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.Vector;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -22,7 +18,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -79,11 +74,12 @@ public class REJA {
 
         } catch (Exception e) {
             return null;
+            
         }
         
     }
 //Metodos get
-    public Cancion[] random(String apiKey) {
+    public Cancion[] random(String apiKey) throws IOException{
         HttpHeaders header = new HttpHeaders();
         header.set("Authorization", apiKey);
         HttpEntity entity = new HttpEntity(header);
@@ -109,12 +105,13 @@ public class REJA {
             return jamendo.canciones(ids);
 
         } catch (Exception e) {
-            return null;
+            //return null;
+            throw new IOException("no se han recibido canciones");
         }
 
     }
 
-    public Cancion[] recommendations(String apiKey) {
+    public Cancion[] recommendations(String apiKey) throws IOException{
         HttpHeaders header = new HttpHeaders();
         header.set("Authorization", apiKey);
         HttpEntity entity = new HttpEntity(header);
@@ -140,11 +137,11 @@ public class REJA {
             return jamendo.canciones(ids);
 
         } catch (Exception e) {
-            return null;
+            throw new IOException("no se han recibido canciones");
         }
     }
 
-    public Cancion[] favourites(String apiKey) {
+    public Cancion[] favourites(String apiKey) throws IOException{
         HttpHeaders header = new HttpHeaders();
         header.set("Authorization", apiKey);
         HttpEntity entity = new HttpEntity(header);
@@ -169,7 +166,7 @@ public class REJA {
             return jamendo.canciones(ids);
 
         } catch (Exception e) {
-            return null;
+            throw new IOException("no se han recibido canciones");
         }
     }
 }
