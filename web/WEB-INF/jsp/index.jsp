@@ -239,80 +239,50 @@
 
             //funciones google+
 
-            /*
-             * Activado cuando el usuario acepta el inicio de sesión, cancela o cierra el
-             * cuadro de diálogo de autorización.
-             */
-            function loginFinishedCallback(authResult) {
-                if (authResult) {
-                    if (authResult['error'] == undefined) {
-                        gapi.auth.setToken(authResult); // Almacena el token recuperado.
-                        toggleElement('signin-button'); // Oculta el inicio de sesión si se ha accedido correctamente.
-                        getEmail();                     // Activa la solicitud para obtener la dirección de correo electrónico.
-                    } else {
-                        console.log('An error occurred');
-                    }
-                } else {
-                    console.log('Empty authResult');  // Se ha producido algún error
+            (function () {
+                var po = document.createElement('script');
+                po.type = 'text/javascript';
+                po.async = true;
+                po.src = 'https://apis.google.com/js/client:plusone.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(po, s);
+            })();
+
+            function signinCallback(authResult) {
+                if (authResult['access_token']) {
+                    // Autorizado correctamente
+                    // Oculta el botón de inicio de sesión ahora que el usuario está autorizado, por ejemplo:
+                    document.getElementById('signinButton').setAttribute('style', 'display: none');
+                    //llamar funcion login con clientId
+                    window.location = "radioWebPrueba/login/" + authResult['access_token'];
+                } else if (authResult['error']) {
+                    // Se ha producido un error.
+                    // Posibles códigos de error:
+                    //   "access_denied": el usuario ha denegado el acceso a la aplicación.
+                    //   "immediate_failed": no se ha podido dar acceso al usuario de forma automática.
+                    console.log('There was an error: ' + authResult['error']);
                 }
-            }
-
-            /*
-             * Inicia la solicitud del punto final userinfo para obtener la dirección de correo electrónico del
-             * usuario. Esta función se basa en gapi.auth.setToken que contiene un token
-             * de acceso de OAuth válido.
-             *
-             * Cuando se completa la solicitud, se activa getEmailCallback y recibe
-             * el resultado de la solicitud.
-             */
-            function getEmail() {
-                // Carga las bibliotecas oauth2 para habilitar los métodos userinfo.
-                gapi.client.load('oauth2', 'v2', function () {
-                    var request = gapi.client.oauth2.userinfo.get();
-                    request.execute(getEmailCallback);
-                });
-            }
-
-            function getEmailCallback(obj) {
-                var el = document.getElementById('email');
-                var email = '';
-
-                if (obj['email']) {
-                    email = 'Email: ' + obj['email'];
-                }
-
-                console.log(obj);   // Sin comentario para inspeccionar el objeto completo.
-                //window.location = "radioWebPrueba/login/" + email;
-                el.innerHTML = email;
-                toggleElement('email');
-            }
-
-            function toggleElement(id) {
-                var el = document.getElementById(id);
-                if (el.getAttribute('class') == 'hide') {
-                    el.setAttribute('class', 'show');
-                } else {
-                    el.setAttribute('class', 'hide');
-                }
-
             }
 
         </script>
+        <style type="text/css">
+            .hide { display: none;}
+            .show { display: block;}
+        </style>
     </head>
     <body onload="playAudioInicio()">
 
-        <div id="signin-button" class="show">
-            <div class="g-signin" data-callback="loginFinishedCallback"
-                 data-approvalprompt="force"
-                 data-clientid="579659090224-bdget8j5n88t9v5uuokvqabior0opv8p.apps.googleusercontent.com"
-                 data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
-                 data-height="short"
-                 data-cookiepolicy="single_host_origin"
-                 >
-            </div>
-        </div>
+        <span id="signinButton">
+              <span class="g-signin"
+                    data-callback="signinCallback"
+                    data-clientid="579659090224-bdget8j5n88t9v5uuokvqabior0opv8p.apps.googleusercontent.com"
+                    data-cookiepolicy="single_host_origin"
+                    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                    data-scope="https://www.googleapis.com/auth/plus.login">
+              </span>   
+        </span>
 
-        <div id="email" class="hide"></div>
+
 
         <table>
             <tr>

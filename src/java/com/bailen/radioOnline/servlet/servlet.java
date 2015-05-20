@@ -8,11 +8,16 @@ package com.bailen.radioOnline.servlet;
 import com.bailen.radioOnline.Cancion;
 import com.bailen.radioOnline.Incidencia;
 import com.bailen.radioOnline.Usuario;
+import com.bailen.radioOnline.recursos.Google;
 import com.bailen.radioOnline.recursos.Jamendo;
 import com.bailen.radioOnline.recursos.REJA;
+import com.google.api.services.plus.Plus;
+import com.google.api.services.plus.model.Person;
+import static com.sun.codemodel.JOp.plus;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Vector;
+import static javax.management.Query.plus;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -38,6 +43,8 @@ public class servlet {
     ArrayList<Cancion> canc;
     int cancActual;
     Boolean bandera;
+    Google google;
+    Person persona;
 
     public servlet() {
         reja = new REJA();
@@ -47,6 +54,7 @@ public class servlet {
         canc = new ArrayList<>();
         cancActual = 0;
         bandera = false;
+        google=new Google();
     }
 
     public REJA getReja() {
@@ -90,13 +98,16 @@ public class servlet {
         if (bandera == false) {
             cancActual = 0;
             model.addObject("actual", cancActual);
+            model.addObject("token", usuario.getToken());
+            model.addObject("token2", usuario.getToken2());
             model = random(model);
         } else {
             bandera = false;
             model.addObject("canciones", canc);
             model.addObject("actual", cancActual);
             model.addObject("error", "la puntuacion se realizo correctamente");
-
+            model.addObject("token", usuario.getToken());
+            model.addObject("token2", usuario.getToken2());
         }
 
         return model;
@@ -133,34 +144,9 @@ public class servlet {
         }
         bandera = true;
         return "redirect:/identificado";
-        /*if (error.getError()){
-         ModelAndView model=new ModelAndView("identificado");
-         model.addObject("canciones", canc);
-         model.addObject("actual",cancActual);
-         model.addObject("error",error.getMessage());
-         return model;
-         }else{
-         ModelAndView model=new ModelAndView("identificado");
-         model.addObject("canciones", canc);
-         model.addObject("actual",cancActual);
-         model.addObject("error","la puntuacion se realizo correctamente");
-         return model;
-         }*/
+        
     }
 
-    /*@RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
-     public void ratings(HttpServletRequest req, HttpServletResponse resp, ModelAndView model) {
-        
-     Incidencia error=reja.ratings(usuario.getApiKey(), (String)req.getAttribute("rating"), (String)req.getAttribute("idCancion"), (String)req.getAttribute("fav"));
-     if (error.getError()){
-     model.addObject("error",error.getMessage());
-            
-     }else{
-            
-     model.addObject("error","la puntuacion se realizo correctamente");
-            
-     }
-     }*/
     @RequestMapping(value = "/randomId", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     ModelAndView randomId() {
@@ -175,17 +161,29 @@ public class servlet {
         canc = (ArrayList<Cancion>) canciones.clone();
         cancActual = 0;
         model.addObject("actual", cancActual);
+        model.addObject("token", usuario.getToken());
+        model.addObject("token2", usuario.getToken2());
 
         return model;
     }
 
-    @RequestMapping(value = "/login/{email}", method = RequestMethod.GET, produces = "application/json")
-    public
-            String login(@PathVariable String email) {
+    @RequestMapping(value = "/login/{email}.{resto}", method = RequestMethod.GET, produces = "application/json")
+    public String login(@PathVariable String email,@PathVariable String resto) {
 
-        usuario.setEmail(email);
+        /*usuario.setEmail(email);
         usuario.setApiKey(reja.login(usuario.getEmail()).getApiKey());
+        
 
+        return "redirect:/identificado";
+        String token=email+"."+resto;
+        persona=google.getPerson(token);
+        
+        usuario.setEmail(persona.getBraggingRights());
+        usuario.setApiKey(reja.login(usuario.getEmail()).getApiKey());*/
+        String token=email+"."+resto;
+        persona=google.getPerson(token);
+        usuario.setToken(email);
+        usuario.setToken2(resto);
         return "redirect:/identificado";
     }
 
@@ -203,7 +201,8 @@ public class servlet {
         canc = (ArrayList<Cancion>) canciones.clone();
         cancActual = 0;
         model.addObject("actual", cancActual);
-
+        model.addObject("token", usuario.getToken());
+        model.addObject("token2", usuario.getToken2());
         return model;
 
     }
@@ -217,31 +216,15 @@ public class servlet {
         for (int i = 0; i < inter.length; ++i) {
             canciones.add(inter[i]);
         }
-        ModelAndView model = new ModelAndView();
+        ModelAndView model = new ModelAndView("identificado");
         model.addObject("canciones", canciones);
         canc = (ArrayList<Cancion>) canciones.clone();
         cancActual = 0;
         model.addObject("actual", cancActual);
-
+        model.addObject("token", usuario.getToken());
+        model.addObject("token2", usuario.getToken2());
         return model;
 
     }
 
-    /*@RequestMapping(value = "/canciones", method = RequestMethod.GET, produces = "application/json")
-     public @ResponseBody
-     String canc() {
-
-     Vector<Integer> ids = new Vector<Integer>();
-     ids.add(1084838);
-     ids.add(1036981);
-     ids.add(1029393);
-        
-     String ret=new String();
-     Cancion[] vec=jamendo.canciones(ids);
-     for( int i=0;i<vec.length;i++){
-     ret+=vec[i].toString()+"/n";
-     }
-     return ret;
-        
-     }*/
 }
