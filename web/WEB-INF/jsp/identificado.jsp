@@ -1177,18 +1177,12 @@
                                     <div id="u166" class="ax_h2">
                                         <img id="u166_img" class="img " src="resources/images/transparent.gif"/>
                                         <!-- Unnamed () -->
-                                        <div id="u167" class="text">
-                                            <p><span>Nombre</span></p>
-                                        </div>
                                     </div>
 
                                     <!-- Unnamed (Shape) -->
                                     <div id="u168" class="ax_h2">
                                         <img id="u168_img" class="img " src="resources/images/transparent.gif"/>
                                         <!-- Unnamed () -->
-                                        <div id="u169" class="text">
-                                            <p><span>Apellidos</span></p>
-                                        </div>
                                     </div>
 
                                     <!-- Unnamed (Shape) -->
@@ -1196,13 +1190,8 @@
                                         <img id="u170_img" class="img " src="resources/images/transparent.gif"/>
                                         <!-- Unnamed () -->
                                         <div id="u171" class="text">
-                                            <p><span>Email</span></p>
+                                            <p><span style="position: absolute;top: 29px;left: -19px;">Foto</span></p>
                                         </div>
-                                    </div>
-
-                                    <!-- Unnamed (Text Field) -->
-                                    <div id="u172" class="ax_text_field">
-                                        <span style="color:blue" >${persona.displayName}</span>
                                     </div>
 
                                     <!-- Unnamed (Text Field) -->
@@ -1212,7 +1201,7 @@
 
                                     <!-- Unnamed (Text Field) -->
                                     <div id="u174" class="ax_text_field">
-                                        <img src="${usuario.photoUrl}">
+                                        <img style="width:90px;height:90px;position: absolute;left:-30px" src="${usuario.photoUrl}">
                                     </div>
 
                                     <!-- Unnamed (HTML Button) -->
@@ -1225,7 +1214,7 @@
                                         <img id="u177_img" class="img " src="resources/images/transparent.gif"/>
                                         <!-- Unnamed () -->
                                         <div id="u178" class="text">
-                                            <p><span>U</span><span>suario</span></p>
+                                            <p><span>Nombre</span></p>
                                         </div>
                                     </div>
 
@@ -1234,18 +1223,18 @@
                                         <img id="u179_img" class="img " src="resources/images/transparent.gif"/>
                                         <!-- Unnamed () -->
                                         <div id="u180" class="text">
-                                            <p><span>C</span><span>ontraseña</span></p>
+                                            <p><span>Sexo</span></p>  
                                         </div>
                                     </div>
 
                                     <!-- Unnamed (Text Field) -->
                                     <div id="u181" class="ax_text_field">
-                                        <input id="u181_input" type="text" value=""/>
+                                        <span style="color:blue;position: absolute;top: -27px;left: -122px;font-size: 150%;" >${persona.displayName}</span>
                                     </div>
 
                                     <!-- Unnamed (Text Field) -->
                                     <div id="u182" class="ax_text_field">
-                                        <input id="u182_input" type="password" value=""/>
+                                        <span style="color:blue;position: absolute;top: 29px;left: -19px;font-size: 150%;" >${persona.gender}</span>
                                     </div>
 
                                     <!-- Unnamed (Image) -->
@@ -1378,7 +1367,7 @@
 
                                     <!-- Unnamed (HTML Button) -->
                                     <div id="u209" class="ax_html_button">
-                                        <input id="u209_inputn" onclick="puntuar();" type="submit" value="Enviar"/>
+                                        <input id="u209_inputn" style="width: 100px;height: 27px" onclick="puntuar();" type="submit" value="Enviar"/>
                                     </div>
 
                                     <!-- Unnamed (HTML Button) -->

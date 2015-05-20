@@ -35,7 +35,7 @@ public class REJA {
     }
 //Metodos post
     public Usuario login(String email) {
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("email", email);
         String result = new RestTemplate().postForObject("http://ceatic.ujaen.es:8075/radioapi/v1/login", params, String.class);
         //return result;
