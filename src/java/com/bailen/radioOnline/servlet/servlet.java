@@ -180,7 +180,7 @@ public class servlet {
         usuario.setToken2(resto);
         usuario.setPhotoUrl(persona.getImage().getUrl());
 
-        usuario.setEmail(persona.getDisplayName());
+        usuario.setEmail(persona.getId());
         usuario.setApiKey(reja.login(usuario.getEmail()).getApiKey());
 
         return "redirect:/identificado";
