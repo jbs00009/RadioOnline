@@ -68,6 +68,7 @@
         <script type="text/javascript">
             // Global variable to track current file name.
             var currentFile = "";
+            var iCancionActual = 0;
             function playAudio() {
                 // Check for audio element support.
                 if (window.HTMLAudioElement) {
@@ -178,7 +179,7 @@
             }
 
             $(function () {
-                var iCancionActual = 0;
+
                 var iTotalCanciones = $('#playlist li').length;
                 var objReproductor = document.getElementById('myaudio');
 
@@ -234,6 +235,96 @@
                 window.location = "radioWebPrueba/login/" + em;
 
             }
+
+            function forwardAudio() {
+                var objReproductor = document.getElementById('myaudio');
+                var iTotalCanciones = $('#playlist li').length;
+                var imagenRep = document.getElementById("u17_img");
+                var textoRep = document.getElementById('textoRep');
+
+                //lista reproducción
+                var imagenlist1 = document.getElementById("u122_img");
+                var imagenlist2 = document.getElementById("u124_img");
+                var imagenlist3 = document.getElementById("u126_img");
+                var imagenlist4 = document.getElementById("u128_img");
+                //texto lista
+                var spa1 = document.getElementById("spa1");
+                var spa2 = document.getElementById("spa2");
+                var spa3 = document.getElementById("spa3");
+                var spa4 = document.getElementById("spa4");
+
+
+
+                if (iCancionActual === iTotalCanciones - 1) {
+                    iCancionActual = 0;
+                } else {
+                    iCancionActual++;
+                }
+
+
+                objReproductor.src = $('#playlist').children().eq(iCancionActual).attr('rel');
+                imagenRep.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
+                textoRep.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
+                objReproductor.play();
+
+                //imagenes lista reproduccion
+                imagenlist1.src = $('#playlist').children().eq((iCancionActual + 1) % 10).attr('imagen');
+                imagenlist2.src = $('#playlist').children().eq((iCancionActual + 2) % 10).attr('imagen');
+                imagenlist3.src = $('#playlist').children().eq((iCancionActual + 3) % 10).attr('imagen');
+                imagenlist4.src = $('#playlist').children().eq((iCancionActual + 4) % 10).attr('imagen');
+                //texto lista reproduccion
+                spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 1) % 10).attr('texto');
+                spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 2) % 10).attr('texto');
+                spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 3) % 10).attr('texto');
+                spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 4) % 10).attr('texto');
+
+            }
+
+            function backwardAudio() {
+                var objReproductor = document.getElementById('myaudio');
+                var iTotalCanciones = $('#playlist li').length;
+                var imagenRep = document.getElementById("u17_img");
+                var textoRep = document.getElementById('textoRep');
+
+                //lista reproducción
+                var imagenlist1 = document.getElementById("u122_img");
+                var imagenlist2 = document.getElementById("u124_img");
+                var imagenlist3 = document.getElementById("u126_img");
+                var imagenlist4 = document.getElementById("u128_img");
+                //texto lista
+                var spa1 = document.getElementById("spa1");
+                var spa2 = document.getElementById("spa2");
+                var spa3 = document.getElementById("spa3");
+                var spa4 = document.getElementById("spa4");
+
+
+
+                if (iCancionActual === 0) {
+                    iCancionActual = iTotalCanciones - 1;
+                } else {
+                    iCancionActual--;
+                }
+
+
+                objReproductor.src = $('#playlist').children().eq(iCancionActual).attr('rel');
+                imagenRep.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
+                textoRep.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
+                objReproductor.play();
+
+                //imagenes lista reproduccion
+                imagenlist1.src = $('#playlist').children().eq((iCancionActual - 1) % 10).attr('imagen');
+                imagenlist2.src = $('#playlist').children().eq((iCancionActual - 2) % 10).attr('imagen');
+                imagenlist3.src = $('#playlist').children().eq((iCancionActual - 3) % 10).attr('imagen');
+                imagenlist4.src = $('#playlist').children().eq((iCancionActual - 4) % 10).attr('imagen');
+                //texto lista reproduccion
+                spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 1) % 10).attr('texto');
+                spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 2) % 10).attr('texto');
+                spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 3) % 10).attr('texto');
+                spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 4) % 10).attr('texto');
+
+            }
+
+
             if (window.history.forward(1) != null)
                 window.history.forward(1);
 
@@ -272,7 +363,7 @@
     </head>
     <body onload="playAudioInicio()">
 
-        
+
 
 
 
@@ -325,6 +416,7 @@
                             </div>
                         </div>
 
+                            <img style="width: 70px;height: 60px;position: absolute;top: 811px;left: 715px;" onclick="forwardAudio();" src="<c:url value="/images/sin_identificar/adelante.png"/>"/>
 
                         <!-- Unnamed (Image) -->
                         <div id="u8" class="ax_image">
@@ -334,6 +426,8 @@
                                 <p><span></span></p>
                             </div>
                         </div>
+
+                            <img style="width: 70px;height: 60px;position: absolute;top: 811px;left: 257px;" onclick="backwardAudio();" src="<c:url value="/images/sin_identificar/atras.png"/>"/>
 
                         <!-- Unnamed (Dynamic Panel) -->
                         <div id="u10" class="ax_dynamic_panel">
@@ -1122,29 +1216,29 @@
                                         </div>
                                     </div>
 
-                                    
+
 
                                     <!-- Unnamed (Text Field) -->
                                     <div id="u162" class="ax_text_field">
                                         <span id="signinButton">
                                             <span class="g-signin"
-                                                data-callback="signinCallback"
-                                                data-clientid="579659090224-bdget8j5n88t9v5uuokvqabior0opv8p.apps.googleusercontent.com"
-                                                data-cookiepolicy="single_host_origin"
-                                                data-requestvisibleactions="http://schemas.google.com/AddActivity"
-                                                data-scope="https://www.googleapis.com/auth/plus.login">
+                                                  data-callback="signinCallback"
+                                                  data-clientid="579659090224-bdget8j5n88t9v5uuokvqabior0opv8p.apps.googleusercontent.com"
+                                                  data-cookiepolicy="single_host_origin"
+                                                  data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                                                  data-scope="https://www.googleapis.com/auth/plus.login">
                                             </span>   
                                         </span>
                                     </div>
 
-                                    
+
 
                                     <!-- Unnamed (HTML Button) -->
                                     <div id="u167" class="ax_html_button">
                                         <input id="u167_input" type="submit" value="Cancelar"/>
                                     </div>
 
-                                    
+
                                 </div>
                             </div>
                             <div id="u157_state1" class="panel_state" data-label="State1">
