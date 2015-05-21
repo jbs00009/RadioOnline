@@ -140,6 +140,36 @@ public class REJA {
             throw new IOException("no se han recibido canciones");
         }
     }
+    
+    public Cancion[] artistFav(String apiKey) throws IOException{
+        HttpHeaders header = new HttpHeaders();
+        header.set("Authorization", apiKey);
+        HttpEntity entity = new HttpEntity(header);
+        String lista = new String();
+        HttpEntity<String> response;
+        response = new RestTemplate()
+                .exchange("http://ceatic.ujaen.es:8075/radioapi/v2/favouriteArtists", HttpMethod.GET, entity, String.class, lista);
+
+        String canc = response.getBody();
+        StringTokenizer st = new StringTokenizer(canc, "[", true);
+        st.nextToken();
+        st.nextToken();
+        canc = "[" + st.nextToken();
+
+        try {
+
+            ObjectMapper a = new ObjectMapper();
+            Item[] listilla = a.readValue(canc, Item[].class);
+            Vector<Integer> ids = new Vector<>();
+            for (int i = 0; i < listilla.length; ++i) {
+                ids.add(listilla[i].getId());
+            }
+            return jamendo.canciones(ids);
+
+        } catch (Exception e) {
+            throw new IOException("no se han recibido canciones");
+        }
+    }
 
     public Cancion[] favourites(String apiKey) throws IOException{
         HttpHeaders header = new HttpHeaders();

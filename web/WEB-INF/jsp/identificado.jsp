@@ -96,6 +96,7 @@
                 if (window.HTMLAudioElement) {
                     try {
                         var oAudio = document.getElementById('myaudio');
+                        var iTotalCanciones = $('#playlist li').length;
 
                         var imagenlist1 = document.getElementById("u122_img");
                         var imagenlist2 = document.getElementById("u124_img");
@@ -107,6 +108,42 @@
                         var spa2 = document.getElementById("spa2");
                         var spa3 = document.getElementById("spa3");
                         var spa4 = document.getElementById("spa4");
+                        
+                        //imgenes slide
+                        var u26_img = document.getElementById("u26_img");
+                        var u32_img = document.getElementById("u32_img");
+                        var u36_img = document.getElementById("u36_img");
+                        var u40_img = document.getElementById("u40_img");
+                        var u44_img = document.getElementById("u44_img");
+                        var u48_img = document.getElementById("u48_img");
+                        var u91_img = document.getElementById("u91_img");
+                        var u95_img = document.getElementById("u95_img");
+                        var u99_img = document.getElementById("u99_img");
+                        var u103_img = document.getElementById("u103_img");
+                        var u107_img = document.getElementById("u107_img");
+                        var u111_img = document.getElementById("u111_img");
+                        //texto slide
+                        var slide0 = document.getElementById("slide0");
+                        var slide1 = document.getElementById("slide1");
+                        var slide2 = document.getElementById("slide2");
+                        var slide3 = document.getElementById("slide3");
+                        var slide4 = document.getElementById("slide4");
+                        var slide5 = document.getElementById("slide5");
+                        var slide6 = document.getElementById("slide6");
+                        var slide7 = document.getElementById("slide7");
+                        var slide8 = document.getElementById("slide8");
+                        var slide9 = document.getElementById("slide9");
+                        var slide10 = document.getElementById("slide10");
+                        var slide11 = document.getElementById("slide11");
+                        //imagenes puntuaciones
+                        var u192_img = document.getElementById("u192_img");
+                        var u194_img = document.getElementById("u194_img");
+                        var u196_img = document.getElementById("u196_img");
+                        var u198_img = document.getElementById("u198_img");
+                        var u201_img = document.getElementById("u201_img");
+                        var u203_img = document.getElementById("u203_img");
+                        var u205_img = document.getElementById("u205_img");
+                        var u207_img = document.getElementById("u207_img");
 
                         //Skip loading if current file hasn't changed.
                         /*if (audioURL.value !== currentFile) {
@@ -119,18 +156,53 @@
                         oAudio.play();
 
                         //imagenes lista reproduccion    
-                        imagenlist1.src = $('#playlist').children().eq((iCancionActual + 1) % 10).attr('imagen');
-                        imagenlist2.src = $('#playlist').children().eq((iCancionActual + 2) % 10).attr('imagen');
-                        imagenlist3.src = $('#playlist').children().eq((iCancionActual + 3) % 10).attr('imagen');
-                        imagenlist4.src = $('#playlist').children().eq((iCancionActual + 4) % 10).attr('imagen');
+                        imagenlist1.src = $('#playlist').children().eq((iCancionActual + 1) % iTotalCanciones).attr('imagen');
+                        imagenlist2.src = $('#playlist').children().eq((iCancionActual + 2) % iTotalCanciones).attr('imagen');
+                        imagenlist3.src = $('#playlist').children().eq((iCancionActual + 3) % iTotalCanciones).attr('imagen');
+                        imagenlist4.src = $('#playlist').children().eq((iCancionActual + 4) % iTotalCanciones).attr('imagen');
 
                         //texto lista reproduccion
-                        spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 1) % 10).attr('texto');
-                        spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 2) % 10).attr('texto');
-                        spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 3) % 10).attr('texto');
-                        spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 4) % 10).attr('texto');
+                        spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 1) % iTotalCanciones).attr('texto');
+                        spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 2) % iTotalCanciones).attr('texto');
+                        spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 3) % iTotalCanciones).attr('texto');
+                        spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 4) % iTotalCanciones).attr('texto');
 
-
+                        //imagenes slide
+                        u26_img.src = $('#playlist').children().eq(0 % iTotalCanciones).attr('imagen');
+                        u32_img.src = $('#playlist').children().eq(1 % iTotalCanciones).attr('imagen');
+                        u36_img.src = $('#playlist').children().eq(2 % iTotalCanciones).attr('imagen');
+                        u40_img.src = $('#playlist').children().eq(3 % iTotalCanciones).attr('imagen');
+                        u44_img.src = $('#playlist').children().eq(4 % iTotalCanciones).attr('imagen');
+                        u48_img.src = $('#playlist').children().eq(5 % iTotalCanciones).attr('imagen');
+                        u91_img.src = $('#playlist').children().eq(4 % iTotalCanciones).attr('albumImage');
+                        u95_img.src = $('#playlist').children().eq(5 % iTotalCanciones).attr('albumImage');
+                        u99_img.src = $('#playlist').children().eq(6 % iTotalCanciones).attr('albumImage');
+                        u103_img.src = $('#playlist').children().eq(7 % iTotalCanciones).attr('albumImage');
+                        u107_img.src = $('#playlist').children().eq(8 % iTotalCanciones).attr('albumImage');
+                        u111_img.src = $('#playlist').children().eq(9 % iTotalCanciones).attr('albumImage');
+                        //texto slide
+                        slide0.firstChild.nodeValue = $('#playlist').children().eq(0 % iTotalCanciones).attr('cancion');
+                        slide1.firstChild.nodeValue = $('#playlist').children().eq(1 % iTotalCanciones).attr('cancion');
+                        slide2.firstChild.nodeValue = $('#playlist').children().eq(2 % iTotalCanciones).attr('cancion');
+                        slide3.firstChild.nodeValue = $('#playlist').children().eq(3 % iTotalCanciones).attr('cancion');
+                        slide4.firstChild.nodeValue = $('#playlist').children().eq(4 % iTotalCanciones).attr('cancion');
+                        slide5.firstChild.nodeValue = $('#playlist').children().eq(5 % iTotalCanciones).attr('cancion');
+                        slide6.firstChild.nodeValue = $('#playlist').children().eq(4 % iTotalCanciones).attr('artista');
+                        slide7.firstChild.nodeValue = $('#playlist').children().eq(5 % iTotalCanciones).attr('artista');
+                        slide8.firstChild.nodeValue = $('#playlist').children().eq(6 % iTotalCanciones).attr('artista');
+                        slide9.firstChild.nodeValue = $('#playlist').children().eq(7 % iTotalCanciones).attr('artista');
+                        slide10.firstChild.nodeValue = $('#playlist').children().eq(8 % iTotalCanciones).attr('artista');
+                        slide11.firstChild.nodeValue = $('#playlist').children().eq(9 % iTotalCanciones).attr('artista');
+                        //imagenes puntuacion
+                        u192_img.src = $('#playlist').children().eq(0 % iTotalCanciones).attr('imagen');
+                        u194_img.src = $('#playlist').children().eq(1 % iTotalCanciones).attr('imagen');
+                        u196_img.src = $('#playlist').children().eq(2 % iTotalCanciones).attr('imagen');
+                        u198_img.src = $('#playlist').children().eq(3 % iTotalCanciones).attr('imagen');
+                        u201_img.src = $('#playlist').children().eq(0 % iTotalCanciones).attr('albumImage');
+                        u203_img.src = $('#playlist').children().eq(1 % iTotalCanciones).attr('albumImage');
+                        u205_img.src = $('#playlist').children().eq(2 % iTotalCanciones).attr('albumImage');
+                        u207_img.src = $('#playlist').children().eq(3 % iTotalCanciones).attr('albumImage');
+                        
 
                     }
                     catch (e) {
@@ -232,16 +304,16 @@
                     objReproductor.play();
 
                     //imagenes lista reproduccion
-                    imagenlist1.src = $('#playlist').children().eq((iCancionActual + 1) % 10).attr('imagen');
-                    imagenlist2.src = $('#playlist').children().eq((iCancionActual + 2) % 10).attr('imagen');
-                    imagenlist3.src = $('#playlist').children().eq((iCancionActual + 3) % 10).attr('imagen');
-                    imagenlist4.src = $('#playlist').children().eq((iCancionActual + 4) % 10).attr('imagen');
+                    imagenlist1.src = $('#playlist').children().eq((iCancionActual + 1) % iTotalCanciones).attr('imagen');
+                    imagenlist2.src = $('#playlist').children().eq((iCancionActual + 2) % iTotalCanciones).attr('imagen');
+                    imagenlist3.src = $('#playlist').children().eq((iCancionActual + 3) % iTotalCanciones).attr('imagen');
+                    imagenlist4.src = $('#playlist').children().eq((iCancionActual + 4) % iTotalCanciones).attr('imagen');
                     imagenPunt.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
                     //texto lista reproduccion
-                    spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 1) % 10).attr('texto');
-                    spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 2) % 10).attr('texto');
-                    spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 3) % 10).attr('texto');
-                    spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 4) % 10).attr('texto');
+                    spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 1) % iTotalCanciones).attr('texto');
+                    spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 2) % iTotalCanciones).attr('texto');
+                    spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 3) % iTotalCanciones).attr('texto');
+                    spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 4) % iTotalCanciones).attr('texto');
                     spaPunt.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
                 });
             });
@@ -289,16 +361,16 @@
                     objReproductor.play();
 
                     //imagenes lista reproduccion
-                    imagenlist1.src = $('#playlist').children().eq((iCancionActual + 1) % 10).attr('imagen');
-                    imagenlist2.src = $('#playlist').children().eq((iCancionActual + 2) % 10).attr('imagen');
-                    imagenlist3.src = $('#playlist').children().eq((iCancionActual + 3) % 10).attr('imagen');
-                    imagenlist4.src = $('#playlist').children().eq((iCancionActual + 4) % 10).attr('imagen');
+                    imagenlist1.src = $('#playlist').children().eq((iCancionActual + 1) % iTotalCanciones).attr('imagen');
+                    imagenlist2.src = $('#playlist').children().eq((iCancionActual + 2) % iTotalCanciones).attr('imagen');
+                    imagenlist3.src = $('#playlist').children().eq((iCancionActual + 3) % iTotalCanciones).attr('imagen');
+                    imagenlist4.src = $('#playlist').children().eq((iCancionActual + 4) % iTotalCanciones).attr('imagen');
                     imagenPunt.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
                     //texto lista reproduccion
-                    spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 1) % 10).attr('texto');
-                    spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 2) % 10).attr('texto');
-                    spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 3) % 10).attr('texto');
-                    spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 4) % 10).attr('texto');
+                    spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 1) % iTotalCanciones).attr('texto');
+                    spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 2) % iTotalCanciones).attr('texto');
+                    spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 3) % iTotalCanciones).attr('texto');
+                    spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 4) % iTotalCanciones).attr('texto');
                     spaPunt.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
 
             }
@@ -339,16 +411,16 @@
                     objReproductor.play();
 
                     //imagenes lista reproduccion
-                    imagenlist1.src = $('#playlist').children().eq((iCancionActual - 1) % 10).attr('imagen');
-                    imagenlist2.src = $('#playlist').children().eq((iCancionActual - 2) % 10).attr('imagen');
-                    imagenlist3.src = $('#playlist').children().eq((iCancionActual - 3) % 10).attr('imagen');
-                    imagenlist4.src = $('#playlist').children().eq((iCancionActual - 4) % 10).attr('imagen');
+                    imagenlist1.src = $('#playlist').children().eq((iCancionActual - 1) % iTotalCanciones).attr('imagen');
+                    imagenlist2.src = $('#playlist').children().eq((iCancionActual - 2) % iTotalCanciones).attr('imagen');
+                    imagenlist3.src = $('#playlist').children().eq((iCancionActual - 3) % iTotalCanciones).attr('imagen');
+                    imagenlist4.src = $('#playlist').children().eq((iCancionActual - 4) % iTotalCanciones).attr('imagen');
                     imagenPunt.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
                     //texto lista reproduccion
-                    spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 1) % 10).attr('texto');
-                    spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 2) % 10).attr('texto');
-                    spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 3) % 10).attr('texto');
-                    spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 4) % 10).attr('texto');
+                    spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 1) % iTotalCanciones).attr('texto');
+                    spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 2) % iTotalCanciones).attr('texto');
+                    spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 3) % iTotalCanciones).attr('texto');
+                    spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 4) % iTotalCanciones).attr('texto');
                     spaPunt.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
 
             }
@@ -434,7 +506,7 @@
 
                         <!--playlist-->
                         <ul type="hidden" id="playlist"><c:forEach items="${canciones}" var="canc">
-                                <li rel="${canc.audio}" cancid="${canc.id}" imagen="${canc.image}" texto="${canc.name} (${canc.artist_name})"></li>
+                                <li rel="${canc.audio}" cancid="${canc.id}" albumImage="${canc.album_image}" imagen="${canc.image}" texto="${canc.name} (${canc.artist_name})" cancion="${canc.name}" artista="${canc.artist_name}"></li>
                             </c:forEach></ul>
                         <!-- Unnamed (Image) -->
                         <div id="u6" class="ax_image">
@@ -552,7 +624,7 @@
                                         <img id="u28_img" class="img " src="images/sin_identificar/u28.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u29" class="text">
-                                            <p><span>${canciones[0].artist_name}</span></p>
+                                            <p><span id="slide0">${canciones[0].artist_name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -583,7 +655,7 @@
                                         <img id="u34_img" class="img " src="images/sin_identificar/u28.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u35" class="text">
-                                            <p><span>${canciones[1].artist_name}</span></p>
+                                            <p><span id="slide1">${canciones[1].artist_name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -605,7 +677,7 @@
                                         <img id="u38_img" class="img " src="images/sin_identificar/u28.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u39" class="text">
-                                            <p><span>${canciones[2].artist_name}</span></p>
+                                            <p><span id="slide2">${canciones[2].artist_name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -627,7 +699,7 @@
                                         <img id="u42_img" class="img " src="images/sin_identificar/u28.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u43" class="text">
-                                            <p><span>${canciones[3].artist_name}</span></p>
+                                            <p><span id="slide3">${canciones[3].artist_name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -649,7 +721,7 @@
                                         <img id="u46_img" class="img " src="images/sin_identificar/u28.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u47" class="text">
-                                            <p><span>${canciones[4].artist_name}</span></p>
+                                            <p><span id="slide4">${canciones[4].artist_name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -671,7 +743,7 @@
                                         <img id="u50_img" class="img " src="images/sin_identificar/u28.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u51" class="text">
-                                            <p><span>${canciones[5].artist_name}</span></p>
+                                            <p><span id="slide5">${canciones[5].artist_name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -906,7 +978,7 @@
                                         <img id="u91_img" class="img " src="${canciones[4].image}"/>
                                         <!-- Unnamed () -->
                                         <div id="u92" class="text">
-                                            <p><span></span></p>
+                                            <p><span ></span></p>
                                         </div>
                                     </div>
 
@@ -915,7 +987,7 @@
                                         <img id="u93_img" class="img " src="images/sin_identificar/u28.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u94" class="text">
-                                            <p><span>${canciones[4].name}</span></p>
+                                            <p><span id="slide6">${canciones[4].name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -937,7 +1009,7 @@
                                         <img id="u97_img" class="img " src="images/sin_identificar/u97.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u98" class="text">
-                                            <p><span>${canciones[5].name}</span></p>
+                                            <p><span id="slide7">${canciones[5].name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -959,7 +1031,7 @@
                                         <img id="u101_img" class="img " src="images/sin_identificar/u97.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u102" class="text">
-                                            <p><span>${canciones[6].name}</span></p>
+                                            <p><span id="slide8">${canciones[6].name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -981,7 +1053,7 @@
                                         <img id="u105_img" class="img " src="images/sin_identificar/u97.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u106" class="text">
-                                            <p><span>${canciones[7].name}</span></p>
+                                            <p><span id="slide9">${canciones[7].name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -1003,7 +1075,7 @@
                                         <img id="u109_img" class="img " src="images/sin_identificar/u97.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u110" class="text">
-                                            <p><span>${canciones[8].name}</span></p>
+                                            <p><span id="slide10">${canciones[8].name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -1025,7 +1097,7 @@
                                         <img id="u113_img" class="img " src="images/sin_identificar/u97.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u114" class="text">
-                                            <p><span>${canciones[9].name}</span></p>
+                                            <p><span id="slide11">${canciones[9].name}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -1294,7 +1366,7 @@
                                         <img id="u170_img" class="img " src="resources/images/transparent.gif"/>
                                         <!-- Unnamed () -->
                                         <div id="u171" class="text">
-                                            <p><span style="position: absolute;top: 29px;left: -19px;">Foto</span></p>
+                                            <p><span style="position: absolute;top: -68px;left: 76px;">Foto</span></p>
                                         </div>
                                     </div>
 
@@ -1333,7 +1405,7 @@
 
                                     <!-- Unnamed (Text Field) -->
                                     <div id="u181" class="ax_text_field">
-                                        <span style="color:blue;position: absolute;top: -27px;left: -122px;font-size: 150%;" >${persona.displayName}</span>
+                                        <span style="color:blue;position: absolute;top: 24px;left: -122px;font-size: 150%;" >${persona.displayName}</span>
                                     </div>
 
                                     <!-- Unnamed (Text Field) -->
@@ -1642,7 +1714,7 @@
                                         <img id="u241_img" class="img " src="resources/images/transparent.gif"/>
                                         <!-- Unnamed () -->
                                         <div id="u242" class="text">
-                                            <p><span>Radio artistas favoritos</span></p>
+                                            <a href="artistasFav"><p><span>Radio artistas favoritos</span></p></a>
                                         </div>
                                     </div>
 

@@ -180,7 +180,7 @@ public class servlet {
         usuario.setToken2(resto);
         usuario.setPhotoUrl(persona.getImage().getUrl());
 
-        usuario.setEmail(persona.getId());
+        usuario.setEmail(persona.getDisplayName());
         usuario.setApiKey(reja.login(usuario.getEmail()).getApiKey());
 
         return "redirect:/identificado";
@@ -195,6 +195,32 @@ public class servlet {
         try {
             ArrayList<Cancion> canciones = new ArrayList<>();
             Cancion[] inter = reja.recommendations(usuario.getApiKey());
+            for (int i = 0; i < inter.length; ++i) {
+                canciones.add(inter[i]);
+            }
+            model.addObject("canciones", canciones);
+            canc = (ArrayList<Cancion>) canciones.clone();
+            cancActual = 0;
+            model.addObject("actual", cancActual);
+            model.addObject("usuario", usuario);
+            model.addObject("persona", persona);
+            return model;
+        } catch (Exception e) {
+            model = new ModelAndView("errorPage");
+            model.addObject("error", e.getMessage());
+            return model;
+        }
+
+    }
+    
+    @RequestMapping(value = "/artistasFav", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    ModelAndView artistasFav() {
+        
+        ModelAndView model = new ModelAndView("identificado");
+        try {
+            ArrayList<Cancion> canciones = new ArrayList<>();
+            Cancion[] inter = reja.artistFav(usuario.getApiKey());
             for (int i = 0; i < inter.length; ++i) {
                 canciones.add(inter[i]);
             }
