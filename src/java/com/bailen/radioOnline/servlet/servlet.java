@@ -36,6 +36,8 @@ public class servlet {
     Boolean bandera;
     Google google;
     Person persona;
+    Boolean banderaPlus;
+    String backward;
 
     public servlet() {
         reja = new REJA();
@@ -46,6 +48,8 @@ public class servlet {
         cancActual = 0;
         bandera = false;
         google = new Google();
+        banderaPlus = false;
+        backward="randomId";
     }
 
     public REJA getReja() {
@@ -103,12 +107,24 @@ public class servlet {
 
         return model;
     }
+    
+    @RequestMapping(value = "/identificado/{idCancion}", method = RequestMethod.GET, produces = "application/json")
+    public String identificadoPlus(@PathVariable String idCancion) {
+        for (int i = 0; i < canc.size(); ++i) {
+            if (canc.get(i).getId() == Integer.parseInt(idCancion)) {
+                cancActual = i + 1;
+            }
+        }
+        banderaPlus = true;
+        return "redirect:/randomId";
+    }
 
     @RequestMapping(value = "/random", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     ModelAndView random(ModelAndView model) {
-        
+
         try {
+            backward="randomId";
             usuario.setApiKey("717c03766e5fafba6ecf4781338a7547");
             ArrayList<Cancion> canciones = new ArrayList<>();
             Cancion[] inter = reja.random(usuario.getApiKey());
@@ -127,7 +143,7 @@ public class servlet {
             model.addObject("error", e.getMessage());
             return model;
         }
-        
+
     }
 
     @RequestMapping(value = "/ratings/{rating}/{idCancion}/{fav}", method = RequestMethod.GET, produces = "application/json")
@@ -141,34 +157,72 @@ public class servlet {
             }
         }
         bandera = true;
-        return "redirect:/identificado";
+        return "redirect:/"+backward+"/"+canc.get(cancActual).getId();
 
     }
 
     @RequestMapping(value = "/randomId", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     ModelAndView randomId() {
-        
-        ModelAndView model = new ModelAndView("identificado");
-        try {
-            ArrayList<Cancion> canciones = new ArrayList<>();
-            Cancion[] inter = reja.random(usuario.getApiKey());
-            for (int i = 0; i < inter.length; ++i) {
-                canciones.add(inter[i]);
-            }
-            model.addObject("canciones", canciones);
-            canc = (ArrayList<Cancion>) canciones.clone();
-            cancActual = 0;
-            model.addObject("actual", cancActual);
-            model.addObject("usuario", usuario);
-            model.addObject("persona", persona);
 
-            return model;
-        } catch (Exception e) {
-            model = new ModelAndView("errorPage");
-            model.addObject("error", e.getMessage());
-            return model;
+        ModelAndView model = new ModelAndView("identificado");
+        if (!banderaPlus) {
+            try {
+                backward="randomId";
+                ArrayList<Cancion> canciones = new ArrayList<>();
+                Cancion[] inter = reja.random(usuario.getApiKey());
+                for (int i = 0; i < inter.length; ++i) {
+                    canciones.add(inter[i]);
+                }
+                model.addObject("canciones", canciones);
+                canc = (ArrayList<Cancion>) canciones.clone();
+                cancActual = 0;
+                model.addObject("actual", cancActual);
+                model.addObject("usuario", usuario);
+                model.addObject("persona", persona);
+
+                return model;
+            } catch (Exception e) {
+                model = new ModelAndView("errorPage");
+                model.addObject("error", e.getMessage());
+                return model;
+            }
+        } else {
+
+            try {
+                backward="randomId";
+                banderaPlus = false;
+                ArrayList<Cancion> canciones = new ArrayList<>();
+                Cancion[] inter = reja.random(usuario.getApiKey());
+                for (int i = 0; i < inter.length; ++i) {
+                    canciones.add(inter[i]);
+                }
+                for (int i = 0; i < canciones.size(); ++i) {
+                    canc.add(canciones.get(i));
+                }
+                model.addObject("actual", cancActual);
+                model.addObject("usuario", usuario);
+                model.addObject("persona", persona);
+                model.addObject("canciones", canc);
+
+                return model;
+            } catch (Exception e) {
+                model = new ModelAndView("errorPage");
+                model.addObject("error", e.getMessage());
+                return model;
+            }
         }
+    }
+
+    @RequestMapping(value = "/randomId/{idCancion}", method = RequestMethod.GET, produces = "application/json")
+    public String randomIdPlus(@PathVariable String idCancion) {
+        for (int i = 0; i < canc.size(); ++i) {
+            if (canc.get(i).getId() == Integer.parseInt(idCancion)) {
+                cancActual = i + 1;
+            }
+        }
+        banderaPlus = true;
+        return "redirect:/randomId";
     }
 
     @RequestMapping(value = "/login/{email}.{resto}", method = RequestMethod.GET, produces = "application/json")
@@ -190,79 +244,190 @@ public class servlet {
     @RequestMapping(value = "/recommendations", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     ModelAndView recommendations() {
-        
+
         ModelAndView model = new ModelAndView("identificado");
-        try {
-            ArrayList<Cancion> canciones = new ArrayList<>();
-            Cancion[] inter = reja.recommendations(usuario.getApiKey());
-            for (int i = 0; i < inter.length; ++i) {
-                canciones.add(inter[i]);
+        if (!banderaPlus) {
+            try {
+                backward="recommendations";
+                ArrayList<Cancion> canciones = new ArrayList<>();
+                Cancion[] inter = reja.recommendations(usuario.getApiKey());
+                for (int i = 0; i < inter.length; ++i) {
+                    canciones.add(inter[i]);
+                }
+                model.addObject("canciones", canciones);
+                canc = (ArrayList<Cancion>) canciones.clone();
+                cancActual = 0;
+                model.addObject("actual", cancActual);
+                model.addObject("usuario", usuario);
+                model.addObject("persona", persona);
+                return model;
+            } catch (Exception e) {
+                model = new ModelAndView("errorPage");
+                model.addObject("error", e.getMessage());
+                return model;
             }
-            model.addObject("canciones", canciones);
-            canc = (ArrayList<Cancion>) canciones.clone();
-            cancActual = 0;
-            model.addObject("actual", cancActual);
-            model.addObject("usuario", usuario);
-            model.addObject("persona", persona);
-            return model;
-        } catch (Exception e) {
-            model = new ModelAndView("errorPage");
-            model.addObject("error", e.getMessage());
-            return model;
+        } else {
+            try {
+                backward="recommendations";
+                banderaPlus = false;
+                ArrayList<Cancion> canciones = new ArrayList<>();
+                Cancion[] inter = reja.recommendations(usuario.getApiKey());
+                for (int i = 0; i < inter.length; ++i) {
+                    canciones.add(inter[i]);
+                }
+                for (int i = 0; i < canciones.size(); ++i) {
+                    canc.add(canciones.get(i));
+                }
+                model.addObject("actual", cancActual);
+                model.addObject("usuario", usuario);
+                model.addObject("persona", persona);
+                model.addObject("canciones", canc);
+
+                return model;
+            } catch (Exception e) {
+                model = new ModelAndView("errorPage");
+                model.addObject("error", e.getMessage());
+                return model;
+            }
         }
 
     }
-    
+
+    @RequestMapping(value = "/recommendations/{idCancion}", method = RequestMethod.GET, produces = "application/json")
+    public String recommendationsPlus(@PathVariable String idCancion) {
+        for (int i = 0; i < canc.size(); ++i) {
+            if (canc.get(i).getId() == Integer.parseInt(idCancion)) {
+                cancActual = i + 1;
+            }
+        }
+        banderaPlus = true;
+        return "redirect:/recommendations";
+    }
+
     @RequestMapping(value = "/artistasFav", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     ModelAndView artistasFav() {
-        
+
         ModelAndView model = new ModelAndView("identificado");
-        try {
-            ArrayList<Cancion> canciones = new ArrayList<>();
-            Cancion[] inter = reja.artistFav(usuario.getApiKey());
-            for (int i = 0; i < inter.length; ++i) {
-                canciones.add(inter[i]);
+        if (!banderaPlus) {
+            try {
+                backward="artistasFav";
+                ArrayList<Cancion> canciones = new ArrayList<>();
+                Cancion[] inter = reja.artistFav(usuario.getApiKey());
+                for (int i = 0; i < inter.length; ++i) {
+                    canciones.add(inter[i]);
+                }
+                model.addObject("canciones", canciones);
+                canc = (ArrayList<Cancion>) canciones.clone();
+                cancActual = 0;
+                model.addObject("actual", cancActual);
+                model.addObject("usuario", usuario);
+                model.addObject("persona", persona);
+                return model;
+            } catch (Exception e) {
+                model = new ModelAndView("errorPage");
+                model.addObject("error", e.getMessage());
+                return model;
             }
-            model.addObject("canciones", canciones);
-            canc = (ArrayList<Cancion>) canciones.clone();
-            cancActual = 0;
-            model.addObject("actual", cancActual);
-            model.addObject("usuario", usuario);
-            model.addObject("persona", persona);
-            return model;
-        } catch (Exception e) {
-            model = new ModelAndView("errorPage");
-            model.addObject("error", e.getMessage());
-            return model;
+        } else {
+            try {
+                backward="artistasFav";
+                banderaPlus = false;
+                ArrayList<Cancion> canciones = new ArrayList<>();
+                Cancion[] inter = reja.artistFav(usuario.getApiKey());
+                for (int i = 0; i < inter.length; ++i) {
+                    canciones.add(inter[i]);
+                }
+                for (int i = 0; i < canciones.size(); ++i) {
+                    canc.add(canciones.get(i));
+                }
+                model.addObject("actual", cancActual);
+                model.addObject("usuario", usuario);
+                model.addObject("persona", persona);
+                model.addObject("canciones", canc);
+
+                return model;
+            } catch (Exception e) {
+                model = new ModelAndView("errorPage");
+                model.addObject("error", e.getMessage());
+                return model;
+            }
         }
 
+    }
+
+    @RequestMapping(value = "/artistasFav/{idCancion}", method = RequestMethod.GET, produces = "application/json")
+    public String artistasFavPlus(@PathVariable String idCancion) {
+        for (int i = 0; i < canc.size(); ++i) {
+            if (canc.get(i).getId() == Integer.parseInt(idCancion)) {
+                cancActual = i + 1;
+            }
+        }
+        banderaPlus = true;
+        return "redirect:/artistasFav";
     }
 
     @RequestMapping(value = "/favourites", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     ModelAndView favourites() {
-        
+
         ModelAndView model = new ModelAndView("identificado");
-        try {
-            ArrayList<Cancion> canciones = new ArrayList<>();
-            Cancion[] inter = reja.favourites(usuario.getApiKey());
-            for (int i = 0; i < inter.length; ++i) {
-                canciones.add(inter[i]);
+        if (!banderaPlus) {
+            backward="favourites";
+            try {
+                ArrayList<Cancion> canciones = new ArrayList<>();
+                Cancion[] inter = reja.favourites(usuario.getApiKey());
+                for (int i = 0; i < inter.length; ++i) {
+                    canciones.add(inter[i]);
+                }
+                model.addObject("canciones", canciones);
+                canc = (ArrayList<Cancion>) canciones.clone();
+                cancActual = 0;
+                model.addObject("actual", cancActual);
+                model.addObject("usuario", usuario);
+                model.addObject("persona", persona);
+                return model;
+            } catch (Exception e) {
+                model = new ModelAndView("errorPage");
+                model.addObject("error", e.getMessage());
+                return model;
             }
-            model.addObject("canciones", canciones);
-            canc = (ArrayList<Cancion>) canciones.clone();
-            cancActual = 0;
-            model.addObject("actual", cancActual);
-            model.addObject("usuario", usuario);
-            model.addObject("persona", persona);
-            return model;
-        } catch (Exception e) {
-            model = new ModelAndView("errorPage");
-            model.addObject("error", e.getMessage());
-            return model;
+        } else {
+            try {
+                backward="favourites";
+                banderaPlus = false;
+                ArrayList<Cancion> canciones = new ArrayList<>();
+                Cancion[] inter = reja.favourites(usuario.getApiKey());
+                for (int i = 0; i < inter.length; ++i) {
+                    canciones.add(inter[i]);
+                }
+                for (int i = 0; i < canciones.size(); ++i) {
+                    canc.add(canciones.get(i));
+                }
+                model.addObject("actual", cancActual);
+                model.addObject("usuario", usuario);
+                model.addObject("persona", persona);
+                model.addObject("canciones", canc);
+
+                return model;
+            } catch (Exception e) {
+                model = new ModelAndView("errorPage");
+                model.addObject("error", e.getMessage());
+                return model;
+            }
         }
 
+    }
+
+    @RequestMapping(value = "/favourites/{idCancion}", method = RequestMethod.GET, produces = "application/json")
+    public String favouritesPlus(@PathVariable String idCancion) {
+        for (int i = 0; i < canc.size(); ++i) {
+            if (canc.get(i).getId() == Integer.parseInt(idCancion)) {
+                cancActual = i + 1;
+            }
+        }
+        banderaPlus = true;
+        return "redirect:/favourites";
     }
 
 }

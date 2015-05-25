@@ -290,7 +290,7 @@
 
 
                     if (iCancionActual === iTotalCanciones - 1) {
-                        iCancionActual = 0;
+                        document.location.replace(window.location+"/"+$('#playlist').children().eq(iCancionActual).attr('cancid'));
 
                     } else {
                         iCancionActual++;
@@ -347,7 +347,7 @@
 
 
                     if (iCancionActual === iTotalCanciones - 1) {
-                        iCancionActual = 0;
+                        document.location.replace(window.location+"/"+$('#playlist').children().eq(iCancionActual).attr('cancid'));
 
                     } else {
                         iCancionActual++;
