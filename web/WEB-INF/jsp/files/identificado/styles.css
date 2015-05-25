@@ -5,7 +5,7 @@
   background-position:center top;
   background-repeat:no-repeat;
   background-attachment:scroll;
-  background-size:auto;
+  background-size:initial;
   position:static;
   left:auto;
   width:820px;
@@ -2623,7 +2623,7 @@
 #u178 {
   position:absolute;
   left:0px;
-  top:0px;
+  top:-225px;
   width:90px;
   white-space:nowrap;
 }
@@ -2644,15 +2644,15 @@
 }
 #u180 {
   position:absolute;
-  left:0px;
-  top:0px;
+  left:333px;
+  top:-285px;
   width:132px;
   white-space:nowrap;
 }
 #u181 {
   position:absolute;
-  left:360px;
-  top:422px;
+  left:14px;
+  top:286px;
   width:200px;
   height:25px;
 }
@@ -2672,8 +2672,8 @@
 }
 #u182 {
   position:absolute;
-  left:310px;
-  top:482px;
+  left:412px;
+  top:291px;
   width:200px;
   height:25px;
 }
@@ -2704,6 +2704,7 @@
   top:0px;
   width:130px;
   height:40px;
+  z-index: 100;
 }
 #u184 {
   position:absolute;
@@ -3125,7 +3126,7 @@
 #u215_img {
   position:absolute;
   left:0px;
-  top:0px;
+  top:55px;
   width:205px;
   height:40px;
 }

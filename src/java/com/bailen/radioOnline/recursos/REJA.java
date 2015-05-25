@@ -37,7 +37,7 @@ public class REJA {
     public Usuario login(String email) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("email", email);
-        String result = new RestTemplate().postForObject("http://ceatic.ujaen.es:8075/radioapi/v1/login", params, String.class);
+        String result = new RestTemplate().postForObject("http://ceatic.ujaen.es:8075/radioapi/v2/login", params, String.class);
         //return result;
         
         try {
@@ -64,7 +64,7 @@ public class REJA {
         
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params1, headers);
         
-        String result = new RestTemplate().postForObject("http://ceatic.ujaen.es:8075/radioapi/v1/ratings", request, String.class);
+        String result = new RestTemplate().postForObject("http://ceatic.ujaen.es:8075/radioapi/v2/ratings", request, String.class);
                         
         try {
 
@@ -86,7 +86,7 @@ public class REJA {
         String lista = new String();
         HttpEntity<String> response;
         response = new RestTemplate()
-                .exchange("http://ceatic.ujaen.es:8075/radioapi/v1/random", HttpMethod.GET, entity, String.class, lista);
+                .exchange("http://ceatic.ujaen.es:8075/radioapi/v2/random", HttpMethod.GET, entity, String.class, lista);
 
         String canc = response.getBody();
         StringTokenizer st = new StringTokenizer(canc, "[", true);
@@ -118,7 +118,7 @@ public class REJA {
         String lista = new String();
         HttpEntity<String> response;
         response = new RestTemplate()
-                .exchange("http://ceatic.ujaen.es:8075/radioapi/v1/recommendations", HttpMethod.GET, entity, String.class, lista);
+                .exchange("http://ceatic.ujaen.es:8075/radioapi/v2/recommendations", HttpMethod.GET, entity, String.class, lista);
 
         String canc = response.getBody();
         StringTokenizer st = new StringTokenizer(canc, "[", true);
@@ -178,7 +178,7 @@ public class REJA {
         String lista = new String();
         HttpEntity<String> response;
         response = new RestTemplate()
-                .exchange("http://ceatic.ujaen.es:8075/radioapi/v1/favourites", HttpMethod.GET, entity, String.class, lista);
+                .exchange("http://ceatic.ujaen.es:8075/radioapi/v2/favourites", HttpMethod.GET, entity, String.class, lista);
 
         String canc = response.getBody();
         StringTokenizer st = new StringTokenizer(canc, "[", true);

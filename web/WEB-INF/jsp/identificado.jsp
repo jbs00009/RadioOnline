@@ -1304,6 +1304,7 @@
                             <div id="u156_state0" class="panel_state" data-label="State2">
                                 <div id="u156_state0_content" class="panel_state_content">
 
+                                    
                                     <!-- Unnamed (Image) -->
                                     <div id="u157" class="ax_image">
                                         <img id="u157_img" class="img " src="images/sin_identificar/u158.png"/>
@@ -1312,35 +1313,15 @@
                                             <p><span></span></p>
                                         </div>
                                     </div>
-
-                                    <!-- Unnamed (HTML Button) -->
-                                    <div id="u159" class="ax_html_button">
-                                        <input id="u159_input" type="submit" value="Cancelar"/>
-                                    </div>
-
-                                    <!-- Unnamed (Image) -->
-                                    <div class="ax_image">
-                                        <img id="u160_img" style="top:83px; left: 170px" onclick="disconnectUser();" class="img " src="images/identificado/u160.png"/>
+                                    
+                                    <div id="u183" class="ax_image">
+                                        <img id="u183_img" class="img " src="images/identificado/CUENTA.png"/>
                                         <!-- Unnamed () -->
-                                        <div id="u161" class="text">
+                                        <div id="u184" class="text">
                                             <p><span></span></p>
                                         </div>
                                     </div>
-
-                                    <!-- Unnamed (Image) -->
-                                    <div class="ax_image">
-                                        <img id="u162_img" class="img " style="top:470px; left: 170px" onclick="disconnectUser();" src="images/identificado/u162.png"/>
-                                        <!-- Unnamed () -->
-                                        <div id="u163" class="text">
-                                            <p><span></span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="u156_state1" class="panel_state" data-label="State1">
-                                <div id="u156_state1_content" class="panel_state_content">
-
-                                    <!-- Unnamed (Image) -->
+                                    
                                     <div id="u164" class="ax_image">
                                         <img id="u164_img" class="img " src="images/sin_identificar/u158.png"/>
                                         <!-- Unnamed () -->
@@ -1380,11 +1361,6 @@
                                         <img style="width:90px;height:90px;position: absolute;left:-30px" src="${usuario.photoUrl}">
                                     </div>
 
-                                    <!-- Unnamed (HTML Button) -->
-                                    <div id="u176" class="ax_html_button">
-                                        <input id="u176_input" type="submit" value="Cancelar"/>
-                                    </div>
-
                                     <!-- Unnamed (Shape) -->
                                     <div id="u177" class="ax_h2">
                                         <img id="u177_img" class="img " src="resources/images/transparent.gif"/>
@@ -1414,13 +1390,58 @@
                                     </div>
 
                                     <!-- Unnamed (Image) -->
-                                    <div id="u183" class="ax_image">
+                                    
+                                    
+                                    <!-- Unnamed (HTML Button) -->
+                                    <div id="u159" class="ax_html_button">
+                                        <input id="u159_input" type="submit" value="Cancelar"/>
+                                    </div>
+
+                                    <!-- Unnamed (Image) -->
+                                    <div class="ax_image">
+                                        <img id="u160_img" style="top: 425px; left: 170px" onclick="disconnectUser();" class="img " src="images/identificado/u160.png"/>
+                                        <!-- Unnamed () -->
+                                        <div id="u161" class="text">
+                                            <p><span></span></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Unnamed (Image) -->
+                                    <div class="ax_image">
+                                        <img id="u162_img" class="img " style="top: 492px; left: 170px" onclick="disconnectUser();" src="images/identificado/u162.png"/>
+                                        <!-- Unnamed () -->
+                                        <div id="u163" class="text">
+                                            <p><span></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="u156_state1" class="panel_state" data-label="State1">
+                                <div id="u156_state1_content" class="panel_state_content">
+
+                                    <!-- Unnamed (Image) -->
+                                    <div id="u164" class="ax_image">
+                                        <img id="u164_img" class="img " src="images/sin_identificar/u158.png"/>
+                                        <!-- Unnamed () -->
+                                        <div id="u165" class="text">
+                                            <p><span></span></p>
+                                        </div>
+                                    </div>
+
+                                   <div id="u183" class="ax_image">
                                         <img id="u183_img" class="img " src="images/sin_identificar/u191.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u184" class="text">
                                             <p><span></span></p>
                                         </div>
                                     </div>
+
+                                    <!-- Unnamed (HTML Button) -->
+                                    <div id="u176" class="ax_html_button">
+                                        <input id="u176_input" type="submit" value="Cancelar"/>
+                                    </div>
+
+                                    
                                 </div>
                             </div>
                             <div id="u156_state2" class="panel_state" data-label="State3">
@@ -1435,111 +1456,111 @@
                                         </div>
                                     </div>
 
-                                    <!-- Unnamed (Shape) -->
+                                    <!-- Unnamed (Shape) 
                                     <div id="u187" class="ax_h2">
                                         <img id="u187_img" class="img " src="resources/images/transparent.gif"/>
-                                        <!-- Unnamed () -->
+                                       
                                         <div id="u188" class="text">
                                             <p><span>Canciones</span></p>
                                         </div>
                                     </div>
 
-                                    <!-- Unnamed (Shape) -->
+                                    <!-- Unnamed (Shape) 
                                     <div id="u189" class="ax_h2">
                                         <img id="u189_img" class="img " src="resources/images/transparent.gif"/>
-                                        <!-- Unnamed () -->
+                                        <!-- Unnamed () 
                                         <div id="u190" class="text">
                                             <p><span>Artistas</span></p>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <!-- canciones (Dynamic Panel) -->
-                                    <div id="u191" class="ax_dynamic_panel" data-label="canciones">
+                                    <!--<div id="u191" class="ax_dynamic_panel" data-label="canciones">
                                         <div id="u191_state0" class="panel_state" data-label="State1">
                                             <div id="u191_state0_content" class="panel_state_content">
 
-                                                <!-- Unnamed (Image) -->
+                                               
                                                 <div id="u192" class="ax_image">
                                                     <img id="u192_img" class="img " src="${canciones[(actual+1)%10].image}"/>
-                                                    <!-- Unnamed () -->
+                                                    
                                                     <div id="u193" class="text">
                                                         <p><span></span></p>
                                                     </div>
                                                 </div>
 
-                                                <!-- Unnamed (Image) -->
+                                               
                                                 <div id="u194" class="ax_image">
                                                     <img id="u194_img" class="img " src="${canciones[(actual+2)%10].image}"/>
-                                                    <!-- Unnamed () -->
+                                                   
                                                     <div id="u195" class="text">
                                                         <p><span></span></p>
                                                     </div>
                                                 </div>
 
-                                                <!-- Unnamed (Image) -->
+                                                
                                                 <div id="u196" class="ax_image">
                                                     <img id="u196_img" class="img " src="${canciones[(actual+3)%10].image}"/>
-                                                    <!-- Unnamed () -->
+                                                    
                                                     <div id="u197" class="text">
                                                         <p><span></span></p>
                                                     </div>
                                                 </div>
 
-                                                <!-- Unnamed (Image) -->
+                                               
                                                 <div id="u198" class="ax_image">
                                                     <img id="u198_img" class="img " src="${canciones[(actual+4)%10].image}"/>
-                                                    <!-- Unnamed () -->
+                                                    
                                                     <div id="u199" class="text">
                                                         <p><span></span></p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <!-- Artistas (Dynamic Panel) -->
-                                    <div id="u200" class="ax_dynamic_panel" data-label="Artistas">
+                                    <!--<div id="u200" class="ax_dynamic_panel" data-label="Artistas">
                                         <div id="u200_state0" class="panel_state" data-label="State1">
                                             <div id="u200_state0_content" class="panel_state_content">
 
-                                                <!-- Unnamed (Image) -->
+                                                
                                                 <div id="u201" class="ax_image">
                                                     <img id="u201_img" class="img " src="${canciones[(actual+1)%10].album_image}"/>
-                                                    <!-- Unnamed () -->
+                                                    
                                                     <div id="u202" class="text">
                                                         <p><span></span></p>
                                                     </div>
                                                 </div>
 
-                                                <!-- Unnamed (Image) -->
+                                                
                                                 <div id="u203" class="ax_image">
                                                     <img id="u203_img" class="img " src="${canciones[(actual+2)%10].album_image}"/>
-                                                    <!-- Unnamed () -->
+                                                    
                                                     <div id="u204" class="text">
                                                         <p><span></span></p>
                                                     </div>
                                                 </div>
 
-                                                <!-- Unnamed (Image) -->
+                                               
                                                 <div id="u205" class="ax_image">
                                                     <img id="u205_img" class="img " src="${canciones[(actual+3)%10].album_image}"/>
-                                                    <!-- Unnamed () -->
+                                                    
                                                     <div id="u206" class="text">
                                                         <p><span></span></p>
                                                     </div>
                                                 </div>
 
-                                                <!-- Unnamed (Image) -->
+                                                
                                                 <div id="u207" class="ax_image">
                                                     <img id="u207_img" class="img " src="${canciones[(actual+4)%10].album_image}"/>
-                                                    <!-- Unnamed () -->
+                                                    
                                                     <div id="u208" class="text">
                                                         <p><span></span></p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <!-- Unnamed (HTML Button) -->
                                     <div id="u209" class="ax_html_button">
@@ -1565,7 +1586,7 @@
                                         <img id="u213_img" class="img " src="resources/images/transparent.gif"/>
                                         <!-- Unnamed () -->
                                         <div id="u214" class="text">
-                                            <p><span id="tituloPunt">${canciones[actual].name} (${canciones[actual].artist_name})</span></p>
+                                            <p><span id="tituloPunt">${canciones[actual].name}</span></p>
                                         </div>
                                     </div>
 
