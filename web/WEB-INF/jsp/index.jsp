@@ -717,7 +717,7 @@
                             <img id="u54_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
                             <!-- Unnamed () -->
                             <div id="u55" class="text">
-                                <p><span>Artistas </span></p>
+                                <p><span style="position: absolute;top: 4px;">Artistas </span></p>
                             </div>
                         </div>
 
@@ -726,7 +726,7 @@
                             <img id="u56_img" class="img " src="<c:url value="/resources/images/transparent.gif"/>"/>
                             <!-- Unnamed () -->
                             <div id="u57" class="text">
-                                <p><span>Temas</span></p>
+                                <p><span style="position: absolute;top: 4px;">Temas</span></p>
                             </div>
                         </div>
 
@@ -1274,7 +1274,7 @@
 
                                     <!-- Unnamed (Text Field) -->
                                     <div id="u162" class="ax_text_field">
-                                        <span id="signinButton">
+                                        <span id="signinButton" style="position:relative;left: -68px;">
                                             <span class="g-signin"
                                                   data-callback="signinCallback"
                                                   data-clientid="579659090224-bdget8j5n88t9v5uuokvqabior0opv8p.apps.googleusercontent.com"
