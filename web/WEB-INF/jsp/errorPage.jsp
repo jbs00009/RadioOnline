@@ -70,7 +70,7 @@
     <body >
 
         
-    <center><span style="color:red;position:absolute;top:312px;left:531px">Ha habido un error interno en el servidor.<br>Por favor recargue la pagina e intentelo de nuevo    </span> </center>
+    <center><span style="color:red;position:relative;top:312px;left: 8px;">Ha habido un error interno en el servidor.<br>Por favor recargue la pagina e intentelo de nuevo    </span> </center>
 
 
     </body>

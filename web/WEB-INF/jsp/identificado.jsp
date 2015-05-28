@@ -466,12 +466,12 @@
     </head>
     <body onload="playAudioInicio()">
 
-        <table>
+        <table style="margin-left: auto;margin-right: auto">
             <tr>
                 <td style="width: 10px;">
                     <div style="width: 157px;"></div>
                 </td>
-                <td>
+                <td style="position:relative;left: -591px;">
 
                     <div id="base" class="">
 

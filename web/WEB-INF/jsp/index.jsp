@@ -420,12 +420,13 @@
 
 
 
-        <table>
+        <table style="margin-left: auto;margin-right: auto;">
+            <div>
             <tr>
                 <td style="width: 10px;">
                     <div style="width: 157px;"></div>
                 </td>
-                <td>
+                <td style="position: relative;left: -518px;top: -16px;">
                     <div id="base" class="">
 
                         <!-- Unnamed (Image) -->
@@ -457,7 +458,7 @@
                         <audio id="myaudio" src="${canciones[0].audio}" >HTML5 audio not supported</audio>
 
                         <!--playlist-->
-                        <ul type="hidden" id="playlist"><c:forEach items="${canciones}" var="canc">
+                        <ul type="hidden" style="list-style:none" id="playlist"><c:forEach items="${canciones}" var="canc">
                                 <li rel="${canc.audio}" albumImage="${canc.album_image}" imagen="${canc.image}" texto="${canc.name} (${canc.artist_name})"></li>
                             </c:forEach></ul>
                         <!-- Unnamed (Image) -->
@@ -469,7 +470,7 @@
                             </div>
                         </div>
 
-                            <img style="width: 70px;height: 60px;position: absolute;top: 811px;left: 715px;" onclick="forwardAudio();" src="<c:url value="/images/sin_identificar/adelante.png"/>"/>
+                            <img style="width: 70px;height: 60px;position: relative;top: 810px;left: 714px;" onclick="forwardAudio();" src="<c:url value="/images/sin_identificar/adelante.png"/>"/>
 
                         <!-- Unnamed (Image) -->
                         <div id="u8" class="ax_image">
@@ -480,7 +481,7 @@
                             </div>
                         </div>
 
-                            <img style="width: 70px;height: 60px;position: absolute;top: 811px;left: 257px;" onclick="backwardAudio();" src="<c:url value="/images/sin_identificar/atras.png"/>"/>
+                            <img style="width: 70px;height: 60px;position: relative;top: 810px;left: 182px;" onclick="backwardAudio();" src="<c:url value="/images/sin_identificar/atras.png"/>"/>
 
                         <!-- Unnamed (Dynamic Panel) -->
                         <div id="u10" class="ax_dynamic_panel">

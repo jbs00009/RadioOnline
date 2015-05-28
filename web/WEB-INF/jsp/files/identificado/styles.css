@@ -6,13 +6,13 @@
   background-repeat:no-repeat;
   background-attachment:scroll;
   background-size:initial;
-  position:static;
+  /*position:static;
   left:auto;
   width:820px;
   margin-left:0;
   margin-top:15;
   margin-right:0;
-  text-align:left;
+  text-align:left;*/
 }
 #base {
   position:absolute;
