@@ -432,7 +432,7 @@
                 document.location.replace("/radioWebPrueba/ratings/" + rating + "/" + $('#playlist').children().eq(iCancionActual).attr('cancid') + "/" + fav);
             }
 
-            if (window.history.forward(1) != null)
+            if (window.history.forward(1) !== null)
                 window.history.forward(1);
 
             //funciones google desconectar
@@ -507,6 +507,10 @@
                         <!--playlist-->
                         <ul type="hidden" id="playlist"><c:forEach items="${canciones}" var="canc">
                                 <li rel="${canc.audio}" cancid="${canc.id}" albumImage="${canc.album_image}" imagen="${canc.image}" texto="${canc.name} (${canc.artist_name})" cancion="${canc.name}" artista="${canc.artist_name}"></li>
+                            </c:forEach></ul>
+                        <!--puntulist-->
+                        <ul type="hidden" style="list-style-type: none;" id="puntuList"><c:forEach items="${puntuaciones}" var="punt">
+                                <li rel="${punt.audio}" cancid="${punt.id}" albumImage="${puntu.album_image}" imagen="${punt.image}" texto="${punt.name} (${punt.artist_name})" cancion="${punt.name}" artista="${punt.artist_name}"></li>
                             </c:forEach></ul>
                         <!-- Unnamed (Image) -->
                         <div id="u6" class="ax_image">

@@ -50,6 +50,12 @@ public class Cancion {
         this.image = image;
     }
 
+    /*public Cancion(@JsonProperty("_id")int id,@JsonProperty("rating")int rating,@JsonProperty("fav")int fav){
+        this.id=id;
+        this.rating=rating;
+        this.fav = fav==1;
+    }*/
+    
     public int getId() {
         return id;
     }

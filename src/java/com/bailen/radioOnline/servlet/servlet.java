@@ -13,11 +13,15 @@ import com.bailen.radioOnline.recursos.Jamendo;
 import com.bailen.radioOnline.recursos.REJA;
 import com.google.api.services.plus.model.Person;
 import java.util.ArrayList;
+import java.util.Map;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -26,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/")
+@SessionAttributes({"puntuaciones"})
 public class servlet {
 
     private REJA reja;
@@ -38,6 +43,7 @@ public class servlet {
     Person persona;
     Boolean banderaPlus;
     String backward;
+    ArrayList<Cancion> puntuaciones;
 
     public servlet() {
         reja = new REJA();
@@ -49,7 +55,8 @@ public class servlet {
         bandera = false;
         google = new Google();
         banderaPlus = false;
-        backward="randomId";
+        backward = "randomId";
+        puntuaciones = new ArrayList<>();
     }
 
     public REJA getReja() {
@@ -89,25 +96,40 @@ public class servlet {
     public @ResponseBody
     ModelAndView identificado() {
 
-        ModelAndView model = new ModelAndView("identificado");
-        if (bandera == false) {
-            cancActual = 0;
-            model.addObject("actual", cancActual);
-            model.addObject("usuario", usuario);
-            model.addObject("persona", persona);
-            model = random(model);
-        } else {
-            bandera = false;
-            model.addObject("canciones", canc);
-            model.addObject("actual", cancActual);
-            model.addObject("error", "la puntuacion se realizo correctamente");
-            model.addObject("usuario", usuario);
-            model.addObject("persona", persona);
-        }
+        ModelAndView model;
+        try {
+            Cancion[] aux = reja.getRatings(usuario.getApiKey());
+            ArrayList<Cancion> puntuAux = new ArrayList<>();
+            for (int i = 0; i < aux.length; ++i) {
+                puntuAux.add(aux[i]);
+            }
+            puntuaciones = (ArrayList<Cancion>) puntuAux.clone();
 
-        return model;
+            model = new ModelAndView("identificado");
+            model.addObject("puntuaciones", puntuaciones);
+            if (bandera == false) {
+                cancActual = 0;
+                model.addObject("actual", cancActual);
+                model.addObject("usuario", usuario);
+                model.addObject("persona", persona);
+                model = random(model);
+            } else {
+                bandera = false;
+                model.addObject("canciones", canc);
+                model.addObject("actual", cancActual);
+                model.addObject("error", "la puntuacion se realizo correctamente");
+                model.addObject("usuario", usuario);
+                model.addObject("persona", persona);
+            }
+
+            return model;
+        } catch (Exception e) {
+            model = new ModelAndView("errorPage");
+            model.addObject("error", e.getMessage());
+            return model;
+        }
     }
-    
+
     @RequestMapping(value = "/identificado/{idCancion}", method = RequestMethod.GET, produces = "application/json")
     public String identificadoPlus(@PathVariable String idCancion) {
         for (int i = 0; i < canc.size(); ++i) {
@@ -124,7 +146,7 @@ public class servlet {
     ModelAndView random(ModelAndView model) {
 
         try {
-            backward="randomId";
+            backward = "randomId";
             usuario.setApiKey("717c03766e5fafba6ecf4781338a7547");
             ArrayList<Cancion> canciones = new ArrayList<>();
             Cancion[] inter = reja.random(usuario.getApiKey());
@@ -157,7 +179,42 @@ public class servlet {
             }
         }
         bandera = true;
-        return "redirect:/"+backward+"/"+canc.get(cancActual).getId();
+
+        try {
+            Cancion[] aux = reja.getRatings(usuario.getApiKey());
+            ArrayList<Cancion> puntuAux = new ArrayList<>();
+            for (int i = 0; i < aux.length; ++i) {
+                puntuAux.add(aux[i]);
+            }
+            puntuaciones = (ArrayList<Cancion>) puntuAux.clone();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+
+        return "redirect:/" + backward + "/" + canc.get(cancActual).getId();
+
+    }
+
+    @RequestMapping(value = "/setRatings", method = RequestMethod.GET, produces = "application/json")
+    public String setRatings(ModelMap model) {
+
+        ArrayList<Cancion> setPunt = new ArrayList<>();
+        //Map<String, Object> modelo = model.getModel();
+        setPunt = (ArrayList<Cancion>) model.get("puntuaciones");
+        String fav = "";
+
+        for (int i = 0; i < setPunt.size(); ++i) {
+            if (setPunt.get(i).isFav()) {
+                fav = "1";
+            } else {
+                fav = "0";
+            }
+            Incidencia inc = reja.ratings(usuario.getApiKey(), String.valueOf(setPunt.get(i).getRating()), String.valueOf(setPunt.get(i).getId()), fav);
+        }
+        
+        bandera = true;
+
+        return "redirect:/" + backward + "/" + canc.get(cancActual).getId();
 
     }
 
@@ -168,7 +225,7 @@ public class servlet {
         ModelAndView model = new ModelAndView("identificado");
         if (!banderaPlus) {
             try {
-                backward="randomId";
+                backward = "randomId";
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.random(usuario.getApiKey());
                 for (int i = 0; i < inter.length; ++i) {
@@ -180,6 +237,7 @@ public class servlet {
                 model.addObject("actual", cancActual);
                 model.addObject("usuario", usuario);
                 model.addObject("persona", persona);
+                model.addObject("puntuaciones", puntuaciones);
 
                 return model;
             } catch (Exception e) {
@@ -190,7 +248,7 @@ public class servlet {
         } else {
 
             try {
-                backward="randomId";
+                backward = "randomId";
                 banderaPlus = false;
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.random(usuario.getApiKey());
@@ -204,6 +262,7 @@ public class servlet {
                 model.addObject("usuario", usuario);
                 model.addObject("persona", persona);
                 model.addObject("canciones", canc);
+                model.addObject("puntuaciones", puntuaciones);
 
                 return model;
             } catch (Exception e) {
@@ -248,7 +307,7 @@ public class servlet {
         ModelAndView model = new ModelAndView("identificado");
         if (!banderaPlus) {
             try {
-                backward="recommendations";
+                backward = "recommendations";
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.recommendations(usuario.getApiKey());
                 for (int i = 0; i < inter.length; ++i) {
@@ -260,6 +319,7 @@ public class servlet {
                 model.addObject("actual", cancActual);
                 model.addObject("usuario", usuario);
                 model.addObject("persona", persona);
+                model.addObject("puntuaciones", puntuaciones);
                 return model;
             } catch (Exception e) {
                 model = new ModelAndView("errorPage");
@@ -268,7 +328,7 @@ public class servlet {
             }
         } else {
             try {
-                backward="recommendations";
+                backward = "recommendations";
                 banderaPlus = false;
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.recommendations(usuario.getApiKey());
@@ -282,6 +342,7 @@ public class servlet {
                 model.addObject("usuario", usuario);
                 model.addObject("persona", persona);
                 model.addObject("canciones", canc);
+                model.addObject("puntuaciones", puntuaciones);
 
                 return model;
             } catch (Exception e) {
@@ -311,7 +372,7 @@ public class servlet {
         ModelAndView model = new ModelAndView("identificado");
         if (!banderaPlus) {
             try {
-                backward="artistasFav";
+                backward = "artistasFav";
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.artistFav(usuario.getApiKey());
                 for (int i = 0; i < inter.length; ++i) {
@@ -323,6 +384,7 @@ public class servlet {
                 model.addObject("actual", cancActual);
                 model.addObject("usuario", usuario);
                 model.addObject("persona", persona);
+                model.addObject("puntuaciones", puntuaciones);
                 return model;
             } catch (Exception e) {
                 model = new ModelAndView("errorPage");
@@ -331,7 +393,7 @@ public class servlet {
             }
         } else {
             try {
-                backward="artistasFav";
+                backward = "artistasFav";
                 banderaPlus = false;
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.artistFav(usuario.getApiKey());
@@ -345,6 +407,7 @@ public class servlet {
                 model.addObject("usuario", usuario);
                 model.addObject("persona", persona);
                 model.addObject("canciones", canc);
+                model.addObject("puntuaciones", puntuaciones);
 
                 return model;
             } catch (Exception e) {
@@ -373,7 +436,7 @@ public class servlet {
 
         ModelAndView model = new ModelAndView("identificado");
         if (!banderaPlus) {
-            backward="favourites";
+            backward = "favourites";
             try {
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.favourites(usuario.getApiKey());
@@ -386,6 +449,7 @@ public class servlet {
                 model.addObject("actual", cancActual);
                 model.addObject("usuario", usuario);
                 model.addObject("persona", persona);
+                model.addObject("puntuaciones", puntuaciones);
                 return model;
             } catch (Exception e) {
                 model = new ModelAndView("errorPage");
@@ -394,7 +458,7 @@ public class servlet {
             }
         } else {
             try {
-                backward="favourites";
+                backward = "favourites";
                 banderaPlus = false;
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.favourites(usuario.getApiKey());
@@ -408,6 +472,7 @@ public class servlet {
                 model.addObject("usuario", usuario);
                 model.addObject("persona", persona);
                 model.addObject("canciones", canc);
+                model.addObject("puntuaciones", puntuaciones);
 
                 return model;
             } catch (Exception e) {

@@ -8,6 +8,7 @@ package com.bailen.radioOnline.recursos;
 import com.bailen.radioOnline.Cancion;
 import com.bailen.radioOnline.Incidencia;
 import com.bailen.radioOnline.Item;
+import com.bailen.radioOnline.ItemPuntu;
 import com.bailen.radioOnline.Usuario;
 import com.bailen.radioOnline.itemRadios;
 import java.io.IOException;
@@ -104,6 +105,45 @@ public class REJA {
             }
             return jamendo.canciones(ids);
 
+        } catch (Exception e) {
+            //return null;
+            throw new IOException("no se han recibido canciones");
+        }
+
+    }
+    
+    public Cancion[] getRatings(String apiKey) throws IOException{
+        HttpHeaders header = new HttpHeaders();
+        header.set("Authorization", apiKey);
+        HttpEntity entity = new HttpEntity(header);
+        String lista = new String();
+        HttpEntity<String> response;
+        response = new RestTemplate()
+                .exchange("http://ceatic.ujaen.es:8075/radioapi/v2/ratings", HttpMethod.GET, entity, String.class, lista);
+
+        String canc = response.getBody();
+        StringTokenizer st = new StringTokenizer(canc, "[", true);
+        st.nextToken();
+        st.nextToken();
+        canc = "[" + st.nextToken();
+
+        try {
+
+            ObjectMapper a = new ObjectMapper();
+            ItemPuntu[] listilla = a.readValue(canc, ItemPuntu[].class);
+            Vector<Integer> ids = new Vector<>();
+            for (int i = 0; i < listilla.length; ++i) {
+                ids.add(listilla[i].getId());
+            }
+            //como jamendo solo devuelve
+            Cancion[] listilla1= jamendo.canciones(ids);
+            
+            for(int i=0;i<listilla1.length;++i){
+                listilla1[i].setRating(listilla[i].getRating());
+                listilla1[i].setFav(listilla[i].getFav());
+            }
+            return listilla1;
+            
         } catch (Exception e) {
             //return null;
             throw new IOException("no se han recibido canciones");
