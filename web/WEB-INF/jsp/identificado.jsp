@@ -1431,8 +1431,39 @@
                                             <p><span></span></p>
                                         </div>
                                     </div>
-
-                                   <div id="u183" class="ax_image">
+                                    
+                                    
+                                    
+                                    
+                                    <div id="u170" class="ax_h2">
+                                        <img id="u170_img" class="img " src="resources/images/transparent.gif"/>
+                                        <!-- Unnamed () -->
+                                        <div id="u171" class="text">
+                                            <center><p><span style="position: absolute;top: -68px;left: 101px;">Cambia las valoraciones de<br> tus canciones aquí</span></p></center>
+                                        </div>
+                                    </div>
+                                        
+                                         <img id="botonforwardPunt" style="width: 100px;height: 100px;position: absolute;top: 252px;left: 471px;" onclick="forwardPunt();" src="<c:url value="/images/identificado/adelante.png"/>"/>
+                                         <img id="botonbackwardPunt" style="width: 100px;height: 100px;position: absolute;top: 252px;left: 66px;" onclick="backwardPunt();" src="<c:url value="/images/identificado/atras.png"/>"/>
+                                         
+                                    <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u228.png"/>"/>
+                                    <img id="estrellaPuntuacionesPunt" style="position: absolute;width: 50px;height: 40px;top: 506px;left: 365px;" src="<c:url value="/images/sin_identificar/u235.png"/>"/>
+                                    
+                                    <img id="imagenPuntuacionesPunt" style="width:110px;height: 90px;position:absolute;" src="${puntuaciones[0].image}"/>
+                                    
+                                    <div id="u213" class="ax_paragraph">
+                                        <img id="u213_img" class="img " src="resources/images/transparent.gif"/>
+                                        <!-- Unnamed () -->
+                                        <div id="u214" class="text">
+                                            <p><span id="tituloPuntuacionesPunt">${puntuaciones[0].name}</span></p>
+                                        </div>
+                                    </div>     
+                                    
+                                    <div  class="ax_html_button">
+                                        <input  style="width: 100px;height: 27px;left: 265px;top: 235px;position: absolute;" onclick="puntuarPunt();" type="submit" value="Enviar"/>
+                                    </div>
+                                         
+                                    <div id="u183" class="ax_image">
                                         <img id="u183_img" class="img " src="images/sin_identificar/u191.png"/>
                                         <!-- Unnamed () -->
                                         <div id="u184" class="text">
@@ -1460,6 +1491,13 @@
                                         </div>
                                     </div>
 
+                                    <div id="u170" class="ax_h2">
+                                        <img id="u170_img" class="img " src="resources/images/transparent.gif"/>
+                                        <!-- Unnamed () -->
+                                        <div id="u171" class="text">
+                                            <center><p><span style="position: absolute;top: -29px;left: 125px;">Puntua la cancion actual</span></p></center>
+                                        </div>
+                                    </div>
                                     <!-- Unnamed (Shape) 
                                     <div id="u187" class="ax_h2">
                                         <img id="u187_img" class="img " src="resources/images/transparent.gif"/>

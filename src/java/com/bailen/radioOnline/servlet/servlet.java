@@ -13,9 +13,7 @@ import com.bailen.radioOnline.recursos.Jamendo;
 import com.bailen.radioOnline.recursos.REJA;
 import com.google.api.services.plus.model.Person;
 import java.util.ArrayList;
-import java.util.Map;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -198,9 +196,8 @@ public class servlet {
     @RequestMapping(value = "/setRatings", method = RequestMethod.GET, produces = "application/json")
     public String setRatings(ModelMap model) {
 
-        ArrayList<Cancion> setPunt = new ArrayList<>();
         //Map<String, Object> modelo = model.getModel();
-        setPunt = (ArrayList<Cancion>) model.get("puntuaciones");
+        ArrayList<Cancion> setPunt = (ArrayList<Cancion>) model.get("puntuaciones");
         String fav = "";
 
         for (int i = 0; i < setPunt.size(); ++i) {
