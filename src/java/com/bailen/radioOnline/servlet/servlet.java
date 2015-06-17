@@ -13,12 +13,14 @@ import com.bailen.radioOnline.recursos.Jamendo;
 import com.bailen.radioOnline.recursos.REJA;
 import com.google.api.services.plus.model.Person;
 import java.util.ArrayList;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,6 +44,7 @@ public class servlet {
     Boolean banderaPlus;
     String backward;
     ArrayList<Cancion> puntuaciones;
+    ArrayList<Cancion> puntuacionesAux;
 
     public servlet() {
         reja = new REJA();
@@ -55,6 +58,7 @@ public class servlet {
         banderaPlus = false;
         backward = "randomId";
         puntuaciones = new ArrayList<>();
+        puntuacionesAux = new ArrayList<>();
     }
 
     public REJA getReja() {
@@ -102,6 +106,7 @@ public class servlet {
                 puntuAux.add(aux[i]);
             }
             puntuaciones = (ArrayList<Cancion>) puntuAux.clone();
+            puntuacionesAux= (ArrayList<Cancion>) puntuAux.clone();
 
             model = new ModelAndView("identificado");
             model.addObject("puntuaciones", puntuaciones);
@@ -197,16 +202,12 @@ public class servlet {
     public String setRatings(ModelMap model) {
 
         //Map<String, Object> modelo = model.getModel();
-        ArrayList<Cancion> setPunt = (ArrayList<Cancion>) model.get("puntuaciones");
-        String fav = "";
+        puntuaciones=(ArrayList<Cancion>)puntuacionesAux.clone();
+       
 
-        for (int i = 0; i < setPunt.size(); ++i) {
-            if (setPunt.get(i).isFav()) {
-                fav = "1";
-            } else {
-                fav = "0";
-            }
-            Incidencia inc = reja.ratings(usuario.getApiKey(), String.valueOf(setPunt.get(i).getRating()), String.valueOf(setPunt.get(i).getId()), fav);
+        for (int i = 0; i < puntuaciones.size(); ++i) {
+            
+            Incidencia inc = reja.ratings(usuario.getApiKey(), String.valueOf(puntuaciones.get(i).getRating()), String.valueOf(puntuaciones.get(i).getId()), String.valueOf(puntuaciones.get(i).isFav()));
         }
         
         bandera = true;
@@ -492,4 +493,15 @@ public class servlet {
         return "redirect:/favourites";
     }
 
+    @RequestMapping(value = "/puntu/{idcancion}/{punt}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void punt(@PathVariable String idcancion,@PathVariable String punt){
+        puntuacionesAux.get(Integer.parseInt(idcancion)).setRating(Integer.parseInt(punt));
+    }
+    
+    @RequestMapping(value = "/puntuFav/{idcancion}/{fav}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void puntFav(@PathVariable String idcancion,@PathVariable String fav){
+        puntuacionesAux.get(Integer.parseInt(idcancion)).setFav(fav.equals("true"));
+    }
 }

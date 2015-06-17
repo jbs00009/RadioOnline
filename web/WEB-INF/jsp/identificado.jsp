@@ -1,3 +1,5 @@
+
+<%@page import="com.bailen.radioOnline.Cancion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="cancion" class="com.bailen.radioOnline.Cancion" scope="request" />
@@ -62,6 +64,8 @@
             var fav = 0;
             var rating = 1;
             var iCancionActual =${actual};
+            var iPuntuacionActual =0;
+            <%int contador=0;%>
             function playAudio() {
                 // Check for audio element support.
                 if (window.HTMLAudioElement) {
@@ -351,7 +355,7 @@
 
                     } else {
                         iCancionActual++;
-
+                        
                     }
 
 
@@ -431,7 +435,125 @@
 
                 document.location.replace("/radioWebPrueba/ratings/" + rating + "/" + $('#playlist').children().eq(iCancionActual).attr('cancid') + "/" + fav);
             }
+            
+            function fordwardPunt(){
+                var imagenPuntuaciones= document.getElementById("imagenPuntuacionesPunt");
+                var tituloPuntuaciones= document.getElementById("tituloPuntuacionesPunt");
+                var corazonesPuntuaciones= document.getElementById("corazonesPuntuacionesPunt");
+                var estrellaPuntuaciones= document.getElementById("estrellaPuntuacionesPunt");
+                var iTotalPuntuaciones = $('#puntuList li').length;
+                
+                 if (iPuntuacionActual === iTotalPuntuaciones - 1) {
+                        //iPuntuacioActual=0;
+                 } else {
+                        iPuntuacionActual++;
+                        <%contador++;%>
+                 }
+                 
+                 imagenPuntuaciones.src = $('#puntuList').children().eq(iPuntuacionActual).attr('imagen');
+                 tituloPuntuaciones.firstChild.nodeValue = $('#puntuList').children().eq(iPuntuacionActual).attr('texto');
+                 
+                if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='false'){
+                    estrellaPuntuaciones.src="images/sin_identificar/u235.png";
+                }
+                if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='true'){
+                    estrellaPuntuaciones.src="images/sin_identificar/u237.png";
+                }
+                                    
+                    
+                if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='1'){
+                    corazonesPuntuaciones.src="images/sin_identificar/u228.png";
+                }else 
+                    if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='3'){
+                        corazonesPuntuaciones.src="images/sin_identificar/u230.png";
+                    }else
+                        if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='5'){
+                            corazonesPuntuaciones.src="images/sin_identificar/u232.png";
+                        }else{
+                            corazonesPuntuaciones.src="images/sin_identificar/u228.png";
+                        }                            
+            }
+            
+            function backwardPunt(){
+                var imagenPuntuaciones= document.getElementById("imagenPuntuacionesPunt");
+                var tituloPuntuaciones= document.getElementById("tituloPuntuacionesPunt");
+                var corazonesPuntuaciones= document.getElementById("corazonesPuntuacionesPunt");
+                var estrellaPuntuaciones= document.getElementById("estrellaPuntuacionesPunt");
+                var iTotalPuntuaciones = $('#puntuList li').length;
+                
+                 if (iPuntuacionActual === 0) {
+                        //iPuntuacionActual=iTotalPuntuaciones - 1;
+                 } else {
+                        iPuntuacionActual--;
+                        <%contador--;%>
+                 }
+                 
+                 imagenPuntuaciones.src = $('#puntuList').children().eq(iPuntuacionActual).attr('imagen');
+                 tituloPuntuaciones.firstChild.nodeValue = $('#puntuList').children().eq(iPuntuacionActual).attr('texto');
+                 
+                if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='false'){
+                    estrellaPuntuaciones.src="images/sin_identificar/u235.png";
+                }
+                if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='true'){
+                    estrellaPuntuaciones.src="images/sin_identificar/u237.png";
+                }
+                                    
+                    
+                if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='1'){
+                    corazonesPuntuaciones.src="images/sin_identificar/u228.png";
+                }else 
+                    if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='3'){
+                        corazonesPuntuaciones.src="images/sin_identificar/u230.png";
+                    }else
+                        if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='5'){
+                            corazonesPuntuaciones.src="images/sin_identificar/u232.png";
+                        }else{
+                            corazonesPuntuaciones.src="images/sin_identificar/u228.png";
+                        }                            
+            }
 
+            function toggleFavPunt(){
+                var estrellaPuntuaciones= document.getElementById("estrellaPuntuacionesPunt");
+                
+                if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='false'){
+                    $('#puntuList').children().eq(iPuntuacionActual).attr('fav','true');
+                    estrellaPuntuaciones.src="images/sin_identificar/u237.png";
+                    //cambiar el estado en el array mismamente    
+                    document.location.replace("/radioWebPrueba/puntuFav/"+iPuntuacionActual+"/"+"true");
+                }else
+                //if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='true')
+                {
+                    $('#puntuList').children().eq(iPuntuacionActual).attr('fav','false');
+                    estrellaPuntuaciones.src="images/sin_identificar/u235.png";
+                    document.location.replace("/radioWebPrueba/puntuFav/"+iPuntuacionActual+"/"+"false");
+                }
+                
+               
+            }
+            
+            function corazonesPunt1(){
+                var corazonesPuntuaciones= document.getElementById("corazonesPuntuacionesPunt");
+                $('#puntuList').children().eq(iPuntuacionActual).attr('rating','1');
+                corazonesPuntuaciones.src="images/sin_identificar/u228.png";
+                document.location.replace("/radioWebPrueba/puntu/"+iPuntuacionActual+"/"+"1");
+            }
+            function corazonesPunt3(){
+                var corazonesPuntuaciones= document.getElementById("corazonesPuntuacionesPunt");
+                $('#puntuList').children().eq(iPuntuacionActual).attr('rating','3');
+                corazonesPuntuaciones.src="images/sin_identificar/u230.png";
+                document.location.replace("/radioWebPrueba/puntu/"+iPuntuacionActual+"/"+"3");
+            }
+            function corazonesPunt5(){
+                var corazonesPuntuaciones= document.getElementById("corazonesPuntuacionesPunt");
+                $('#puntuList').children().eq(iPuntuacionActual).attr('rating','5');
+                corazonesPuntuaciones.src="images/sin_identificar/u232.png";
+                document.location.replace("/radioWebPrueba/puntu/"+iPuntuacionActual+"/"+"5");
+            }
+            
+            function puntuarPunt(){
+                document.location.replace("/radioWebPrueba/setRatings");
+            }
+            
             if (window.history.forward(1) !== null)
                 window.history.forward(1);
 
@@ -464,7 +586,7 @@
 
         </script>
     </head>
-    <body onload="playAudioInicio()">
+    <body onload="playAudioInicio();">
 
         <table style="margin-left: auto;margin-right: auto">
             <tr>
@@ -510,7 +632,7 @@
                             </c:forEach></ul>
                         <!--puntulist-->
                         <ul type="hidden" style="list-style-type: none;" id="puntuList"><c:forEach items="${puntuaciones}" var="punt">
-                                <li rel="${punt.audio}" cancid="${punt.id}" albumImage="${puntu.album_image}" imagen="${punt.image}" texto="${punt.name} (${punt.artist_name})" cancion="${punt.name}" artista="${punt.artist_name}"></li>
+                                <li rel="${punt.audio}" cancid="${punt.id}" albumImage="${puntu.album_image}" imagen="${punt.image}" texto="${punt.name} (${punt.artist_name})" cancion="${punt.name}" artista="${punt.artist_name}" fav="${punt.fav}" rating="${punt.rating}"></li>
                             </c:forEach></ul>
                         <!-- Unnamed (Image) -->
                         <div id="u6" class="ax_image">
@@ -1443,14 +1565,37 @@
                                         </div>
                                     </div>
                                         
-                                         <img id="botonforwardPunt" style="width: 100px;height: 100px;position: absolute;top: 252px;left: 471px;" onclick="forwardPunt();" src="<c:url value="/images/identificado/adelante.png"/>"/>
+                                         <img id="botonforwardPunt" style="width: 100px;height: 100px;position: absolute;top: 252px;left: 471px;" onclick="fordwardPunt();" src="<c:url value="/images/identificado/adelante.png"/>"/>
                                          <img id="botonbackwardPunt" style="width: 100px;height: 100px;position: absolute;top: 252px;left: 66px;" onclick="backwardPunt();" src="<c:url value="/images/identificado/atras.png"/>"/>
                                          
-                                    <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u228.png"/>"/>
-                                    <img id="estrellaPuntuacionesPunt" style="position: absolute;width: 50px;height: 40px;top: 506px;left: 365px;" src="<c:url value="/images/sin_identificar/u235.png"/>"/>
+                                    <img id="imagenPuntuacionesPunt" style="width:110px;height: 90px;position:absolute;top: 407px;left: 161px;" src="${puntuaciones[0].image}"/>
                                     
-                                    <img id="imagenPuntuacionesPunt" style="width:110px;height: 90px;position:absolute;" src="${puntuaciones[0].image}"/>
+                                    <c:if test="${!puntuaciones[0].fav}">
+                                        <img id="estrellaPuntuacionesPunt" onclick="toggleFavPunt();" style="position: absolute;width: 50px;height: 40px;top: 506px;left: 365px;" src="<c:url value="/images/sin_identificar/u235.png"/>"/>
+                                    </c:if>
+                                    <c:if test="${puntuaciones[0].fav}">
+                                        <img id="estrellaPuntuacionesPunt" onclick="toggleFavPunt();" style="position: absolute;width: 50px;height: 40px;top: 506px;left: 365px;" src="<c:url value="/images/sin_identificar/u237.png"/>"/>
+                                    </c:if>
                                     
+                                        <c:choose>    
+                                            <c:when test="${puntuaciones[0].rating==1}">
+                                                <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u228.png"/>"/>
+                                            </c:when>
+                                            <c:when test="${puntuaciones[0].rating==3}">
+                                                <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u230.png"/>"/>
+                                            </c:when>
+                                            <c:when test="${puntuaciones[0].rating==5}">
+                                                <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u232.png"/>"/>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u228.png"/>"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        
+                                                <img src="resources/images/transparent.gif" style="position: absolute;top: 508px;left: 159px;" width="40px" height="40px" onclick="corazonesPunt1();">
+                                                <img src="resources/images/transparent.gif" style="position: absolute;top: 508px;left: 206px;" width="40px" height="40px" onclick="corazonesPunt3();">
+                                                <img src="resources/images/transparent.gif" style="position: absolute;top: 508px;left: 253px;" width="40px" height="40px" onclick="corazonesPunt5();">
+                                                
                                     <div id="u213" class="ax_paragraph">
                                         <img id="u213_img" class="img " src="resources/images/transparent.gif"/>
                                         <!-- Unnamed () -->
