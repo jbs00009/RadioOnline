@@ -449,7 +449,7 @@
 
                         <!-- Unnamed (Image) -->
                         <div id="u4" class="ax_image">
-                            <img id="u4_img" class="img " src="<c:url value="/images/sin_identificar/u4.png"/>"/>
+                            <a href="https://twitter.com/RadioOnlineCola"><img id="u4_img" class="img " src="<c:url value="/images/sin_identificar/u4.png"/>"/></a>
                             <!-- Unnamed () -->
                             <div id="u5" class="text">
                                 <p><span></span></p>
@@ -533,7 +533,7 @@
 
                         <!-- Unnamed (Image) -->
                         <div id="u19" class="ax_image">
-                            <img id="u19_img" class="img " src="<c:url value="/images/sin_identificar/u19.png"/>"/>
+                            <a href="https://www.facebook.com/RadioOnlineColaborativa?skip_nax_wizard=true&ref_type"><img id="u19_img" class="img " src="<c:url value="/images/sin_identificar/u19.png"/>"/></a>
                             <!-- Unnamed () -->
                             <div id="u20" class="text">
                                 <p><span></span></p>
@@ -542,7 +542,7 @@
 
                         <!-- Unnamed (Image) -->
                         <div id="u21" class="ax_image">
-                            <img id="u21_img" class="img " src="<c:url value="/images/sin_identificar/u21.png"/>"/>
+                            <a href="https://plus.google.com/108689338742074276815/about"><img id="u21_img" class="img " src="<c:url value="/images/sin_identificar/u21.png"/>"/></a>
                             <!-- Unnamed () -->
                             <div id="u22" class="text">
                                 <p><span></span></p>
