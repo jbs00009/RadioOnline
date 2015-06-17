@@ -285,7 +285,7 @@
                 // Check for audio element support.
                 var em = document.getElementById('u162_input').value;
 
-                window.location = "radioWebPrueba/login/" + em;
+                window.location = "/radioWebPrueba/login/" + em;
 
             }
 

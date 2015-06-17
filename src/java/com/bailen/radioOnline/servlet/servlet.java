@@ -102,8 +102,10 @@ public class servlet {
         try {
             Cancion[] aux = reja.getRatings(usuario.getApiKey());
             ArrayList<Cancion> puntuAux = new ArrayList<>();
+            if(aux!=null){
             for (int i = 0; i < aux.length; ++i) {
                 puntuAux.add(aux[i]);
+            }
             }
             puntuaciones = (ArrayList<Cancion>) puntuAux.clone();
             puntuacionesAux= (ArrayList<Cancion>) puntuAux.clone();
@@ -373,6 +375,9 @@ public class servlet {
                 backward = "artistasFav";
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.artistFav(usuario.getApiKey());
+                if(inter.length==0){
+                    inter=reja.random(usuario.getApiKey());
+                }
                 for (int i = 0; i < inter.length; ++i) {
                     canciones.add(inter[i]);
                 }
@@ -395,6 +400,9 @@ public class servlet {
                 banderaPlus = false;
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.artistFav(usuario.getApiKey());
+                if(inter.length==0){
+                    inter=reja.random(usuario.getApiKey());
+                }
                 for (int i = 0; i < inter.length; ++i) {
                     canciones.add(inter[i]);
                 }
@@ -438,6 +446,9 @@ public class servlet {
             try {
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.favourites(usuario.getApiKey());
+                if(inter.length==0){
+                    inter=reja.random(usuario.getApiKey());
+                }
                 for (int i = 0; i < inter.length; ++i) {
                     canciones.add(inter[i]);
                 }
@@ -460,6 +471,9 @@ public class servlet {
                 banderaPlus = false;
                 ArrayList<Cancion> canciones = new ArrayList<>();
                 Cancion[] inter = reja.favourites(usuario.getApiKey());
+                if(inter.length==0){
+                    inter=reja.random(usuario.getApiKey());
+                }
                 for (int i = 0; i < inter.length; ++i) {
                     canciones.add(inter[i]);
                 }

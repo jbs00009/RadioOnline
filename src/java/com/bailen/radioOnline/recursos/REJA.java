@@ -124,6 +124,9 @@ public class REJA {
         String canc = response.getBody();
         StringTokenizer st = new StringTokenizer(canc, "[", true);
         st.nextToken();
+        if(!st.hasMoreTokens()){
+           return null; 
+        }
         st.nextToken();
         canc = "[" + st.nextToken();
 

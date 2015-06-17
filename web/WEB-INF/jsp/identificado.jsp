@@ -64,8 +64,8 @@
             var fav = 0;
             var rating = 1;
             var iCancionActual =${actual};
-            var iPuntuacionActual =0;
-            <%int contador=0;%>
+            var iPuntuacionActual = 0;
+            <%int contador = 0;%>
             function playAudio() {
                 // Check for audio element support.
                 if (window.HTMLAudioElement) {
@@ -112,7 +112,7 @@
                         var spa2 = document.getElementById("spa2");
                         var spa3 = document.getElementById("spa3");
                         var spa4 = document.getElementById("spa4");
-                        
+
                         //imgenes slide
                         var u26_img = document.getElementById("u26_img");
                         var u32_img = document.getElementById("u32_img");
@@ -206,7 +206,7 @@
                         u203_img.src = $('#playlist').children().eq(1 % iTotalCanciones).attr('albumImage');
                         u205_img.src = $('#playlist').children().eq(2 % iTotalCanciones).attr('albumImage');
                         u207_img.src = $('#playlist').children().eq(3 % iTotalCanciones).attr('albumImage');
-                        
+
 
                     }
                     catch (e) {
@@ -294,7 +294,7 @@
 
 
                     if (iCancionActual === iTotalCanciones - 1) {
-                        document.location.replace(window.location+"/"+$('#playlist').children().eq(iCancionActual).attr('cancid'));
+                        document.location.replace(window.location + "/" + $('#playlist').children().eq(iCancionActual).attr('cancid'));
 
                     } else {
                         iCancionActual++;
@@ -328,54 +328,54 @@
 
                 document.location.replace("/radioWebPrueba");
             }
-            
+
             function forwardAudio() {
                 var objReproductor = document.getElementById('myaudio');
                 var iTotalCanciones = $('#playlist li').length;
                 var imagenRep = document.getElementById("u17_img");
                 var textoRep = document.getElementById('textoRep');
 
-                 //lista reproducción
-                    var imagenlist1 = document.getElementById("u122_img");
-                    var imagenlist2 = document.getElementById("u124_img");
-                    var imagenlist3 = document.getElementById("u126_img");
-                    var imagenlist4 = document.getElementById("u128_img");
-                    var imagenPunt = document.getElementById("u211_img");
-                    //texto lista
-                    var spa1 = document.getElementById("spa1");
-                    var spa2 = document.getElementById("spa2");
-                    var spa3 = document.getElementById("spa3");
-                    var spa4 = document.getElementById("spa4");
-                    var spaPunt = document.getElementById("tituloPunt");
+                //lista reproducción
+                var imagenlist1 = document.getElementById("u122_img");
+                var imagenlist2 = document.getElementById("u124_img");
+                var imagenlist3 = document.getElementById("u126_img");
+                var imagenlist4 = document.getElementById("u128_img");
+                var imagenPunt = document.getElementById("u211_img");
+                //texto lista
+                var spa1 = document.getElementById("spa1");
+                var spa2 = document.getElementById("spa2");
+                var spa3 = document.getElementById("spa3");
+                var spa4 = document.getElementById("spa4");
+                var spaPunt = document.getElementById("tituloPunt");
 
 
 
-                    if (iCancionActual === iTotalCanciones - 1) {
-                        document.location.replace(window.location+"/"+$('#playlist').children().eq(iCancionActual).attr('cancid'));
+                if (iCancionActual === iTotalCanciones - 1) {
+                    document.location.replace(window.location + "/" + $('#playlist').children().eq(iCancionActual).attr('cancid'));
 
-                    } else {
-                        iCancionActual++;
-                        
-                    }
+                } else {
+                    iCancionActual++;
+
+                }
 
 
-                    objReproductor.src = $('#playlist').children().eq(iCancionActual).attr('rel');
-                    imagenRep.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
-                    textoRep.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
-                    objReproductor.play();
+                objReproductor.src = $('#playlist').children().eq(iCancionActual).attr('rel');
+                imagenRep.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
+                textoRep.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
+                objReproductor.play();
 
-                    //imagenes lista reproduccion
-                    imagenlist1.src = $('#playlist').children().eq((iCancionActual + 1) % iTotalCanciones).attr('imagen');
-                    imagenlist2.src = $('#playlist').children().eq((iCancionActual + 2) % iTotalCanciones).attr('imagen');
-                    imagenlist3.src = $('#playlist').children().eq((iCancionActual + 3) % iTotalCanciones).attr('imagen');
-                    imagenlist4.src = $('#playlist').children().eq((iCancionActual + 4) % iTotalCanciones).attr('imagen');
-                    imagenPunt.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
-                    //texto lista reproduccion
-                    spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 1) % iTotalCanciones).attr('texto');
-                    spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 2) % iTotalCanciones).attr('texto');
-                    spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 3) % iTotalCanciones).attr('texto');
-                    spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 4) % iTotalCanciones).attr('texto');
-                    spaPunt.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
+                //imagenes lista reproduccion
+                imagenlist1.src = $('#playlist').children().eq((iCancionActual + 1) % iTotalCanciones).attr('imagen');
+                imagenlist2.src = $('#playlist').children().eq((iCancionActual + 2) % iTotalCanciones).attr('imagen');
+                imagenlist3.src = $('#playlist').children().eq((iCancionActual + 3) % iTotalCanciones).attr('imagen');
+                imagenlist4.src = $('#playlist').children().eq((iCancionActual + 4) % iTotalCanciones).attr('imagen');
+                imagenPunt.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
+                //texto lista reproduccion
+                spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 1) % iTotalCanciones).attr('texto');
+                spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 2) % iTotalCanciones).attr('texto');
+                spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 3) % iTotalCanciones).attr('texto');
+                spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual + 4) % iTotalCanciones).attr('texto');
+                spaPunt.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
 
             }
 
@@ -385,47 +385,47 @@
                 var imagenRep = document.getElementById("u17_img");
                 var textoRep = document.getElementById('textoRep');
 
-                 //lista reproducción
-                    var imagenlist1 = document.getElementById("u122_img");
-                    var imagenlist2 = document.getElementById("u124_img");
-                    var imagenlist3 = document.getElementById("u126_img");
-                    var imagenlist4 = document.getElementById("u128_img");
-                    var imagenPunt = document.getElementById("u211_img");
-                    //texto lista
-                    var spa1 = document.getElementById("spa1");
-                    var spa2 = document.getElementById("spa2");
-                    var spa3 = document.getElementById("spa3");
-                    var spa4 = document.getElementById("spa4");
-                    var spaPunt = document.getElementById("tituloPunt");
+                //lista reproducción
+                var imagenlist1 = document.getElementById("u122_img");
+                var imagenlist2 = document.getElementById("u124_img");
+                var imagenlist3 = document.getElementById("u126_img");
+                var imagenlist4 = document.getElementById("u128_img");
+                var imagenPunt = document.getElementById("u211_img");
+                //texto lista
+                var spa1 = document.getElementById("spa1");
+                var spa2 = document.getElementById("spa2");
+                var spa3 = document.getElementById("spa3");
+                var spa4 = document.getElementById("spa4");
+                var spaPunt = document.getElementById("tituloPunt");
 
 
 
-                    if (iCancionActual === 0) {
-                        iCancionActual = iTotalCanciones - 1;
+                if (iCancionActual === 0) {
+                    iCancionActual = iTotalCanciones - 1;
 
-                    } else {
-                        iCancionActual--;
+                } else {
+                    iCancionActual--;
 
-                    }
+                }
 
 
-                    objReproductor.src = $('#playlist').children().eq(iCancionActual).attr('rel');
-                    imagenRep.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
-                    textoRep.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
-                    objReproductor.play();
+                objReproductor.src = $('#playlist').children().eq(iCancionActual).attr('rel');
+                imagenRep.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
+                textoRep.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
+                objReproductor.play();
 
-                    //imagenes lista reproduccion
-                    imagenlist1.src = $('#playlist').children().eq((iCancionActual - 1) % iTotalCanciones).attr('imagen');
-                    imagenlist2.src = $('#playlist').children().eq((iCancionActual - 2) % iTotalCanciones).attr('imagen');
-                    imagenlist3.src = $('#playlist').children().eq((iCancionActual - 3) % iTotalCanciones).attr('imagen');
-                    imagenlist4.src = $('#playlist').children().eq((iCancionActual - 4) % iTotalCanciones).attr('imagen');
-                    imagenPunt.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
-                    //texto lista reproduccion
-                    spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 1) % iTotalCanciones).attr('texto');
-                    spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 2) % iTotalCanciones).attr('texto');
-                    spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 3) % iTotalCanciones).attr('texto');
-                    spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 4) % iTotalCanciones).attr('texto');
-                    spaPunt.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
+                //imagenes lista reproduccion
+                imagenlist1.src = $('#playlist').children().eq((iCancionActual - 1) % iTotalCanciones).attr('imagen');
+                imagenlist2.src = $('#playlist').children().eq((iCancionActual - 2) % iTotalCanciones).attr('imagen');
+                imagenlist3.src = $('#playlist').children().eq((iCancionActual - 3) % iTotalCanciones).attr('imagen');
+                imagenlist4.src = $('#playlist').children().eq((iCancionActual - 4) % iTotalCanciones).attr('imagen');
+                imagenPunt.src = $('#playlist').children().eq(iCancionActual).attr('imagen');
+                //texto lista reproduccion
+                spa1.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 1) % iTotalCanciones).attr('texto');
+                spa2.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 2) % iTotalCanciones).attr('texto');
+                spa3.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 3) % iTotalCanciones).attr('texto');
+                spa4.firstChild.nodeValue = $('#playlist').children().eq((iCancionActual - 4) % iTotalCanciones).attr('texto');
+                spaPunt.firstChild.nodeValue = $('#playlist').children().eq(iCancionActual).attr('texto');
 
             }
 
@@ -435,125 +435,125 @@
 
                 document.location.replace("/radioWebPrueba/ratings/" + rating + "/" + $('#playlist').children().eq(iCancionActual).attr('cancid') + "/" + fav);
             }
-            
-            function fordwardPunt(){
-                var imagenPuntuaciones= document.getElementById("imagenPuntuacionesPunt");
-                var tituloPuntuaciones= document.getElementById("tituloPuntuacionesPunt");
-                var corazonesPuntuaciones= document.getElementById("corazonesPuntuacionesPunt");
-                var estrellaPuntuaciones= document.getElementById("estrellaPuntuacionesPunt");
+
+            function fordwardPunt() {
+                var imagenPuntuaciones = document.getElementById("imagenPuntuacionesPunt");
+                var tituloPuntuaciones = document.getElementById("tituloPuntuacionesPunt");
+                var corazonesPuntuaciones = document.getElementById("corazonesPuntuacionesPunt");
+                var estrellaPuntuaciones = document.getElementById("estrellaPuntuacionesPunt");
                 var iTotalPuntuaciones = $('#puntuList li').length;
-                
-                 if (iPuntuacionActual === iTotalPuntuaciones - 1) {
-                        //iPuntuacioActual=0;
-                 } else {
-                        iPuntuacionActual++;
-                        <%contador++;%>
-                 }
-                 
-                 imagenPuntuaciones.src = $('#puntuList').children().eq(iPuntuacionActual).attr('imagen');
-                 tituloPuntuaciones.firstChild.nodeValue = $('#puntuList').children().eq(iPuntuacionActual).attr('texto');
-                 
-                if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='false'){
-                    estrellaPuntuaciones.src="images/sin_identificar/u235.png";
+
+                if (iPuntuacionActual === iTotalPuntuaciones - 1) {
+                    //iPuntuacioActual=0;
+                } else {
+                    iPuntuacionActual++;
+            <%contador++;%>
                 }
-                if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='true'){
-                    estrellaPuntuaciones.src="images/sin_identificar/u237.png";
+
+                imagenPuntuaciones.src = $('#puntuList').children().eq(iPuntuacionActual).attr('imagen');
+                tituloPuntuaciones.firstChild.nodeValue = $('#puntuList').children().eq(iPuntuacionActual).attr('texto');
+
+                if ($('#puntuList').children().eq(iPuntuacionActual).attr('fav') === 'false') {
+                    estrellaPuntuaciones.src = "images/sin_identificar/u235.png";
                 }
-                                    
-                    
-                if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='1'){
-                    corazonesPuntuaciones.src="images/sin_identificar/u228.png";
-                }else 
-                    if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='3'){
-                        corazonesPuntuaciones.src="images/sin_identificar/u230.png";
-                    }else
-                        if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='5'){
-                            corazonesPuntuaciones.src="images/sin_identificar/u232.png";
-                        }else{
-                            corazonesPuntuaciones.src="images/sin_identificar/u228.png";
-                        }                            
-            }
-            
-            function backwardPunt(){
-                var imagenPuntuaciones= document.getElementById("imagenPuntuacionesPunt");
-                var tituloPuntuaciones= document.getElementById("tituloPuntuacionesPunt");
-                var corazonesPuntuaciones= document.getElementById("corazonesPuntuacionesPunt");
-                var estrellaPuntuaciones= document.getElementById("estrellaPuntuacionesPunt");
-                var iTotalPuntuaciones = $('#puntuList li').length;
-                
-                 if (iPuntuacionActual === 0) {
-                        //iPuntuacionActual=iTotalPuntuaciones - 1;
-                 } else {
-                        iPuntuacionActual--;
-                        <%contador--;%>
-                 }
-                 
-                 imagenPuntuaciones.src = $('#puntuList').children().eq(iPuntuacionActual).attr('imagen');
-                 tituloPuntuaciones.firstChild.nodeValue = $('#puntuList').children().eq(iPuntuacionActual).attr('texto');
-                 
-                if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='false'){
-                    estrellaPuntuaciones.src="images/sin_identificar/u235.png";
+                if ($('#puntuList').children().eq(iPuntuacionActual).attr('fav') === 'true') {
+                    estrellaPuntuaciones.src = "images/sin_identificar/u237.png";
                 }
-                if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='true'){
-                    estrellaPuntuaciones.src="images/sin_identificar/u237.png";
+
+
+                if ($('#puntuList').children().eq(iPuntuacionActual).attr('rating') === '1') {
+                    corazonesPuntuaciones.src = "images/sin_identificar/u228.png";
+                } else
+                if ($('#puntuList').children().eq(iPuntuacionActual).attr('rating') === '3') {
+                    corazonesPuntuaciones.src = "images/sin_identificar/u230.png";
+                } else
+                if ($('#puntuList').children().eq(iPuntuacionActual).attr('rating') === '5') {
+                    corazonesPuntuaciones.src = "images/sin_identificar/u232.png";
+                } else {
+                    corazonesPuntuaciones.src = "images/sin_identificar/u228.png";
                 }
-                                    
-                    
-                if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='1'){
-                    corazonesPuntuaciones.src="images/sin_identificar/u228.png";
-                }else 
-                    if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='3'){
-                        corazonesPuntuaciones.src="images/sin_identificar/u230.png";
-                    }else
-                        if($('#puntuList').children().eq(iPuntuacionActual).attr('rating')==='5'){
-                            corazonesPuntuaciones.src="images/sin_identificar/u232.png";
-                        }else{
-                            corazonesPuntuaciones.src="images/sin_identificar/u228.png";
-                        }                            
             }
 
-            function toggleFavPunt(){
-                var estrellaPuntuaciones= document.getElementById("estrellaPuntuacionesPunt");
-                
-                if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='false'){
-                    $('#puntuList').children().eq(iPuntuacionActual).attr('fav','true');
-                    estrellaPuntuaciones.src="images/sin_identificar/u237.png";
-                    //cambiar el estado en el array mismamente    
-                    document.location.replace("/radioWebPrueba/puntuFav/"+iPuntuacionActual+"/"+"true");
-                }else
-                //if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='true')
-                {
-                    $('#puntuList').children().eq(iPuntuacionActual).attr('fav','false');
-                    estrellaPuntuaciones.src="images/sin_identificar/u235.png";
-                    document.location.replace("/radioWebPrueba/puntuFav/"+iPuntuacionActual+"/"+"false");
+            function backwardPunt() {
+                var imagenPuntuaciones = document.getElementById("imagenPuntuacionesPunt");
+                var tituloPuntuaciones = document.getElementById("tituloPuntuacionesPunt");
+                var corazonesPuntuaciones = document.getElementById("corazonesPuntuacionesPunt");
+                var estrellaPuntuaciones = document.getElementById("estrellaPuntuacionesPunt");
+                var iTotalPuntuaciones = $('#puntuList li').length;
+
+                if (iPuntuacionActual === 0) {
+                    //iPuntuacionActual=iTotalPuntuaciones - 1;
+                } else {
+                    iPuntuacionActual--;
+            <%contador--;%>
                 }
-                
-               
+
+                imagenPuntuaciones.src = $('#puntuList').children().eq(iPuntuacionActual).attr('imagen');
+                tituloPuntuaciones.firstChild.nodeValue = $('#puntuList').children().eq(iPuntuacionActual).attr('texto');
+
+                if ($('#puntuList').children().eq(iPuntuacionActual).attr('fav') === 'false') {
+                    estrellaPuntuaciones.src = "images/sin_identificar/u235.png";
+                }
+                if ($('#puntuList').children().eq(iPuntuacionActual).attr('fav') === 'true') {
+                    estrellaPuntuaciones.src = "images/sin_identificar/u237.png";
+                }
+
+
+                if ($('#puntuList').children().eq(iPuntuacionActual).attr('rating') === '1') {
+                    corazonesPuntuaciones.src = "images/sin_identificar/u228.png";
+                } else
+                if ($('#puntuList').children().eq(iPuntuacionActual).attr('rating') === '3') {
+                    corazonesPuntuaciones.src = "images/sin_identificar/u230.png";
+                } else
+                if ($('#puntuList').children().eq(iPuntuacionActual).attr('rating') === '5') {
+                    corazonesPuntuaciones.src = "images/sin_identificar/u232.png";
+                } else {
+                    corazonesPuntuaciones.src = "images/sin_identificar/u228.png";
+                }
             }
-            
-            function corazonesPunt1(){
-                var corazonesPuntuaciones= document.getElementById("corazonesPuntuacionesPunt");
-                $('#puntuList').children().eq(iPuntuacionActual).attr('rating','1');
-                corazonesPuntuaciones.src="images/sin_identificar/u228.png";
-                document.location.replace("/radioWebPrueba/puntu/"+iPuntuacionActual+"/"+"1");
+
+            function toggleFavPunt() {
+                var estrellaPuntuaciones = document.getElementById("estrellaPuntuacionesPunt");
+
+                if ($('#puntuList').children().eq(iPuntuacionActual).attr('fav') === 'false') {
+                    $('#puntuList').children().eq(iPuntuacionActual).attr('fav', 'true');
+                    estrellaPuntuaciones.src = "images/sin_identificar/u237.png";
+                    //cambiar el estado en el array mismamente    
+                    document.location.replace("/radioWebPrueba/puntuFav/" + iPuntuacionActual + "/" + "true");
+                } else
+                        //if($('#puntuList').children().eq(iPuntuacionActual).attr('fav')==='true')
+                        {
+                            $('#puntuList').children().eq(iPuntuacionActual).attr('fav', 'false');
+                            estrellaPuntuaciones.src = "images/sin_identificar/u235.png";
+                            document.location.replace("/radioWebPrueba/puntuFav/" + iPuntuacionActual + "/" + "false");
+                        }
+
+
             }
-            function corazonesPunt3(){
-                var corazonesPuntuaciones= document.getElementById("corazonesPuntuacionesPunt");
-                $('#puntuList').children().eq(iPuntuacionActual).attr('rating','3');
-                corazonesPuntuaciones.src="images/sin_identificar/u230.png";
-                document.location.replace("/radioWebPrueba/puntu/"+iPuntuacionActual+"/"+"3");
+
+            function corazonesPunt1() {
+                var corazonesPuntuaciones = document.getElementById("corazonesPuntuacionesPunt");
+                $('#puntuList').children().eq(iPuntuacionActual).attr('rating', '1');
+                corazonesPuntuaciones.src = "images/sin_identificar/u228.png";
+                document.location.replace("/radioWebPrueba/puntu/" + iPuntuacionActual + "/" + "1");
             }
-            function corazonesPunt5(){
-                var corazonesPuntuaciones= document.getElementById("corazonesPuntuacionesPunt");
-                $('#puntuList').children().eq(iPuntuacionActual).attr('rating','5');
-                corazonesPuntuaciones.src="images/sin_identificar/u232.png";
-                document.location.replace("/radioWebPrueba/puntu/"+iPuntuacionActual+"/"+"5");
+            function corazonesPunt3() {
+                var corazonesPuntuaciones = document.getElementById("corazonesPuntuacionesPunt");
+                $('#puntuList').children().eq(iPuntuacionActual).attr('rating', '3');
+                corazonesPuntuaciones.src = "images/sin_identificar/u230.png";
+                document.location.replace("/radioWebPrueba/puntu/" + iPuntuacionActual + "/" + "3");
             }
-            
-            function puntuarPunt(){
+            function corazonesPunt5() {
+                var corazonesPuntuaciones = document.getElementById("corazonesPuntuacionesPunt");
+                $('#puntuList').children().eq(iPuntuacionActual).attr('rating', '5');
+                corazonesPuntuaciones.src = "images/sin_identificar/u232.png";
+                document.location.replace("/radioWebPrueba/puntu/" + iPuntuacionActual + "/" + "5");
+            }
+
+            function puntuarPunt() {
                 document.location.replace("/radioWebPrueba/setRatings");
             }
-            
+
             if (window.history.forward(1) !== null)
                 window.history.forward(1);
 
@@ -561,7 +561,7 @@
 
             function disconnectUser() {
                 var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' +
-                        '${usuario.token}'+'.'+'${usuario.token2}';
+                        '${usuario.token}' + '.' + '${usuario.token2}';
 
                 // Realiza una solicitud GET asíncrona.
                 $.ajax({
@@ -642,7 +642,7 @@
                                 <p><span></span></p>
                             </div>
                         </div>
-                        
+
                         <img style="width: 70px;height: 60px;position: absolute;top: 811px;left: 715px;" onclick="forwardAudio();" src="<c:url value="/images/identificado/adelante.png"/>"/>
 
                         <!-- Unnamed (Image) -->
@@ -655,7 +655,7 @@
                         </div>
 
                         <img style="width: 70px;height: 60px;position: absolute;top: 811px;left: 257px;" onclick="backwardAudio();" src="<c:url value="/images/identificado/atras.png"/>"/>
-                        
+
                         <!-- Unnamed (Dynamic Panel) -->
                         <div id="u10" class="ax_dynamic_panel">
                             <div id="u10_state0" class="panel_state" data-label="State1">
@@ -1430,7 +1430,7 @@
                             <div id="u156_state0" class="panel_state" data-label="State2">
                                 <div id="u156_state0_content" class="panel_state_content">
 
-                                    
+
                                     <!-- Unnamed (Image) -->
                                     <div id="u157" class="ax_image">
                                         <img id="u157_img" class="img " src="images/sin_identificar/u158.png"/>
@@ -1439,7 +1439,7 @@
                                             <p><span></span></p>
                                         </div>
                                     </div>
-                                    
+
                                     <div id="u183" class="ax_image">
                                         <img id="u183_img" class="img " src="images/identificado/CUENTA.png"/>
                                         <!-- Unnamed () -->
@@ -1447,7 +1447,7 @@
                                             <p><span></span></p>
                                         </div>
                                     </div>
-                                    
+
                                     <div id="u164" class="ax_image">
                                         <img id="u164_img" class="img " src="images/sin_identificar/u158.png"/>
                                         <!-- Unnamed () -->
@@ -1516,8 +1516,8 @@
                                     </div>
 
                                     <!-- Unnamed (Image) -->
-                                    
-                                    
+
+
                                     <!-- Unnamed (HTML Button) -->
                                     <div id="u159" class="ax_html_button">
                                         <input id="u159_input" type="submit" value="Cancelar"/>
@@ -1553,10 +1553,10 @@
                                             <p><span></span></p>
                                         </div>
                                     </div>
-                                    
-                                    
-                                    
-                                    
+
+
+
+
                                     <div id="u170" class="ax_h2">
                                         <img id="u170_img" class="img " src="resources/images/transparent.gif"/>
                                         <!-- Unnamed () -->
@@ -1564,38 +1564,54 @@
                                             <center><p><span style="position: absolute;top: -68px;left: 101px;">Cambia las valoraciones de<br> tus canciones aquí</span></p></center>
                                         </div>
                                     </div>
-                                        
-                                         <img id="botonforwardPunt" style="width: 100px;height: 100px;position: absolute;top: 252px;left: 471px;" onclick="fordwardPunt();" src="<c:url value="/images/identificado/adelante.png"/>"/>
-                                         <img id="botonbackwardPunt" style="width: 100px;height: 100px;position: absolute;top: 252px;left: 66px;" onclick="backwardPunt();" src="<c:url value="/images/identificado/atras.png"/>"/>
-                                         
-                                    <img id="imagenPuntuacionesPunt" style="width:110px;height: 90px;position:absolute;top: 407px;left: 161px;" src="${puntuaciones[0].image}"/>
-                                    
-                                    <c:if test="${!puntuaciones[0].fav}">
-                                        <img id="estrellaPuntuacionesPunt" onclick="toggleFavPunt();" style="position: absolute;width: 50px;height: 40px;top: 506px;left: 365px;" src="<c:url value="/images/sin_identificar/u235.png"/>"/>
-                                    </c:if>
-                                    <c:if test="${puntuaciones[0].fav}">
-                                        <img id="estrellaPuntuacionesPunt" onclick="toggleFavPunt();" style="position: absolute;width: 50px;height: 40px;top: 506px;left: 365px;" src="<c:url value="/images/sin_identificar/u237.png"/>"/>
-                                    </c:if>
-                                    
-                                        <c:choose>    
-                                            <c:when test="${puntuaciones[0].rating==1}">
-                                                <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u228.png"/>"/>
-                                            </c:when>
-                                            <c:when test="${puntuaciones[0].rating==3}">
-                                                <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u230.png"/>"/>
-                                            </c:when>
-                                            <c:when test="${puntuaciones[0].rating==5}">
-                                                <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u232.png"/>"/>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u228.png"/>"/>
-                                            </c:otherwise>
-                                        </c:choose>
-                                        
-                                                <img src="resources/images/transparent.gif" style="position: absolute;top: 508px;left: 159px;" width="40px" height="40px" onclick="corazonesPunt1();">
-                                                <img src="resources/images/transparent.gif" style="position: absolute;top: 508px;left: 206px;" width="40px" height="40px" onclick="corazonesPunt3();">
-                                                <img src="resources/images/transparent.gif" style="position: absolute;top: 508px;left: 253px;" width="40px" height="40px" onclick="corazonesPunt5();">
-                                                
+                                    <c:choose >
+                                        <c:when test="${empty puntuaciones}">
+                                            <div id="u213" class="ax_paragraph">
+                                                <img id="u213_img" class="img " src="resources/images/transparent.gif"/>
+                                                <!-- Unnamed () -->
+                                                <div id="u214" class="text">
+                                                    <p><span style="position: absolute;left: -70px;">No hay canciones puntuadas</span></p>
+                                                </div>
+                                            </div>     
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img id="botonforwardPunt" style="width: 100px;height: 100px;position: absolute;top: 252px;left: 471px;" onclick="fordwardPunt();" src="<c:url value="/images/identificado/adelante.png"/>"/>
+                                            <img id="botonbackwardPunt" style="width: 100px;height: 100px;position: absolute;top: 252px;left: 66px;" onclick="backwardPunt();" src="<c:url value="/images/identificado/atras.png"/>"/>
+
+                                            <img id="imagenPuntuacionesPunt" style="width:110px;height: 90px;position:absolute;top: 407px;left: 161px;" src="${puntuaciones[0].image}"/>
+
+                                            <c:if test="${!puntuaciones[0].fav}">
+                                                <img id="estrellaPuntuacionesPunt" onclick="toggleFavPunt();" style="position: absolute;width: 50px;height: 40px;top: 506px;left: 365px;" src="<c:url value="/images/sin_identificar/u235.png"/>"/>
+                                            </c:if>
+                                            <c:if test="${puntuaciones[0].fav}">
+                                                <img id="estrellaPuntuacionesPunt" onclick="toggleFavPunt();" style="position: absolute;width: 50px;height: 40px;top: 506px;left: 365px;" src="<c:url value="/images/sin_identificar/u237.png"/>"/>
+                                            </c:if>
+
+                                            <c:choose>    
+                                                <c:when test="${puntuaciones[0].rating==1}">
+                                                    <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u228.png"/>"/>
+                                                </c:when>
+                                                <c:when test="${puntuaciones[0].rating==3}">
+                                                    <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u230.png"/>"/>
+                                                </c:when>
+                                                <c:when test="${puntuaciones[0].rating==5}">
+                                                    <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u232.png"/>"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img id="corazonesPuntuacionesPunt" style="position: absolute;width: 170px;height: 60px;top: 506px;left: 155px;" src="<c:url value="/images/sin_identificar/u228.png"/>"/>
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                            <img src="resources/images/transparent.gif" style="position: absolute;top: 508px;left: 159px;" width="40px" height="40px" onclick="corazonesPunt1();">
+                                            <img src="resources/images/transparent.gif" style="position: absolute;top: 508px;left: 206px;" width="40px" height="40px" onclick="corazonesPunt3();">
+                                            <img src="resources/images/transparent.gif" style="position: absolute;top: 508px;left: 253px;" width="40px" height="40px" onclick="corazonesPunt5();">
+
+
+                                        </c:otherwise>
+                                    </c:choose>
+
+
+
                                     <div id="u213" class="ax_paragraph">
                                         <img id="u213_img" class="img " src="resources/images/transparent.gif"/>
                                         <!-- Unnamed () -->
@@ -1603,11 +1619,11 @@
                                             <p><span id="tituloPuntuacionesPunt">${puntuaciones[0].name}</span></p>
                                         </div>
                                     </div>     
-                                    
+
                                     <div  class="ax_html_button">
                                         <input  style="width: 100px;height: 27px;left: 265px;top: 235px;position: absolute;" onclick="puntuarPunt();" type="submit" value="Enviar"/>
                                     </div>
-                                         
+
                                     <div id="u183" class="ax_image">
                                         <img id="u183_img" class="img " src="images/sin_identificar/u191.png"/>
                                         <!-- Unnamed () -->
@@ -1621,7 +1637,7 @@
                                         <input id="u176_input" type="submit" value="Cancelar"/>
                                     </div>
 
-                                    
+
                                 </div>
                             </div>
                             <div id="u156_state2" class="panel_state" data-label="State3">
@@ -1655,11 +1671,11 @@
                                     <!-- Unnamed (Shape) 
                                     <div id="u189" class="ax_h2">
                                         <img id="u189_img" class="img " src="resources/images/transparent.gif"/>
-                                        <!-- Unnamed () 
-                                        <div id="u190" class="text">
-                                            <p><span>Artistas</span></p>
-                                        </div>
-                                    </div>-->
+                                    <!-- Unnamed () 
+                                    <div id="u190" class="text">
+                                        <p><span>Artistas</span></p>
+                                    </div>
+                                </div>-->
 
                                     <!-- canciones (Dynamic Panel) -->
                                     <!--<div id="u191" class="ax_dynamic_panel" data-label="canciones">
